@@ -20,22 +20,23 @@ class Cinema(object):
     __metaclass__ = abc.ABCMeta
 
     COORDS = (None, None) # latitude, longitude
+    NAME = None
     PROGRAM_URL = None
 
     def __init__(self):
         assert(self.COORDS[0] and self.COORDS[1])
+        assert(self.NAME)
         assert(self.PROGRAM_URL)
 
         self.rdop = db.RedisOperator()
-        self.name = self.__class__.__name__
-        cinema_dict = self.rdop.get_cinema(self.name)
+        cinema_dict = self.rdop.get_cinema(self.NAME)
         self.shows = utils.only_active_shows(cinema_dict["shows"])
         self.raw_html = None
 
     def as_dict(self):
         return {"latitude": self.COORDS[0],
                 "longitude": self.COORDS[1],
-                "name": self.name,
+                "name": self.NAME,
                 "shows": self.shows}
 
     def fetch_latest(self):
@@ -56,6 +57,7 @@ class Cinema(object):
 class Acud(Cinema):
 
     COORDS = (52.53353000000002, 13.400859999999971)
+    NAME = "Acud kino"
     PROGRAM_URL = "http://www.acud.de/kino_programm.php5"
 
     def parse(self):
@@ -88,6 +90,7 @@ class Acud(Cinema):
 class Hasenheide(Cinema):
 
     COORDS = (52.4841131, 13.416982499999996)
+    NAME = "Freiluftkino Hasenheide"
     PROGRAM_URL = "http://www.freiluftkino-hasenheide.de/new/index.php/unser-programm"
 
     def parse(self):
@@ -109,6 +112,7 @@ class Hasenheide(Cinema):
 class FreiluftFriedrichshein(Cinema):
 
     COORDS = (52.525347, 13.435439)
+    NAME = "Freiluftkino Friedrichshein"
     PROGRAM_URL = "http://www.freiluftkino-berlin.de/eine_woche.php"
 
     def parse(self):
