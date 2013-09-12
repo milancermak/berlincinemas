@@ -7,7 +7,11 @@ import times
 RFC3339_FMT = "%Y-%m-%dT%H:%M:%S%z"
 
 def datetime_to_rfc3339(dt, tz="Europe/Berlin"):
-    return times.format(dt, tz, RFC3339_FMT)
+    """
+    Converts a datetime object representing a local time to a
+    RFC3339 representation with time in UTC.
+    """
+    return times.format(times.from_local(dt, tz), "UTC", RFC3339_FMT)
 
 def rfc3339_to_datetime(rfc_string):
     return times.to_universal(rfc_string) # time in UTC
