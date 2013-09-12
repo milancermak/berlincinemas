@@ -53,6 +53,23 @@ class Cinema(object):
     def save(self):
         self.rdop.store_cinema(self.as_dict())
 
+# mixins
+
+class CineplexParseMixin(object):
+
+    def parse(self):
+        tree = etree.HTML(self.raw_html)
+        event_rows = tree.xpath("//div[@class='programmliste']/table/tbody/tr")
+
+        for row in event_rows:
+            date_time = row.xpath(".//td[@class='datum']/span")[0].text # %Y-%m-%d %H:%M:%S
+            dt = datetime.datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
+            title = row.xpath(".//td[@class='titel']")[0].text.strip(" (digital)")
+
+            model = {"title": title,
+                     "screening_time": utils.datetime_to_rfc3339(dt)}
+            self.shows.append(model)
+
 
 class Acud(Cinema):
 
@@ -87,24 +104,24 @@ class Acud(Cinema):
         self.raw_html = html[first_newline+1:]
 
 
-class Adria(Cinema):
+class Adria(Cinema, CineplexParseMixin):
 
     COORDS = (52.454512, 13.317649)
     NAME = "Adria Filmtheater"
     PROGRAM_URL = "http://www.cineplex.de/kino/programmliste/city61/site23"
 
     def parse(self):
-        tree = etree.HTML(self.raw_html)
-        event_rows = tree.xpath("//div[@class='programmliste']/table/tbody/tr")
+        CineplexParseMixin.parse(self)
 
-        for row in event_rows:
-            date_time = row.xpath(".//td[@class='datum']/span")[0].text # %Y-%m-%d %H:%M:%S
-            dt = datetime.datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
-            title = row.xpath(".//td[@class='titel']")[0].text.strip(" (digital)")
 
-            model = {"title": title,
-                     "screening_time": utils.datetime_to_rfc3339(dt)}
-            self.shows.append(model)
+class CineplexTitania(Cinema, CineplexParseMixin):
+
+    COORDS = (52.4641439, 13.326641199999989)
+    NAME = "Titania Palast"
+    PROGRAM_URL = "http://www.cineplex.de/kino/programmliste/city61/site25"
+
+    def parse(self):
+        CineplexParseMixin.parse(self)
 
 
 class Hasenheide(Cinema):
