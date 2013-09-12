@@ -87,6 +87,26 @@ class Acud(Cinema):
         self.raw_html = html[first_newline+1:]
 
 
+class Adria(Cinema):
+
+    COORDS = (52.454512, 13.317649)
+    NAME = "Adria Filmtheater"
+    PROGRAM_URL = "http://www.cineplex.de/kino/programmliste/city61/site23"
+
+    def parse(self):
+        tree = etree.HTML(self.raw_html)
+        event_rows = tree.xpath("//div[@class='programmliste']/table/tbody/tr")
+
+        for row in event_rows:
+            date_time = row.xpath(".//td[@class='datum']/span")[0].text # %Y-%m-%d %H:%M:%S
+            dt = datetime.datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
+            title = row.xpath(".//td[@class='titel']")[0].text.strip(" (digital)")
+
+            model = {"title": title,
+                     "screening_time": utils.datetime_to_rfc3339(dt)}
+            self.shows.append(model)
+
+
 class Hasenheide(Cinema):
 
     COORDS = (52.4841131, 13.416982499999996)
@@ -102,8 +122,8 @@ class Hasenheide(Cinema):
             date = event.xpath(".//*[@class='nextdate']//b")[0].text # %d.%m.%Y
             time = event.xpath(".//*[@class='evttime']")[0].text.split()[0] # %H:%M
             # TODO: the timezone is incorrect by 2 hours
-
             dt = datetime.datetime.strptime(date+time, "%d.%m.%Y%H:%M")
+
             model = {"title": title.strip().capitalize(),
                      "screening_time": utils.datetime_to_rfc3339(dt)}
             self.shows.append(model)
