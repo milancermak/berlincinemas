@@ -8,9 +8,9 @@ import sys
 # fucking (relative) imports
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-import flask
+from flask import Flask
+app = Flask(__name__)
 
-from . import app
 import cinemas
 import utils
 

@@ -2,11 +2,11 @@
 
 from flask.ext.script import Manager
 
-from api import app
+from api import handlers
 import commands
 
 
-manager = Manager(app)
+manager = Manager(handlers.app)
 manager.add_command("runserver", commands.Run(host="0.0.0.0"))
 manager.add_command("getshowtimes", commands.FetchAll())
 
