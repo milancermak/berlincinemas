@@ -11,22 +11,23 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from flask import Flask
 app = Flask(__name__)
 
-import cinemas
-import utils
-
-
-__all__ = ["berlin"]
-
+import cinema
 
 @app.route("/cinemas/berlin/")
 def berlin():
-    berlin = []
-    for cinema_cls in cinemas.known_cinemas():
-        cinema = cinema_cls()
-        cinema_data = cinema.as_dict()
-        cinema_data["shows"].sort(cmp=operator.le, key=lambda show: show["screening_time"])
-        berlin.append(cinema_data)
-    berlin.sort(cmp=locale.strcoll, key=lambda cinema: cinema["name"])
-    response = flask.make_response(json.dumps(berlin))
+    response = flask.make_response(json.dumps(cinema.list()))
+    response.headers["Content-Type"] = "application/json"
+    return response
+
+@app.route("/latitude/<float:latitude>/longitude/<float:longitude>")
+def near_cinema(latitude,longitude):
+    response = flask.make_response( \
+        json.dumps(cinema.find_by_latitude_longitude(latitude, longitude)))
+    response.headers["Content-Type"] = "application/json"
+    return response
+
+@app.route("/cinemas/<cinema_id>")
+def get_cinema(cinema_id):
+    response = flask.make_response(json.dumps(cinema.get(cinema_id)))
     response.headers["Content-Type"] = "application/json"
     return response
