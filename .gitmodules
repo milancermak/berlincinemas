@@ -1,0 +1,4 @@
+[submodule "client-ios/libs/Masonry"]
+	path = client-ios/libs/Masonry
+	url = git@github.com:cloudkite/Masonry.git
+	branch = master
