@@ -7,17 +7,16 @@
 //
 
 #import "KOAppDelegate.h"
-//#import "KOCinemasTableViewController.h"
 #import "KOMoviesTableViewController.h"
 
 @implementation KOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UITabBarController *tab = [UITabBarController new];
-    tab.viewControllers = @[[KOMoviesTableViewController new]];
+
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[KOMoviesTableViewController new]];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = tab;
+    self.window.rootViewController = nav;
     //self.window.tintColor = TODO
     [self.window makeKeyAndVisible];
     return YES;

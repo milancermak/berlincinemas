@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C624C4017F367EA00CB6DF3 /* EXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C2117F367EA00CB6DF3 /* EXTRuntimeExtensions.m */; };
+		4C624C4117F367EA00CB6DF3 /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C2317F367EA00CB6DF3 /* EXTScope.m */; };
+		4C624C4217F367EA00CB6DF3 /* Mantle-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C624C2517F367EA00CB6DF3 /* Mantle-Info.plist */; };
+		4C624C4317F367EA00CB6DF3 /* MTLJSONAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C2917F367EA00CB6DF3 /* MTLJSONAdapter.m */; };
+		4C624C4417F367EA00CB6DF3 /* MTLManagedObjectAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C2B17F367EA00CB6DF3 /* MTLManagedObjectAdapter.m */; };
+		4C624C4517F367EA00CB6DF3 /* MTLModel+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C2D17F367EA00CB6DF3 /* MTLModel+NSCoding.m */; };
+		4C624C4617F367EA00CB6DF3 /* MTLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C2F17F367EA00CB6DF3 /* MTLModel.m */; };
+		4C624C4717F367EA00CB6DF3 /* MTLReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3117F367EA00CB6DF3 /* MTLReflection.m */; };
+		4C624C4817F367EA00CB6DF3 /* MTLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3317F367EA00CB6DF3 /* MTLValueTransformer.m */; };
+		4C624C4917F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3517F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m */; };
+		4C624C4A17F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3717F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.m */; };
+		4C624C4B17F367EA00CB6DF3 /* NSError+MTLModelException.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3917F367EA00CB6DF3 /* NSError+MTLModelException.m */; };
+		4C624C4C17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3B17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m */; };
+		4C624C4D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m */; };
+		4C624C4E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */; };
+		4C624C5217F3699800CB6DF3 /* KOModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C5117F3699800CB6DF3 /* KOModels.m */; };
 		58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
 		58D19EEE17EB3C4200B9AB45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */; };
 		58D19EF017EB3C4200B9AB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEF17EB3C4200B9AB45 /* UIKit.framework */; };
@@ -36,6 +52,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C624C1F17F367EA00CB6DF3 /* EXTKeyPathCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTKeyPathCoding.h; sourceTree = "<group>"; };
+		4C624C2017F367EA00CB6DF3 /* EXTRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTRuntimeExtensions.h; sourceTree = "<group>"; };
+		4C624C2117F367EA00CB6DF3 /* EXTRuntimeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTRuntimeExtensions.m; sourceTree = "<group>"; };
+		4C624C2217F367EA00CB6DF3 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
+		4C624C2317F367EA00CB6DF3 /* EXTScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTScope.m; sourceTree = "<group>"; };
+		4C624C2417F367EA00CB6DF3 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		4C624C2517F367EA00CB6DF3 /* Mantle-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mantle-Info.plist"; sourceTree = "<group>"; };
+		4C624C2617F367EA00CB6DF3 /* Mantle-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Mantle-Prefix.pch"; sourceTree = "<group>"; };
+		4C624C2717F367EA00CB6DF3 /* Mantle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mantle.h; sourceTree = "<group>"; };
+		4C624C2817F367EA00CB6DF3 /* MTLJSONAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLJSONAdapter.h; sourceTree = "<group>"; };
+		4C624C2917F367EA00CB6DF3 /* MTLJSONAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLJSONAdapter.m; sourceTree = "<group>"; };
+		4C624C2A17F367EA00CB6DF3 /* MTLManagedObjectAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLManagedObjectAdapter.h; sourceTree = "<group>"; };
+		4C624C2B17F367EA00CB6DF3 /* MTLManagedObjectAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLManagedObjectAdapter.m; sourceTree = "<group>"; };
+		4C624C2C17F367EA00CB6DF3 /* MTLModel+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTLModel+NSCoding.h"; sourceTree = "<group>"; };
+		4C624C2D17F367EA00CB6DF3 /* MTLModel+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MTLModel+NSCoding.m"; sourceTree = "<group>"; };
+		4C624C2E17F367EA00CB6DF3 /* MTLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLModel.h; sourceTree = "<group>"; };
+		4C624C2F17F367EA00CB6DF3 /* MTLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLModel.m; sourceTree = "<group>"; };
+		4C624C3017F367EA00CB6DF3 /* MTLReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLReflection.h; sourceTree = "<group>"; };
+		4C624C3117F367EA00CB6DF3 /* MTLReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLReflection.m; sourceTree = "<group>"; };
+		4C624C3217F367EA00CB6DF3 /* MTLValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLValueTransformer.h; sourceTree = "<group>"; };
+		4C624C3317F367EA00CB6DF3 /* MTLValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLValueTransformer.m; sourceTree = "<group>"; };
+		4C624C3417F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MTLManipulationAdditions.h"; sourceTree = "<group>"; };
+		4C624C3517F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MTLManipulationAdditions.m"; sourceTree = "<group>"; };
+		4C624C3617F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MTLManipulationAdditions.h"; sourceTree = "<group>"; };
+		4C624C3717F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MTLManipulationAdditions.m"; sourceTree = "<group>"; };
+		4C624C3817F367EA00CB6DF3 /* NSError+MTLModelException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MTLModelException.h"; sourceTree = "<group>"; };
+		4C624C3917F367EA00CB6DF3 /* NSError+MTLModelException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MTLModelException.m"; sourceTree = "<group>"; };
+		4C624C3A17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MTLComparisonAdditions.h"; sourceTree = "<group>"; };
+		4C624C3B17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MTLComparisonAdditions.m"; sourceTree = "<group>"; };
+		4C624C3C17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+MTLInversionAdditions.h"; sourceTree = "<group>"; };
+		4C624C3D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MTLInversionAdditions.m"; sourceTree = "<group>"; };
+		4C624C3E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+MTLPredefinedTransformerAdditions.h"; sourceTree = "<group>"; };
+		4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MTLPredefinedTransformerAdditions.m"; sourceTree = "<group>"; };
+		4C624C5017F3699800CB6DF3 /* KOModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOModels.h; sourceTree = "<group>"; };
+		4C624C5117F3699800CB6DF3 /* KOModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOModels.m; sourceTree = "<group>"; };
 		58D19EE817EB3C4200B9AB45 /* KinoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D19EEB17EB3C4200B9AB45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,9 +137,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C624C1C17F367CF00CB6DF3 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				4C624C1D17F367EA00CB6DF3 /* Mantle */,
+			);
+			name = libs;
+			path = KinoApp;
+			sourceTree = "<group>";
+		};
+		4C624C1D17F367EA00CB6DF3 /* Mantle */ = {
+			isa = PBXGroup;
+			children = (
+				4C624C1E17F367EA00CB6DF3 /* extobjc */,
+				4C624C2517F367EA00CB6DF3 /* Mantle-Info.plist */,
+				4C624C2617F367EA00CB6DF3 /* Mantle-Prefix.pch */,
+				4C624C2717F367EA00CB6DF3 /* Mantle.h */,
+				4C624C2817F367EA00CB6DF3 /* MTLJSONAdapter.h */,
+				4C624C2917F367EA00CB6DF3 /* MTLJSONAdapter.m */,
+				4C624C2A17F367EA00CB6DF3 /* MTLManagedObjectAdapter.h */,
+				4C624C2B17F367EA00CB6DF3 /* MTLManagedObjectAdapter.m */,
+				4C624C2C17F367EA00CB6DF3 /* MTLModel+NSCoding.h */,
+				4C624C2D17F367EA00CB6DF3 /* MTLModel+NSCoding.m */,
+				4C624C2E17F367EA00CB6DF3 /* MTLModel.h */,
+				4C624C2F17F367EA00CB6DF3 /* MTLModel.m */,
+				4C624C3017F367EA00CB6DF3 /* MTLReflection.h */,
+				4C624C3117F367EA00CB6DF3 /* MTLReflection.m */,
+				4C624C3217F367EA00CB6DF3 /* MTLValueTransformer.h */,
+				4C624C3317F367EA00CB6DF3 /* MTLValueTransformer.m */,
+				4C624C3417F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.h */,
+				4C624C3517F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m */,
+				4C624C3617F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.h */,
+				4C624C3717F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.m */,
+				4C624C3817F367EA00CB6DF3 /* NSError+MTLModelException.h */,
+				4C624C3917F367EA00CB6DF3 /* NSError+MTLModelException.m */,
+				4C624C3A17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.h */,
+				4C624C3B17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m */,
+				4C624C3C17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.h */,
+				4C624C3D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m */,
+				4C624C3E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.h */,
+				4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */,
+			);
+			name = Mantle;
+			path = libs/Mantle/Mantle;
+			sourceTree = SOURCE_ROOT;
+		};
+		4C624C1E17F367EA00CB6DF3 /* extobjc */ = {
+			isa = PBXGroup;
+			children = (
+				4C624C1F17F367EA00CB6DF3 /* EXTKeyPathCoding.h */,
+				4C624C2017F367EA00CB6DF3 /* EXTRuntimeExtensions.h */,
+				4C624C2117F367EA00CB6DF3 /* EXTRuntimeExtensions.m */,
+				4C624C2217F367EA00CB6DF3 /* EXTScope.h */,
+				4C624C2317F367EA00CB6DF3 /* EXTScope.m */,
+				4C624C2417F367EA00CB6DF3 /* metamacros.h */,
+			);
+			path = extobjc;
+			sourceTree = "<group>";
+		};
+		4C624C4F17F368E600CB6DF3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C624C5017F3699800CB6DF3 /* KOModels.h */,
+				4C624C5117F3699800CB6DF3 /* KOModels.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		58D19EDF17EB3C4200B9AB45 = {
 			isa = PBXGroup;
 			children = (
+				4C624C1C17F367CF00CB6DF3 /* libs */,
 				58D19EF117EB3C4200B9AB45 /* KinoApp */,
 				58D19F1617EB3C4200B9AB45 /* KinoAppTests */,
 				58D19EEA17EB3C4200B9AB45 /* Frameworks */,
@@ -119,6 +238,7 @@
 		58D19EF117EB3C4200B9AB45 /* KinoApp */ = {
 			isa = PBXGroup;
 			children = (
+				4C624C4F17F368E600CB6DF3 /* Models */,
 				58D19EFA17EB3C4200B9AB45 /* KOAppDelegate.h */,
 				58D19EFB17EB3C4200B9AB45 /* KOAppDelegate.m */,
 				58D19F2617EB3EAC00B9AB45 /* KOBaseTableViewController.h */,
@@ -242,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D19F0A17EB3C4200B9AB45 /* Images.xcassets in Resources */,
+				4C624C4217F367EA00CB6DF3 /* Mantle-Info.plist in Resources */,
 				58D19EF617EB3C4200B9AB45 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,12 +382,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C624C4417F367EA00CB6DF3 /* MTLManagedObjectAdapter.m in Sources */,
+				4C624C4D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m in Sources */,
+				4C624C4E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
+				4C624C4A17F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.m in Sources */,
+				4C624C4C17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m in Sources */,
+				4C624C4917F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m in Sources */,
+				4C624C4717F367EA00CB6DF3 /* MTLReflection.m in Sources */,
+				4C624C5217F3699800CB6DF3 /* KOModels.m in Sources */,
+				4C624C4117F367EA00CB6DF3 /* EXTScope.m in Sources */,
+				4C624C4B17F367EA00CB6DF3 /* NSError+MTLModelException.m in Sources */,
+				4C624C4317F367EA00CB6DF3 /* MTLJSONAdapter.m in Sources */,
 				58D19F2F17EB599300B9AB45 /* KOMovieCell.m in Sources */,
+				4C624C4817F367EA00CB6DF3 /* MTLValueTransformer.m in Sources */,
 				58D19EFC17EB3C4200B9AB45 /* KOAppDelegate.m in Sources */,
+				4C624C4517F367EA00CB6DF3 /* MTLModel+NSCoding.m in Sources */,
 				58D19F3217EB59C000B9AB45 /* KOMoviesTableViewController.m in Sources */,
+				4C624C4017F367EA00CB6DF3 /* EXTRuntimeExtensions.m in Sources */,
 				58D19F2817EB3EAC00B9AB45 /* KOBaseTableViewController.m in Sources */,
 				58D19F2B17EB534300B9AB45 /* KOCinemasTableViewController.m in Sources */,
 				58D19EF817EB3C4200B9AB45 /* main.m in Sources */,
+				4C624C4617F367EA00CB6DF3 /* MTLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +605,7 @@
 				58D19F2217EB3C4200B9AB45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58D19F2317EB3C4200B9AB45 /* Build configuration list for PBXNativeTarget "KinoAppTests" */ = {
 			isa = XCConfigurationList;
@@ -477,6 +614,7 @@
 				58D19F2517EB3C4200B9AB45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
