@@ -2,3 +2,6 @@
 	path = client-ios/libs/Masonry
 	url = git@github.com:cloudkite/Masonry.git
 	branch = master
+[submodule "client-ios/KinoApp/libs/Mantle"]
+	path = client-ios/KinoApp/libs/Mantle
+	url = git@github.com:github/Mantle.git
