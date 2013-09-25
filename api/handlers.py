@@ -9,25 +9,25 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from flask import Flask
+from flask import make_response
 app = Flask(__name__)
-
-import cinema
 
 @app.route("/cinemas/berlin/")
 def berlin():
-    response = flask.make_response(json.dumps(cinema.list()))
+    import cinema
+    response = make_response(json.dumps(cinema.list()))
     response.headers["Content-Type"] = "application/json"
     return response
 
 @app.route("/latitude/<float:latitude>/longitude/<float:longitude>")
 def near_cinema(latitude,longitude):
-    response = flask.make_response( \
+    response = make_response( \
         json.dumps(cinema.find_by_latitude_longitude(latitude, longitude)))
     response.headers["Content-Type"] = "application/json"
     return response
 
 @app.route("/cinemas/<cinema_id>")
 def get_cinema(cinema_id):
-    response = flask.make_response(json.dumps(cinema.get(cinema_id)))
+    response = make_response(json.dumps(cinema.get(cinema_id)))
     response.headers["Content-Type"] = "application/json"
     return response

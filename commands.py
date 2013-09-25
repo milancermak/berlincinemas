@@ -28,3 +28,4 @@ class Run(Server):
     def prepare_env(self):
         # TODO: doesn't really sit well here, find a better place
         locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
+        
