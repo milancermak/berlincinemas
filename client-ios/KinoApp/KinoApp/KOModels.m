@@ -11,7 +11,7 @@
 @implementation KOCinema
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"location": "ll",
+    return @{@"location": @"ll",
              @"name": @"name"};
 }
 
@@ -29,19 +29,19 @@
 @implementation KOMovie
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"screenings": "screenings",
+    return @{@"screenings": @"screenings",
              @"title": @"title"};
 }
 
 + (NSValueTransformer *)screeningsJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^(NSArray *s) {
-        __block NSMutableArray *screenings = [NSMutableArray arrayWithCapacity:[s length]];
+        __block NSMutableArray *screenings = [NSMutableArray arrayWithCapacity:[s count]];
         [s enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             NSDictionary *screeningJSON = (NSDictionary *)obj;
             NSError *error = nil;
-            KOScreening *screening = [KOScreening modelOfClass:[KOScreening class]
-                                            fromJSONDictionary:screeningJSON
-                                                         error:&error];
+            KOScreening *screening = [MTLJSONAdapter modelOfClass:[KOScreening class]
+                                               fromJSONDictionary:screeningJSON
+                                                            error:&error];
             if (error) {
                 NSLog(@"Error parsing screening data: %@", error);
                 *stop = YES;
@@ -65,7 +65,8 @@
 + (NSValueTransformer *)timeJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^(NSString *RFC3339) {
         NSString *RFC3339Format = @"yyyy-MM-ddThh:mm:SSZZZZZ";
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] initWithDateFormat:RFC3339Format allowNaturalLanguage:NO];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = RFC3339Format;
         return [formatter dateFromString:RFC3339];
     }];
 }

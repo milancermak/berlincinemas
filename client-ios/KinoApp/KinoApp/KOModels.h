@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "Mantle/Mantle.h"
 
 @interface KOCinema : MTLModel <MTLJSONSerializing>
