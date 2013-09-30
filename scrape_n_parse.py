@@ -3,12 +3,16 @@
 import datetime
 import itertools
 import urllib
+import json
 
 
 from lxml import etree
 import requests
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
+START = 0
+STOP = 4500
+STEP = 300
 
 def pairwise(iterable):
     return itertools.izip(*[iter(iterable)]*2)
@@ -28,11 +32,11 @@ def split_on(list, predicate):
     return result
 
 def scrape():
-    for startat in xrange(0, 4500, 300):
+    for startat in xrange(START, STOP, STEP):
         params = {"startat": startat}
         url = BASE_URL + "?" + urllib.urlencode(params)
         response = requests.get(url)
-        print "@ %d" % startat
+        # print "@ %d" % startat
         yield response.text
 
 def parse(html_data):
