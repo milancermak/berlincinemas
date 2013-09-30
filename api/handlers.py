@@ -21,11 +21,13 @@ def berlin():
 @app.route("/cinemas/")
 def get_cinema():
     import api
-    result = []
+    data = []
+    result = {}
     cinemas = api.connection.berlincinemas.cinemas.find()
     for kino in cinemas:
         kino.pop('_id')
-        result.append(kino)
+        data.append(kino)
+    result['cinemas'] = data
     response = make_response(json.dumps(result))
     response.headers["Content-Type"] = "application/json"
     return response
