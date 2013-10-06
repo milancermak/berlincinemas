@@ -4,14 +4,14 @@ import datetime
 import itertools
 import urllib
 import json
-
+import locale
 
 from lxml import etree
 import requests
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 START = 0
-STOP = 4500
+STOP = 3600
 STEP = 300
 
 def pairwise(iterable):
@@ -22,13 +22,17 @@ def split_on(list, predicate):
         return []
 
     result = []
-    partial = [list[0]]
-    for element in list[1:]:
-        if predicate(element):
-            result.append(partial)
-            partial = [element]
-        else:
-            partial.append(element)
+    try:
+        partial = [list[0]]
+        for element in list[1:]:
+            if predicate(element):
+                result.append(partial)
+                partial = [element]
+            else:
+                partial.append(element)
+    except( IndexError ):
+        # TODO implement a logger for the parser.
+        pass
     return result
 
 def scrape():
@@ -48,24 +52,24 @@ def parse(html_data):
     results = filter(lambda element: element.tag != etree.Comment, results) # filter out the comment tags
     for cinema_group in split_on(results, is_h2):
         cinema_name = get_cinema_name(cinema_group)
-        cinema_showtimes = get_shows(cinema_group)
-        yield {cinema_name: cinema_showtimes}
+        cinema_showtimes = get_shows(cinema_group, cinema_name)
+        yield cinema_showtimes
 
 def get_cinema_name(cinema_group):
     cinema_h2_tag = cinema_group[0]
     return cinema_h2_tag[0].text
 
-def get_shows(cinema_group):
+def get_shows(cinema_group, cinema_name):
     showtimes = []
 
     # skip the first element as it's the h2 tag
     for movie_name_tag, movie_times_group in pairwise(cinema_group[1:]):
         movie_name = movie_name_tag[0].text
-        movie_times = get_showtimes(movie_times_group.xpath(".//table")[0])
-        showtimes.append({movie_name: movie_times})
+        movie_times = get_showtimes(movie_times_group.xpath(".//table")[0],cinema_name)
+        showtimes.append({ "title" : movie_name, "screenings" : movie_times })
     return showtimes
 
-def get_showtimes(showtime_table):
+def get_showtimes(showtime_table, cinema_name):
     showtimes = []
     for row in showtime_table.xpath(".//tr"):
         date_str = row.xpath(".//*[@class='datum']")[0].text # e.g. "Fr, 10.9.13"
@@ -75,8 +79,9 @@ def get_showtimes(showtime_table):
         day, month, year = map(int, date_str_sanitized.split("."))
         for a_time in times_str.split(", "):
             hour, minute = map(int, a_time.split(":"))
-            showtimes.append(datetime.datetime(year=year, month=month, day=day,
-                                               hour=hour, minute=minute, second=0))
+            showtimes.append({  "date": datetime.datetime(year=year, month=month, day=day,
+                                               hour=hour, minute=minute, second=0).isoformat("T"),
+                                "cinema" : cinema_name });
 
     return showtimes
 
@@ -86,4 +91,5 @@ def main():
             print kino
 
 if __name__ == "__main__":
+    locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
     main()
