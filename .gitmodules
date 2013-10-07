@@ -5,3 +5,10 @@
 [submodule "client-ios/KinoApp/libs/Mantle"]
 	path = client-ios/KinoApp/libs/Mantle
 	url = git@github.com:github/Mantle.git
+[submodule "client-ios/libs/AFNetworking"]
+	path = client-ios/libs/AFNetworking
+	url = git@github.com:AFNetworking/AFNetworking.git
+[submodule "client-ios/KinoApp/libs/AFNetworking"]
+	path = client-ios/KinoApp/libs/AFNetworking
+	url = git@github.com:AFNetworking/AFNetworking.git
+	branch = master
