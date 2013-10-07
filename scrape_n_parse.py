@@ -9,6 +9,8 @@ import locale
 from lxml import etree
 import requests
 
+from pymongo import MongoClient
+
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 START = 0
 STOP = 3600
@@ -66,7 +68,8 @@ def get_shows(cinema_group, cinema_name):
     for movie_name_tag, movie_times_group in pairwise(cinema_group[1:]):
         movie_name = movie_name_tag[0].text
         movie_times = get_showtimes(movie_times_group.xpath(".//table")[0],cinema_name)
-        showtimes.append({ "title" : movie_name, "screenings" : movie_times })
+        for movie_time in movie_times:
+            showtimes.append( [{ "title" : movie_name} , { "$push" : {"screenings" : movie_time } } ] )
     return showtimes
 
 def get_showtimes(showtime_table, cinema_name):
@@ -79,16 +82,20 @@ def get_showtimes(showtime_table, cinema_name):
         day, month, year = map(int, date_str_sanitized.split("."))
         for a_time in times_str.split(", "):
             hour, minute = map(int, a_time.split(":"))
-            showtimes.append({  "date": datetime.datetime(year=year, month=month, day=day,
+            showtimes.append({  "date": datetime.datetime(year=year+2000, month=month, day=day,
                                                hour=hour, minute=minute, second=0).isoformat("T"),
                                 "cinema" : cinema_name });
 
     return showtimes
 
 def main():
+    client = MongoClient('localhost', 27017)
+    db = client.berlincinemas
+    movies = db.movies
+
     for html_data in scrape():
         for kino in parse(html_data):
-            print kino
+            movies.update( kino[0][0], kino[0][1], True )
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
