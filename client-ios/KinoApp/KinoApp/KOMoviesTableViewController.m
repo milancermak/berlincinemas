@@ -20,10 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [[KOAPIClient sharedClient] getMovies:^{
-        [self.tableView reloadData];
-    }];
+    [self updateData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -41,6 +38,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[KODataManager sharedManager].movies count];
+}
+
+//#pragma mark - super
+
+- (void)updateData {
+   [[KOAPIClient sharedClient] getMovies:^{
+        [self.tableView reloadData];
+        if (self.refreshControl.isRefreshing) {
+            [self.refreshControl endRefreshing];
+        }
+    }];
 }
 
 @end

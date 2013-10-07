@@ -14,8 +14,15 @@
 
 @implementation KOBaseTableViewController
 
-// - (void)viewDidLoad {
-//     [super viewDidLoad];
-// }
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UIRefreshControl *refreshControl = [UIRefreshControl new];
+    [refreshControl addTarget:self
+                       action:@selector(updateData)
+             forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+}
+
+- (void)updateData {}
 
 @end

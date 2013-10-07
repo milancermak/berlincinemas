@@ -8,4 +8,6 @@
 
 @interface KOBaseTableViewController : UITableViewController
 
+- (void)updateData;
+
 @end
