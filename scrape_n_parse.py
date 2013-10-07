@@ -32,7 +32,7 @@ def split_on(list, predicate):
                 partial = [element]
             else:
                 partial.append(element)
-    except( IndexError ):
+    except IndexError:
         # TODO implement a logger for the parser.
         pass
     return result
@@ -69,7 +69,8 @@ def get_shows(cinema_group, cinema_name):
         movie_name = movie_name_tag[0].text
         movie_times = get_showtimes(movie_times_group.xpath(".//table")[0],cinema_name)
         for movie_time in movie_times:
-            showtimes.append( [{ "title" : movie_name} , { "$push" : {"screenings" : movie_time } } ] )
+            showtimes.append([{"title": movie_name},
+                              {"$push": {"screenings": movie_time}}])
     return showtimes
 
 def get_showtimes(showtime_table, cinema_name):
@@ -82,9 +83,9 @@ def get_showtimes(showtime_table, cinema_name):
         day, month, year = map(int, date_str_sanitized.split("."))
         for a_time in times_str.split(", "):
             hour, minute = map(int, a_time.split(":"))
-            showtimes.append({  "date": datetime.datetime(year=year+2000, month=month, day=day,
-                                               hour=hour, minute=minute, second=0).isoformat("T"),
-                                "cinema" : cinema_name });
+            showtimes.append({"date": datetime.datetime(year=year+2000, month=month, day=day,
+                                                        hour=hour, minute=minute, second=0).isoformat("T"),
+                              "cinema": cinema_name})
 
     return showtimes
 
@@ -95,7 +96,7 @@ def main():
 
     for html_data in scrape():
         for kino in parse(html_data):
-            movies.update( kino[0][0], kino[0][1], True )
+            movies.update(kino[0][0], kino[0][1], True)
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
