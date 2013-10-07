@@ -14,7 +14,15 @@ app = Flask(__name__)
 
 @app.route("/movies/")
 def berlin():
-    response = make_response(json.dumps(cinema.list()))
+    import api
+    data = []
+    result = {}
+    movies = api.connection.berlincinemas.movies.find()
+    for showtimes in movies:
+        showtimes.pop('_id')
+        data.append(showtimes)
+    result['movies'] = data
+    response = make_response(json.dumps(result))
     response.headers["Content-Type"] = "application/json"
     return response
 
