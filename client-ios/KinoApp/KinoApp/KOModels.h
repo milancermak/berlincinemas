@@ -25,7 +25,7 @@
 
 @interface KOScreening : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, copy, readonly) NSDate *time;
+@property (nonatomic, copy, readonly) NSDate *date;
 @property (nonatomic, strong, readonly) KOCinema *cinema;
 
 @end

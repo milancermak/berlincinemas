@@ -58,7 +58,7 @@
 @implementation KOScreening
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"time": @"date",
+    return @{@"date": @"date",
              @"cinema": @"cinema"};
 }
 
