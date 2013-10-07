@@ -12,9 +12,10 @@ from flask import Flask
 from flask import make_response
 app = Flask(__name__)
 
-@app.route("/movies/")
-def berlin():
+@app.route("/berlin/cinemas/")
+def berlin_cinemas():
     import api
+
     data = []
     result = {}
     movies = api.connection.berlincinemas.movies.find()
@@ -22,20 +23,14 @@ def berlin():
         showtimes.pop('_id')
         data.append(showtimes)
     result['movies'] = data
-    response = make_response(json.dumps(result))
-    response.headers["Content-Type"] = "application/json"
-    return response
 
-@app.route("/cinemas/")
-def get_cinema():
-    import api
     data = []
-    result = {}
     cinemas = api.connection.berlincinemas.cinemas.find()
     for kino in cinemas:
         kino.pop('_id')
         data.append(kino)
     result['cinemas'] = data
+
     response = make_response(json.dumps(result))
     response.headers["Content-Type"] = "application/json"
     return response
