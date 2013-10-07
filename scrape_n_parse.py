@@ -79,7 +79,7 @@ def get_showtimes(showtime_table, cinema_name):
         day, month, year = map(int, date_str_sanitized.split("."))
         for a_time in times_str.split(", "):
             hour, minute = map(int, a_time.split(":"))
-            showtimes.append({  "date": datetime.datetime(year=year, month=month, day=day,
+            showtimes.append({  "date": datetime.datetime(year=year+2000, month=month, day=day,
                                                hour=hour, minute=minute, second=0).isoformat("T"),
                                 "cinema" : cinema_name });
 
