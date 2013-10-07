@@ -52,7 +52,7 @@ static NSString *const KOAPIBaseURL = @"http://192.168.1.8:5000";
 }
 
 - (void)getMovies:(void (^)(void))onSuccess {
-    [self.HTTPWorker GET:@"/movies"
+    [self.HTTPWorker GET:@"/berlin/cinemas"
               parameters:nil
                  success:^(NSURLSessionDataTask *task , id responseObject) {
         NSArray *latestMovies = ((NSDictionary *)responseObject)[@"movies"];
