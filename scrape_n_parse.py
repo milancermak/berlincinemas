@@ -13,7 +13,7 @@ from pymongo import MongoClient
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 START = 0
-STOP = 3600
+STOP = 4200
 STEP = 300
 
 def pairwise(iterable):
@@ -93,6 +93,7 @@ def main():
     client = MongoClient('localhost', 27017)
     db = client.berlincinemas
     movies = db.movies
+    movies.drop()
 
     for html_data in scrape():
         for kino in parse(html_data):
