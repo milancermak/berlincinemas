@@ -10,6 +10,7 @@
 
 + (instancetype)sharedClient;
 
-- (void)getShowtimes;
+- (void)getShowtimes:(void (^)(void))onSuccess;
+- (void)getMovies:(void (^)(void))onSuccess;
 
 @end

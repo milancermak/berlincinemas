@@ -8,6 +8,7 @@
 
 #import "AFNetworking/AFNetworking.h"
 #import "KOAPIClient.h"
+#import "KODataManager.h"
 
 static NSString *const KOAPIBaseURL = @"http://192.168.1.8:5000";
 
@@ -37,15 +38,29 @@ static NSString *const KOAPIBaseURL = @"http://192.168.1.8:5000";
     return self;
 }
 
-- (void)getShowtimes {
+- (void)getShowtimes:(void (^)(void))onSuccess {
     [self.HTTPWorker GET:@"/cinemas"
               parameters:nil
                  success:^(NSURLSessionDataTask *task , id responseObject) {
-        NSLog(@"Got showtimes: %@", responseObject);
-        NSLog(@"Response: %@", task.response);
+        NSArray *latestCinemas = ((NSDictionary *)responseObject)[@"cinemas"];
+        [[KODataManager sharedManager] updateCinemas:latestCinemas];
+        onSuccess();
     }
                  failure:^(NSURLSessionDataTask *task , NSError *error) {
         NSLog(@"Error retrieving showtimes: %@", error);
+    }];
+}
+
+- (void)getMovies:(void (^)(void))onSuccess {
+    [self.HTTPWorker GET:@"/movies"
+              parameters:nil
+                 success:^(NSURLSessionDataTask *task , id responseObject) {
+        NSArray *latestMovies = ((NSDictionary *)responseObject)[@"movies"];
+        [[KODataManager sharedManager] updateMovies:latestMovies];
+        onSuccess();
+    }
+                 failure:^(NSURLSessionDataTask *task , NSError *error) {
+        NSLog(@"Error retrieving cinemas: %@", error);
     }];
 }
 

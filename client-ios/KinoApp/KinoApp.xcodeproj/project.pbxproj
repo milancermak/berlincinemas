@@ -33,6 +33,8 @@
 		4C624C4D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m */; };
 		4C624C4E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */; };
 		4C624C5217F3699800CB6DF3 /* KOModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C5117F3699800CB6DF3 /* KOModels.m */; };
+		4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDBA14F18034C020012C7D4 /* CoreLocation.framework */; };
+		4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBA15218034C540012C7D4 /* KODataManager.m */; };
 		58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
 		58D19EEE17EB3C4200B9AB45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */; };
 		58D19EF017EB3C4200B9AB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEF17EB3C4200B9AB45 /* UIKit.framework */; };
@@ -40,23 +42,11 @@
 		58D19EF817EB3C4200B9AB45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D19EF717EB3C4200B9AB45 /* main.m */; };
 		58D19EFC17EB3C4200B9AB45 /* KOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D19EFB17EB3C4200B9AB45 /* KOAppDelegate.m */; };
 		58D19F0A17EB3C4200B9AB45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D19F0917EB3C4200B9AB45 /* Images.xcassets */; };
-		58D19F1217EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
-		58D19F1317EB3C4200B9AB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEF17EB3C4200B9AB45 /* UIKit.framework */; };
 		58D19F2817EB3EAC00B9AB45 /* KOBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D19F2717EB3EAC00B9AB45 /* KOBaseTableViewController.m */; };
 		58D19F2B17EB534300B9AB45 /* KOCinemasTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D19F2A17EB534300B9AB45 /* KOCinemasTableViewController.m */; };
 		58D19F2F17EB599300B9AB45 /* KOMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D19F2E17EB599300B9AB45 /* KOMovieCell.m */; };
 		58D19F3217EB59C000B9AB45 /* KOMoviesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D19F3117EB59C000B9AB45 /* KOMoviesTableViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		58D19F1417EB3C4200B9AB45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 58D19EE017EB3C4200B9AB45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 58D19EE717EB3C4200B9AB45;
-			remoteInfo = KinoApp;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C569CBC180336FE00CDF60A /* KOAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOAPIClient.h; sourceTree = "<group>"; };
@@ -115,6 +105,9 @@
 		4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MTLPredefinedTransformerAdditions.m"; sourceTree = "<group>"; };
 		4C624C5017F3699800CB6DF3 /* KOModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOModels.h; sourceTree = "<group>"; };
 		4C624C5117F3699800CB6DF3 /* KOModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOModels.m; sourceTree = "<group>"; };
+		4CDBA14F18034C020012C7D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4CDBA15118034C540012C7D4 /* KODataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KODataManager.h; sourceTree = "<group>"; };
+		4CDBA15218034C540012C7D4 /* KODataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KODataManager.m; sourceTree = "<group>"; };
 		58D19EE817EB3C4200B9AB45 /* KinoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D19EEB17EB3C4200B9AB45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,7 +119,6 @@
 		58D19EFA17EB3C4200B9AB45 /* KOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KOAppDelegate.h; sourceTree = "<group>"; };
 		58D19EFB17EB3C4200B9AB45 /* KOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KOAppDelegate.m; sourceTree = "<group>"; };
 		58D19F0917EB3C4200B9AB45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		58D19F0F17EB3C4200B9AB45 /* KinoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KinoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D19F2617EB3EAC00B9AB45 /* KOBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOBaseTableViewController.h; sourceTree = "<group>"; };
 		58D19F2717EB3EAC00B9AB45 /* KOBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOBaseTableViewController.m; sourceTree = "<group>"; };
 		58D19F2917EB534300B9AB45 /* KOCinemasTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOCinemasTableViewController.h; sourceTree = "<group>"; };
@@ -142,18 +134,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */,
 				58D19EEE17EB3C4200B9AB45 /* CoreGraphics.framework in Frameworks */,
 				58D19EF017EB3C4200B9AB45 /* UIKit.framework in Frameworks */,
 				58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		58D19F0C17EB3C4200B9AB45 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				58D19F1317EB3C4200B9AB45 /* UIKit.framework in Frameworks */,
-				58D19F1217EB3C4200B9AB45 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +235,8 @@
 			children = (
 				4C624C5017F3699800CB6DF3 /* KOModels.h */,
 				4C624C5117F3699800CB6DF3 /* KOModels.m */,
+				4CDBA15118034C540012C7D4 /* KODataManager.h */,
+				4CDBA15218034C540012C7D4 /* KODataManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -269,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				58D19EE817EB3C4200B9AB45 /* KinoApp.app */,
-				58D19F0F17EB3C4200B9AB45 /* KinoAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,8 +262,9 @@
 		58D19EEA17EB3C4200B9AB45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				58D19EEB17EB3C4200B9AB45 /* Foundation.framework */,
+				4CDBA14F18034C020012C7D4 /* CoreLocation.framework */,
 				58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */,
+				58D19EEB17EB3C4200B9AB45 /* Foundation.framework */,
 				58D19EEF17EB3C4200B9AB45 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -337,24 +323,6 @@
 			productReference = 58D19EE817EB3C4200B9AB45 /* KinoApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		58D19F0E17EB3C4200B9AB45 /* KinoAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 58D19F2317EB3C4200B9AB45 /* Build configuration list for PBXNativeTarget "KinoAppTests" */;
-			buildPhases = (
-				58D19F0B17EB3C4200B9AB45 /* Sources */,
-				58D19F0C17EB3C4200B9AB45 /* Frameworks */,
-				58D19F0D17EB3C4200B9AB45 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				58D19F1517EB3C4200B9AB45 /* PBXTargetDependency */,
-			);
-			name = KinoAppTests;
-			productName = KinoAppTests;
-			productReference = 58D19F0F17EB3C4200B9AB45 /* KinoAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -364,11 +332,6 @@
 				CLASSPREFIX = KO;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Milan Cermak";
-				TargetAttributes = {
-					58D19F0E17EB3C4200B9AB45 = {
-						TestTargetID = 58D19EE717EB3C4200B9AB45;
-					};
-				};
 			};
 			buildConfigurationList = 58D19EE317EB3C4200B9AB45 /* Build configuration list for PBXProject "KinoApp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -384,7 +347,6 @@
 			projectRoot = "";
 			targets = (
 				58D19EE717EB3C4200B9AB45 /* KinoApp */,
-				58D19F0E17EB3C4200B9AB45 /* KinoAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -397,13 +359,6 @@
 				58D19F0A17EB3C4200B9AB45 /* Images.xcassets in Resources */,
 				4C624C4217F367EA00CB6DF3 /* Mantle-Info.plist in Resources */,
 				58D19EF617EB3C4200B9AB45 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		58D19F0D17EB3C4200B9AB45 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +394,7 @@
 				58D19EFC17EB3C4200B9AB45 /* KOAppDelegate.m in Sources */,
 				4C624C4517F367EA00CB6DF3 /* MTLModel+NSCoding.m in Sources */,
 				58D19F3217EB59C000B9AB45 /* KOMoviesTableViewController.m in Sources */,
+				4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */,
 				4C624C4017F367EA00CB6DF3 /* EXTRuntimeExtensions.m in Sources */,
 				4C569CBE180336FE00CDF60A /* KOAPIClient.m in Sources */,
 				58D19F2817EB3EAC00B9AB45 /* KOBaseTableViewController.m in Sources */,
@@ -448,22 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58D19F0B17EB3C4200B9AB45 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		58D19F1517EB3C4200B9AB45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 58D19EE717EB3C4200B9AB45 /* KinoApp */;
-			targetProxy = 58D19F1417EB3C4200B9AB45 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		58D19EF417EB3C4200B9AB45 /* InfoPlist.strings */ = {
@@ -591,48 +532,6 @@
 			};
 			name = Release;
 		};
-		58D19F2417EB3C4200B9AB45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KinoApp.app/KinoApp";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "KinoApp/KinoApp-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "KinoAppTests/KinoAppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		58D19F2517EB3C4200B9AB45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/KinoApp.app/KinoApp";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "KinoApp/KinoApp-Prefix.pch";
-				INFOPLIST_FILE = "KinoAppTests/KinoAppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -650,15 +549,6 @@
 			buildConfigurations = (
 				58D19F2117EB3C4200B9AB45 /* Debug */,
 				58D19F2217EB3C4200B9AB45 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		58D19F2317EB3C4200B9AB45 /* Build configuration list for PBXNativeTarget "KinoAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				58D19F2417EB3C4200B9AB45 /* Debug */,
-				58D19F2517EB3C4200B9AB45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

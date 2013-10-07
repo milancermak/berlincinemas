@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
+#import "KOAPIClient.h"
 #import "KOMovieCell.h"
 #import "KOMoviesTableViewController.h"
+#import "KOModels.h"
+#import "KODataManager.h"
 
 @interface KOMoviesTableViewController ()
 
@@ -18,6 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[KOAPIClient sharedClient] getMovies:^{
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -28,12 +34,13 @@
     if (!cell) {
         cell = [[KOMovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = @"Show name";
+    KOMovie *movie = [KODataManager sharedManager].movies[indexPath.row];
+    cell.textLabel.text = movie.title;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 30; // TODO
+    return [[KODataManager sharedManager].movies count];
 }
 
 @end
