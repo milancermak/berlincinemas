@@ -38,7 +38,7 @@ def split_on(list, predicate):
     return result
 
 def scrape():
-    for startat in xrange(START, STOP, STEP):
+    for startat in xrange(START, STOP+STEP, STEP):
         params = {"startat": startat}
         url = BASE_URL + "?" + urllib.urlencode(params)
         response = requests.get(url)
@@ -49,13 +49,14 @@ def parse(html_data):
     def is_h2(element):
         return element.tag == "h2"
 
+    cinema_showtimes = []
     tree = etree.HTML(html_data)
     results = tree.xpath("//div[@class='searchresult']")[0]
     results = filter(lambda element: element.tag != etree.Comment, results) # filter out the comment tags
     for cinema_group in split_on(results, is_h2):
         cinema_name = get_cinema_name(cinema_group)
-        cinema_showtimes = get_shows(cinema_group, cinema_name)
-        yield cinema_showtimes
+        cinema_showtimes += get_shows(cinema_group, cinema_name)
+    yield cinema_showtimes
 
 def get_cinema_name(cinema_group):
     cinema_h2_tag = cinema_group[0]
@@ -96,8 +97,9 @@ def main():
     movies.drop()
 
     for html_data in scrape():
-        for kino in parse(html_data):
-            movies.update(kino[0][0], kino[0][1], True)
+        for shows in parse(html_data):
+            for show in shows:
+                movies.update(show[0], show[1], True)
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
