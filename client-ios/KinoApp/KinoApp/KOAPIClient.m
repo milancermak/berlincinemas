@@ -43,7 +43,10 @@ static NSString *const KOAPIBaseURL = @"http://192.168.1.11:5000";
               parameters:nil
                  success:^(NSURLSessionDataTask *task , id responseObject) {
         NSArray *latestMovies = ((NSDictionary *)responseObject)[@"movies"];
+        NSArray *latestCinemas = ((NSDictionary *)responseObject)[@"cinemas"];
         [[KODataManager sharedManager] updateMovies:latestMovies];
+        [[KODataManager sharedManager] updateCinemas:latestCinemas];
+
         onSuccess();
     }
                  failure:^(NSURLSessionDataTask *task , NSError *error) {
