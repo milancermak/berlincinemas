@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
+@class KOCinema;
+@class KOMovie;
+
 @interface KODataManager : NSObject
 
 @property (nonatomic, readonly) NSArray *cinemas;
@@ -14,5 +17,8 @@
 + (instancetype)sharedManager;
 - (void)updateCinemas:(NSArray *)newCinemas;
 - (void)updateMovies:(NSArray *)newMovies;
+
+- (NSArray *)moviesForCinema:(KOCinema *)cinema;
+- (NSArray *)cinemasForMovie:(KOMovie *)movie;
 
 @end

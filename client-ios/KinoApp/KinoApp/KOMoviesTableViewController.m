@@ -7,10 +7,11 @@
 //
 
 #import "KOAPIClient.h"
+#import "KODataManager.h"
+#import "KOModels.h"
 #import "KOMovieCell.h"
 #import "KOMoviesTableViewController.h"
-#import "KOModels.h"
-#import "KODataManager.h"
+#import "KOSecondaryDetailTableViewController.h"
 
 @interface KOMoviesTableViewController ()
 
@@ -40,7 +41,13 @@
     return [[KODataManager sharedManager].movies count];
 }
 
-//#pragma mark - super
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KOMovie *movie = [KODataManager sharedManager].movies[indexPath.row];
+    KOSecondaryDetailTableViewController *secondary = [[KOSecondaryDetailTableViewController alloc] initWithItem:movie];
+    [self.navigationController pushViewController:secondary animated:YES];
+}
 
 - (void)updateData {
    [[KOAPIClient sharedClient] getMovies:^{

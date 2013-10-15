@@ -8,6 +8,4 @@
 
 @interface KOMovieCell : UITableViewCell
 
-@property (nonatomic, copy) NSArray *shows;
-
 @end

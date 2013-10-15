@@ -33,6 +33,7 @@
 		4C624C4D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3D17F367EA00CB6DF3 /* NSValueTransformer+MTLInversionAdditions.m */; };
 		4C624C4E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */; };
 		4C624C5217F3699800CB6DF3 /* KOModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C624C5117F3699800CB6DF3 /* KOModels.m */; };
+		4C7549DB180DC04A009E88BE /* KOSecondaryDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7549DA180DC04A009E88BE /* KOSecondaryDetailTableViewController.m */; };
 		4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDBA14F18034C020012C7D4 /* CoreLocation.framework */; };
 		4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBA15218034C540012C7D4 /* KODataManager.m */; };
 		58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
@@ -105,6 +106,8 @@
 		4C624C3F17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MTLPredefinedTransformerAdditions.m"; sourceTree = "<group>"; };
 		4C624C5017F3699800CB6DF3 /* KOModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOModels.h; sourceTree = "<group>"; };
 		4C624C5117F3699800CB6DF3 /* KOModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOModels.m; sourceTree = "<group>"; };
+		4C7549D9180DC04A009E88BE /* KOSecondaryDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOSecondaryDetailTableViewController.h; sourceTree = "<group>"; };
+		4C7549DA180DC04A009E88BE /* KOSecondaryDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOSecondaryDetailTableViewController.m; sourceTree = "<group>"; };
 		4CDBA14F18034C020012C7D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4CDBA15118034C540012C7D4 /* KODataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KODataManager.h; sourceTree = "<group>"; };
 		4CDBA15218034C540012C7D4 /* KODataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KODataManager.m; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				58D19F2717EB3EAC00B9AB45 /* KOBaseTableViewController.m */,
 				58D19F2917EB534300B9AB45 /* KOCinemasTableViewController.h */,
 				58D19F2A17EB534300B9AB45 /* KOCinemasTableViewController.m */,
+				4C7549D9180DC04A009E88BE /* KOSecondaryDetailTableViewController.h */,
+				4C7549DA180DC04A009E88BE /* KOSecondaryDetailTableViewController.m */,
 				58D19EF217EB3C4200B9AB45 /* Supporting Files */,
 				58D19F0917EB3C4200B9AB45 /* Images.xcassets */,
 				58D19F2D17EB599300B9AB45 /* KOMovieCell.h */,
@@ -379,6 +384,7 @@
 				4C624C4C17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m in Sources */,
 				4C624C4917F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m in Sources */,
 				4C624C4717F367EA00CB6DF3 /* MTLReflection.m in Sources */,
+				4C7549DB180DC04A009E88BE /* KOSecondaryDetailTableViewController.m in Sources */,
 				4C624C5217F3699800CB6DF3 /* KOModels.m in Sources */,
 				4C624C4117F367EA00CB6DF3 /* EXTScope.m in Sources */,
 				4C569CD718033D3C00CDF60A /* AFSecurityPolicy.m in Sources */,

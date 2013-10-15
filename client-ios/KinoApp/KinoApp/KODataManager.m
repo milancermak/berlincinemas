@@ -61,4 +61,12 @@
     _movies = [NSArray arrayWithArray:new];
 }
 
+- (NSArray *)moviesForCinema:(KOCinema *)cinema {
+    return nil;
+}
+
+- (NSArray *)cinemasForMovie:(KOMovie *)movie {
+    return nil;
+}
+
 @end
