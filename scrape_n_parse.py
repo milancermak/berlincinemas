@@ -12,8 +12,6 @@ import requests
 from pymongo import MongoClient
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
-START = 0
-STOP = 4800
 STEP = 300
 
 def pairwise(iterable):
@@ -37,12 +35,24 @@ def split_on(results, predicate):
     return result
 
 def scrape():
-    for startat in xrange(START, STOP+STEP, STEP):
+    def has_kino_comment(element):
+        if element.tag is etree.Comment:
+            return element.text == ' KINO '
+
+    startat = 0
+    while True:
         params = {"startat": startat}
         url = BASE_URL + "?" + urllib.urlencode(params)
         response = requests.get(url)
-        # print "@ %d" % startat
-        yield response.text
+
+        tree = etree.HTML(response.text)
+        results = tree.xpath("//div[@class='searchresult']")[0]
+
+        startat += STEP
+        if filter(has_kino_comment, results):
+            yield response.text
+        else:
+            raise StopIteration
 
 def parse(html_data):
     def is_h2(element):
@@ -95,15 +105,19 @@ def get_showtimes(showtime_table, cinema_name):
     return showtimes
 
 def main():
+    movies_to_add = []
+    for html_data in scrape():
+        for shows in parse(html_data):
+            for show in shows:
+                movies_to_add.append(show)
+
     client = MongoClient('localhost', 27017)
     db = client.berlincinemas
     movies = db.movies
     movies.drop()
 
-    for html_data in scrape():
-        for shows in parse(html_data):
-            for show in shows:
-                movies.update(show[0], show[1], True)
+    for show in movies_to_add:
+        movies.update(show[0], show[1], True)
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
