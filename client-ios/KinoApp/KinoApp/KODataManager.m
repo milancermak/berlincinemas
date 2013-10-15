@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
+// TODO: add an NSCache for the moviesForCinema and cinemasForMovie
+
 #import "KODataManager.h"
 #import "KOModels.h"
 
@@ -62,11 +64,28 @@
 }
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema {
-    return nil;
+    return [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^(id obj, NSDictionary *bindings) {
+        KOMovie *movie = (KOMovie *)obj;
+        for (KOScreening *screening in movie.screenings) {
+            if ([screening.cinema.name isEqualToString:cinema.name]) {
+                return YES;
+            }
+        }
+        return NO;
+    }]];
 }
 
 - (NSArray *)cinemasForMovie:(KOMovie *)movie {
-    return nil;
+    NSMutableArray *cinemas = [NSMutableArray new];
+    for (KOScreening *screening in movie.screenings) {
+        NSString *screeningCinemaName = (NSString *)screening.cinema; // not sure why it's a NSString and not an KOCinema
+        for (KOCinema *cinema in self.cinemas) {
+            if ([cinema.name isEqualToString:screeningCinemaName]) {
+                [cinemas addObject:cinema];
+            }
+        }
+    }
+    return cinemas;
 }
 
 @end
