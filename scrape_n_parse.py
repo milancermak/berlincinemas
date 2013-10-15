@@ -13,28 +13,27 @@ from pymongo import MongoClient
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 START = 0
-STOP = 4200
+STOP = 4800
 STEP = 300
 
 def pairwise(iterable):
     return itertools.izip(*[iter(iterable)]*2)
 
-def split_on(list, predicate):
-    if len(list) < 0:
+def split_on(results, predicate):
+    if len(results) < 0:
         return []
 
     result = []
-    try:
-        partial = [list[0]]
-        for element in list[1:]:
-            if predicate(element):
-                result.append(partial)
-                partial = [element]
-            else:
-                partial.append(element)
-    except IndexError:
-        # TODO implement a logger for the parser.
-        pass
+
+    partial = [results[0]]
+
+    for element in results[1:]:
+        if predicate(element):
+            result.append(partial)
+            partial = [element]
+        else:
+            partial.append(element)
+    result.append(partial)
     return result
 
 def scrape():
@@ -49,10 +48,15 @@ def parse(html_data):
     def is_h2(element):
         return element.tag == "h2"
 
+    def is_not_comment(element):
+        return element.tag is not etree.Comment
+
     cinema_showtimes = []
     tree = etree.HTML(html_data)
     results = tree.xpath("//div[@class='searchresult']")[0]
-    results = filter(lambda element: element.tag != etree.Comment, results) # filter out the comment tags
+
+    results = filter(is_not_comment, results) # filter out the comment tags
+
     for cinema_group in split_on(results, is_h2):
         cinema_name = get_cinema_name(cinema_group)
         cinema_showtimes += get_shows(cinema_group, cinema_name)
