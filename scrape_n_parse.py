@@ -12,47 +12,61 @@ import requests
 from pymongo import MongoClient
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
-START = 0
-STOP = 4200
 STEP = 300
 
 def pairwise(iterable):
     return itertools.izip(*[iter(iterable)]*2)
 
-def split_on(list, predicate):
-    if len(list) < 0:
+def split_on(results, predicate):
+    if len(results) < 0:
         return []
 
     result = []
-    try:
-        partial = [list[0]]
-        for element in list[1:]:
-            if predicate(element):
-                result.append(partial)
-                partial = [element]
-            else:
-                partial.append(element)
-    except IndexError:
-        # TODO implement a logger for the parser.
-        pass
+
+    partial = [results[0]]
+
+    for element in results[1:]:
+        if predicate(element):
+            result.append(partial)
+            partial = [element]
+        else:
+            partial.append(element)
+    result.append(partial)
     return result
 
 def scrape():
-    for startat in xrange(START, STOP+STEP, STEP):
+    def has_kino_comment(element):
+        if element.tag is etree.Comment:
+            return element.text == ' KINO '
+
+    startat = 0
+    while True:
         params = {"startat": startat}
         url = BASE_URL + "?" + urllib.urlencode(params)
         response = requests.get(url)
-        # print "@ %d" % startat
-        yield response.text
+
+        tree = etree.HTML(response.text)
+        results = tree.xpath("//div[@class='searchresult']")[0]
+
+        startat += STEP
+        if filter(has_kino_comment, results):
+            yield response.text
+        else:
+            raise StopIteration
 
 def parse(html_data):
     def is_h2(element):
         return element.tag == "h2"
 
+    def is_not_comment(element):
+        return element.tag is not etree.Comment
+
     cinema_showtimes = []
     tree = etree.HTML(html_data)
     results = tree.xpath("//div[@class='searchresult']")[0]
-    results = filter(lambda element: element.tag != etree.Comment, results) # filter out the comment tags
+
+    results = filter(is_not_comment, results) # filter out the comment tags
+
     for cinema_group in split_on(results, is_h2):
         cinema_name = get_cinema_name(cinema_group)
         cinema_showtimes += get_shows(cinema_group, cinema_name)
@@ -91,15 +105,19 @@ def get_showtimes(showtime_table, cinema_name):
     return showtimes
 
 def main():
+    movies_to_add = []
+    for html_data in scrape():
+        for shows in parse(html_data):
+            for show in shows:
+                movies_to_add.append(show)
+
     client = MongoClient('localhost', 27017)
     db = client.berlincinemas
     movies = db.movies
     movies.drop()
 
-    for html_data in scrape():
-        for shows in parse(html_data):
-            for show in shows:
-                movies.update(show[0], show[1], True)
+    for show in movies_to_add:
+        movies.update(show[0], show[1], True)
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")

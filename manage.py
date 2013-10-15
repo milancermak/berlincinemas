@@ -1,17 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from flask.ext.script import Manager
-from flask.ext.script import Command, Server
+from flask.ext.script import Server
 import api
 import locale
-
-class FetchAll(Command):
-
-    def run(self):
-        for cinema_cls in cinemas.known_cinemas():
-            cinema = cinema_cls()
-            print "Fetching showtimes for %s" % cinema.name
-            cinema.update_program()
 
 class Run(Server):
 
@@ -25,7 +17,6 @@ class Run(Server):
 
 manager = Manager(api.app)
 manager.add_command("runserver", Run(host="0.0.0.0", debug=True))
-manager.add_command("getshowtimes", FetchAll())
 
 if __name__ == "__main__":
     manager.run()
