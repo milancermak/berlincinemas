@@ -13,10 +13,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[KOMoviesTableViewController new]];
+    UINavigationController *movies = [[UINavigationController alloc] initWithRootViewController:[KOMoviesTableViewController new]];
+    UITabBarController *tab = [UITabBarController new];
+    [tab setViewControllers:@[movies] animated:NO];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = nav;
+    self.window.rootViewController = tab;
     //self.window.tintColor = TODO
     [self.window makeKeyAndVisible];
     return YES;

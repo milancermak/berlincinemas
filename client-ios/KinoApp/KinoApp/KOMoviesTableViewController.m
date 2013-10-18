@@ -19,6 +19,14 @@
 
 @implementation KOMoviesTableViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.title = NSLocalizedString(@"Movies", @"Title of the movies tab/table");
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self updateData];
