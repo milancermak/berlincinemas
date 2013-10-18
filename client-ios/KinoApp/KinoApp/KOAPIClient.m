@@ -10,7 +10,7 @@
 #import "KOAPIClient.h"
 #import "KODataManager.h"
 
-static NSString *const KOAPIBaseURL = @"http://192.168.1.11:5000";
+static NSString *const KOAPIBaseURL = @"http://146.185.134.196";
 
 @interface KOAPIClient ()
 
