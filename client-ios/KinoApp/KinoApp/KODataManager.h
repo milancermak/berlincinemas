@@ -9,10 +9,18 @@
 @class KOCinema;
 @class KOMovie;
 
+NS_ENUM(NSUInteger, KODataOrder) {
+    KODataOrderAlphabetically,
+    KODataOrderChronologically,
+    KODataOrderSpacially
+};
+
 @interface KODataManager : NSObject
 
 @property (nonatomic, readonly) NSArray *cinemas;
 @property (nonatomic, readonly) NSArray *movies;
+@property (nonatomic, assign) enum KODataOrder cinemasOrder;
+@property (nonatomic, assign) enum KODataOrder moviesOrder;
 
 + (instancetype)sharedManager;
 - (void)updateCinemas:(NSArray *)newCinemas;

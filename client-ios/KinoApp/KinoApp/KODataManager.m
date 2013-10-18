@@ -11,6 +11,13 @@
 #import "KODataManager.h"
 #import "KOModels.h"
 
+@interface KODataManager ()
+
+- (void)sortCinemas;
+- (void)sortMovies;
+
+@end
+
 @implementation KODataManager
 
 + (instancetype)sharedManager {
@@ -27,6 +34,8 @@
     if (self) {
         _cinemas = [NSArray new];
         _movies = [NSArray new];
+        _cinemasOrder = KODataOrderAlphabetically;
+        _moviesOrder = KODataOrderAlphabetically;
     }
     return self;
 }
@@ -61,6 +70,7 @@
         }
     }
     _movies = [NSArray arrayWithArray:new];
+    [self sortMovies];
 }
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema {
@@ -86,6 +96,33 @@
         }
     }
     return cinemas;
+}
+
+#pragma mark - Accessors
+
+- (void)setCinemasOrder:(enum KODataOrder)newOrder {
+    _cinemasOrder = newOrder;
+    [self sortCinemas];
+}
+
+- (void)setMoviesOrder:(enum KODataOrder)newOrder {
+    _moviesOrder = newOrder;
+    [self sortMovies];
+}
+
+#pragma mark - Private
+
+- (void)sortCinemas {
+    NSLog(@"TODO");
+}
+
+- (void)sortMovies {
+    if (self.moviesOrder == KODataOrderAlphabetically) {
+        NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"title"
+                                                                 ascending:YES
+                                                                  selector:@selector(localizedStandardCompare:)];
+        _movies = [self.movies sortedArrayUsingDescriptors:@[byName]];
+    }
 }
 
 @end
