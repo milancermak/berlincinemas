@@ -13,6 +13,11 @@
 #import "KOMoviesTableViewController.h"
 #import "KOSecondaryDetailTableViewController.h"
 
+NS_ENUM(NSUInteger, KOMoviesOrder) {
+    KOMoviesAlphabetically,
+    KOMoviesChronologically,
+};
+
 @interface KOMoviesTableViewController ()
 
 @end
@@ -22,6 +27,14 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
+        NSString *alpha = NSLocalizedString(@"Alphabetically", @"Label in segmented control to order alphabetically");
+        NSString *chrono = NSLocalizedString(@"Chronologically", @"Label in segmented control to order by time");
+        UISegmentedControl *sortSwitch = [[UISegmentedControl alloc] initWithItems:@[alpha, chrono]];
+        sortSwitch.selectedSegmentIndex = 0;
+        [sortSwitch addTarget:self
+                       action:@selector(sortOrderChangeAction:)
+             forControlEvents:UIControlEventValueChanged];
+        self.navigationItem.titleView = sortSwitch;
         self.title = NSLocalizedString(@"Movies", @"Title of the movies tab/table");
     }
     return self;
@@ -64,6 +77,17 @@
             [self.refreshControl endRefreshing];
         }
     }];
+}
+
+#pragma mark - Actions
+
+- (void)sortOrderChangeAction:(UISegmentedControl *)control {
+    NSUInteger orderBy = KODataOrderAlphabetically;
+    if (control.selectedSegmentIndex == KOMoviesChronologically) {
+        orderBy = KODataOrderChronologically;
+    }
+    [KODataManager sharedManager].moviesOrder = orderBy;
+    [self.tableView reloadData];
 }
 
 @end
