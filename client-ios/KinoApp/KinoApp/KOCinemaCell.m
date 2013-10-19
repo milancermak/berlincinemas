@@ -1,18 +1,14 @@
 //
-//  KOMovieCell.m
+//  KOCinemaCell.m
 //  KinoApp
 //
-//  Created by Milan Cermak on 19.9.2013.
+//  Created by Milan Cermak on 19. 10. 2013.
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
-#import "KOMovieCell.h"
+#import "KOCinemaCell.h"
 
-@interface KOMovieCell ()
-
-@end
-
-@implementation KOMovieCell
+@implementation KOCinemaCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
