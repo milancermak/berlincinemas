@@ -84,8 +84,8 @@ def get_shows(cinema_group, cinema_name):
         movie_name = movie_name_tag[0].text
         movie_times = get_showtimes(movie_times_group.xpath(".//table")[0],cinema_name)
         for movie_time in movie_times:
-            showtimes.append([{"title": movie_name},
-                              {"$push": {"screenings": movie_time}}])
+            showtimes.append( dict({"title": movie_name}.items() +
+                              movie_time.items()) )
     return showtimes
 
 def get_showtimes(showtime_table, cinema_name):
@@ -117,7 +117,7 @@ def main():
     movies.drop()
 
     for show in movies_to_add:
-        movies.update(show[0], show[1], True)
+        movies.insert(show)
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
