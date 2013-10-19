@@ -44,8 +44,9 @@ static NSString *const KOAPIBaseURL = @"http://146.185.134.196";
                  success:^(NSURLSessionDataTask *task , id responseObject) {
         NSArray *latestMovies = ((NSDictionary *)responseObject)[@"movies"];
         NSArray *latestCinemas = ((NSDictionary *)responseObject)[@"cinemas"];
-        [[KODataManager sharedManager] updateMovies:latestMovies];
+        // cinemas need to be udpated first!
         [[KODataManager sharedManager] updateCinemas:latestCinemas];
+        [[KODataManager sharedManager] updateMovies:latestMovies];
 
         onSuccess();
     }
