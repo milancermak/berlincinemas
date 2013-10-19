@@ -7,6 +7,7 @@
 //
 
 #import "KOModels.h"
+#import "KODataManager.h"
 
 @implementation KOCinema
 
@@ -28,46 +29,29 @@
 
 @implementation KOMovie
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"screenings": @"screenings",
-             @"title": @"title"};
-}
-
-+ (NSValueTransformer *)screeningsJSONTransformer {
-    return [MTLValueTransformer transformerWithBlock:^(NSArray *s) {
-        __block NSMutableArray *screenings = [NSMutableArray arrayWithCapacity:[s count]];
-        [s enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            NSDictionary *screeningJSON = (NSDictionary *)obj;
-            NSError *error = nil;
-            KOScreening *screening = [MTLJSONAdapter modelOfClass:[KOScreening class]
-                                               fromJSONDictionary:screeningJSON
-                                                            error:&error];
-            if (error) {
-                NSLog(@"Error parsing screening data: %@", error);
-                *stop = YES;
-            } else {
-                [screenings addObject:screening];
-            }
-        }];
-        return screenings;
-    }];
-}
-
-@end
-
-@implementation KOScreening
-
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"date": @"date",
-             @"cinema": @"cinema"};
-}
-
-+ (NSValueTransformer *)timeJSONTransformer {
++ (NSValueTransformer *)dateJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^(NSString *RFC3339) {
         NSString *RFC3339Format = @"yyyy-MM-ddThh:mm:SSZZZZZ";
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = RFC3339Format;
         return [formatter dateFromString:RFC3339];
+    }];
+}
+
++ (NSValueTransformer *)cinemaJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^(NSString *cinemaName) {
+        __block KOCinema *cinemaForName;
+        [[KODataManager sharedManager].cinemas enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            KOCinema *oneCinema = (KOCinema *)obj;
+            if ([oneCinema.name isEqualToString:cinemaName]) {
+                cinemaForName = oneCinema;
+                stop = YES;
+            }
+        }];
+        if (!cinemaForName) {
+            NSLog(@"Didn't find KOCinema with name %@", cinemaName);
+        }
+        return cinemaForName;
     }];
 }
 
