@@ -37,6 +37,13 @@
 		4CD8D0931812E0BC00FC845F /* KOCinemaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0921812E0BC00FC845F /* KOCinemaCell.m */; };
 		4CD8D0961812E0CF00FC845F /* KOMovieNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0951812E0CF00FC845F /* KOMovieNameCell.m */; };
 		4CD8D0991812E0E000FC845F /* KOMovieScreeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0981812E0E000FC845F /* KOMovieScreeningCell.m */; };
+		4CD8D0AA1814621200FC845F /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D09C1814621200FC845F /* AFNetworkActivityIndicatorManager.m */; };
+		4CD8D0AB1814621200FC845F /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D09E1814621200FC845F /* UIActivityIndicatorView+AFNetworking.m */; };
+		4CD8D0AC1814621200FC845F /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A01814621200FC845F /* UIAlertView+AFNetworking.m */; };
+		4CD8D0AD1814621200FC845F /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A21814621200FC845F /* UIButton+AFNetworking.m */; };
+		4CD8D0AE1814621200FC845F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A41814621200FC845F /* UIImageView+AFNetworking.m */; };
+		4CD8D0AF1814621200FC845F /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A71814621200FC845F /* UIProgressView+AFNetworking.m */; };
+		4CD8D0B01814621200FC845F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A91814621200FC845F /* UIWebView+AFNetworking.m */; };
 		4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDBA14F18034C020012C7D4 /* CoreLocation.framework */; };
 		4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBA15218034C540012C7D4 /* KODataManager.m */; };
 		58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
@@ -116,6 +123,21 @@
 		4CD8D0951812E0CF00FC845F /* KOMovieNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOMovieNameCell.m; sourceTree = "<group>"; };
 		4CD8D0971812E0E000FC845F /* KOMovieScreeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOMovieScreeningCell.h; sourceTree = "<group>"; };
 		4CD8D0981812E0E000FC845F /* KOMovieScreeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOMovieScreeningCell.m; sourceTree = "<group>"; };
+		4CD8D09B1814621200FC845F /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		4CD8D09C1814621200FC845F /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		4CD8D09D1814621200FC845F /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D09E1814621200FC845F /* UIActivityIndicatorView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+AFNetworking.m"; sourceTree = "<group>"; };
+		4CD8D09F1814621200FC845F /* UIAlertView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D0A01814621200FC845F /* UIAlertView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+AFNetworking.m"; sourceTree = "<group>"; };
+		4CD8D0A11814621200FC845F /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D0A21814621200FC845F /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AFNetworking.m"; sourceTree = "<group>"; };
+		4CD8D0A31814621200FC845F /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D0A41814621200FC845F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		4CD8D0A51814621200FC845F /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D0A61814621200FC845F /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D0A71814621200FC845F /* UIProgressView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+AFNetworking.m"; sourceTree = "<group>"; };
+		4CD8D0A81814621200FC845F /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
+		4CD8D0A91814621200FC845F /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		4CDBA14F18034C020012C7D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4CDBA15118034C540012C7D4 /* KODataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KODataManager.h; sourceTree = "<group>"; };
 		4CDBA15218034C540012C7D4 /* KODataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KODataManager.m; sourceTree = "<group>"; };
@@ -185,6 +207,7 @@
 			children = (
 				4C569CBF18033D3C00CDF60A /* AFNetworking */,
 				4C624C1D17F367EA00CB6DF3 /* Mantle */,
+				4CD8D09A1814621200FC845F /* UIKit+AFNetworking */,
 			);
 			name = libs;
 			path = KinoApp;
@@ -262,6 +285,29 @@
 			);
 			name = Views;
 			sourceTree = "<group>";
+		};
+		4CD8D09A1814621200FC845F /* UIKit+AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				4CD8D09B1814621200FC845F /* AFNetworkActivityIndicatorManager.h */,
+				4CD8D09C1814621200FC845F /* AFNetworkActivityIndicatorManager.m */,
+				4CD8D09D1814621200FC845F /* UIActivityIndicatorView+AFNetworking.h */,
+				4CD8D09E1814621200FC845F /* UIActivityIndicatorView+AFNetworking.m */,
+				4CD8D09F1814621200FC845F /* UIAlertView+AFNetworking.h */,
+				4CD8D0A01814621200FC845F /* UIAlertView+AFNetworking.m */,
+				4CD8D0A11814621200FC845F /* UIButton+AFNetworking.h */,
+				4CD8D0A21814621200FC845F /* UIButton+AFNetworking.m */,
+				4CD8D0A31814621200FC845F /* UIImageView+AFNetworking.h */,
+				4CD8D0A41814621200FC845F /* UIImageView+AFNetworking.m */,
+				4CD8D0A51814621200FC845F /* UIKit+AFNetworking.h */,
+				4CD8D0A61814621200FC845F /* UIProgressView+AFNetworking.h */,
+				4CD8D0A71814621200FC845F /* UIProgressView+AFNetworking.m */,
+				4CD8D0A81814621200FC845F /* UIWebView+AFNetworking.h */,
+				4CD8D0A91814621200FC845F /* UIWebView+AFNetworking.m */,
+			);
+			name = "UIKit+AFNetworking";
+			path = "libs/AFNetworking/UIKit+AFNetworking";
+			sourceTree = SOURCE_ROOT;
 		};
 		58D19EDF17EB3C4200B9AB45 = {
 			isa = PBXGroup;
@@ -400,18 +446,24 @@
 				4C624C4E17F367EA00CB6DF3 /* NSValueTransformer+MTLPredefinedTransformerAdditions.m in Sources */,
 				4C624C4A17F367EA00CB6DF3 /* NSDictionary+MTLManipulationAdditions.m in Sources */,
 				4C624C4C17F367EA00CB6DF3 /* NSObject+MTLComparisonAdditions.m in Sources */,
+				4CD8D0AA1814621200FC845F /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4C624C4917F367EA00CB6DF3 /* NSArray+MTLManipulationAdditions.m in Sources */,
 				4C624C4717F367EA00CB6DF3 /* MTLReflection.m in Sources */,
+				4CD8D0AE1814621200FC845F /* UIImageView+AFNetworking.m in Sources */,
+				4CD8D0AD1814621200FC845F /* UIButton+AFNetworking.m in Sources */,
+				4CD8D0AB1814621200FC845F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4C7549DB180DC04A009E88BE /* KOSecondaryDetailTableViewController.m in Sources */,
 				4C624C5217F3699800CB6DF3 /* KOModels.m in Sources */,
 				4C624C4117F367EA00CB6DF3 /* EXTScope.m in Sources */,
 				4CD8D0961812E0CF00FC845F /* KOMovieNameCell.m in Sources */,
+				4CD8D0AF1814621200FC845F /* UIProgressView+AFNetworking.m in Sources */,
 				4C569CD718033D3C00CDF60A /* AFSecurityPolicy.m in Sources */,
 				4C569CDB18033D3C00CDF60A /* AFURLSessionManager.m in Sources */,
 				4C624C4B17F367EA00CB6DF3 /* NSError+MTLModelException.m in Sources */,
 				4CD8D0991812E0E000FC845F /* KOMovieScreeningCell.m in Sources */,
 				4C624C4317F367EA00CB6DF3 /* MTLJSONAdapter.m in Sources */,
 				4C569CD518033D3C00CDF60A /* AFHTTPSessionManager.m in Sources */,
+				4CD8D0AC1814621200FC845F /* UIAlertView+AFNetworking.m in Sources */,
 				4CD8D0931812E0BC00FC845F /* KOCinemaCell.m in Sources */,
 				4C569CD618033D3C00CDF60A /* AFNetworkReachabilityManager.m in Sources */,
 				4C624C4817F367EA00CB6DF3 /* MTLValueTransformer.m in Sources */,
@@ -424,6 +476,7 @@
 				4C624C4017F367EA00CB6DF3 /* EXTRuntimeExtensions.m in Sources */,
 				4C569CBE180336FE00CDF60A /* KOAPIClient.m in Sources */,
 				58D19F2817EB3EAC00B9AB45 /* KOBaseTableViewController.m in Sources */,
+				4CD8D0B01814621200FC845F /* UIWebView+AFNetworking.m in Sources */,
 				58D19F2B17EB534300B9AB45 /* KOCinemasTableViewController.m in Sources */,
 				58D19EF817EB3C4200B9AB45 /* main.m in Sources */,
 				4C624C4617F367EA00CB6DF3 /* MTLModel.m in Sources */,

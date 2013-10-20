@@ -6,12 +6,14 @@
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
+#import "UIKit+AFNetworking.h"
 #import "KOAppDelegate.h"
 #import "KOMoviesTableViewController.h"
 
 @implementation KOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 
     UINavigationController *movies = [[UINavigationController alloc] initWithRootViewController:[KOMoviesTableViewController new]];
     UITabBarController *tab = [UITabBarController new];
