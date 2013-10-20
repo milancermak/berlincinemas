@@ -29,29 +29,19 @@
 
 @implementation KOMovie
 
-+ (NSValueTransformer *)dateJSONTransformer {
-    return [MTLValueTransformer transformerWithBlock:^(NSString *RFC3339) {
-        NSString *RFC3339Format = @"yyyy-MM-ddThh:mm:SSZZZZZ";
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = RFC3339Format;
-        return [formatter dateFromString:RFC3339];
-    }];
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"cinema": @"cinema",
+             @"date": @"date",
+             @"title": @"title"};
 }
 
-+ (NSValueTransformer *)cinemaJSONTransformer {
-    return [MTLValueTransformer transformerWithBlock:^(NSString *cinemaName) {
-        __block KOCinema *cinemaForName;
-        [[KODataManager sharedManager].cinemas enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            KOCinema *oneCinema = (KOCinema *)obj;
-            if ([oneCinema.name isEqualToString:cinemaName]) {
-                cinemaForName = oneCinema;
-                stop = YES;
-            }
-        }];
-        if (!cinemaForName) {
-            NSLog(@"Didn't find KOCinema with name %@", cinemaName);
-        }
-        return cinemaForName;
++ (NSValueTransformer *)dateJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^(NSString *RFC3339) {
+        NSString *RFC3339Format = @"yyyy-MM-dd'T'HH:mm:ss";
+        // TODO: cache this date formatter
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:RFC3339Format];
+        return [formatter dateFromString:RFC3339];
     }];
 }
 
