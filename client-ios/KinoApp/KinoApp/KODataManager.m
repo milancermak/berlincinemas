@@ -13,8 +13,8 @@
 
 @interface KODataManager ()
 
-- (void)sortCinemas;
-- (void)sortMovies;
+@property (nonatomic) NSArray *cinemas;
+@property (nonatomic) NSArray *movies;
 
 @end
 
@@ -34,8 +34,6 @@
     if (self) {
         _cinemas = [NSArray new];
         _movies = [NSArray new];
-        _cinemasOrder = KODataOrderAlphabetically;
-        _moviesOrder = KODataOrderAlphabetically;
     }
     return self;
 }
@@ -70,59 +68,68 @@
         }
     }
     _movies = [NSArray arrayWithArray:new];
-    [self sortMovies];
+}
+
+- (NSArray *)moviesOrderedBy:(enum KODataOrder)order {
+    NSArray *values;
+    if (order == KODataOrderAlphabetically) {
+        NSMutableSet *found = [NSMutableSet new];
+        NSIndexSet *uniqueMoviesByTitleIndexes =
+            [self.movies indexesOfObjectsPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
+                KOMovie *movie = (KOMovie *)obj;
+                if ([found containsObject:movie.title]) {
+                    return NO;
+                } else {
+                    [found addObject:movie.title];
+                    return YES;
+                }
+            }];
+        NSSortDescriptor *byTitle = [NSSortDescriptor sortDescriptorWithKey:@"title"
+                                                                  ascending:YES
+                                                                   selector:@selector(localizedStandardCompare:)];
+        values = [[self.movies objectsAtIndexes:uniqueMoviesByTitleIndexes]
+                     sortedArrayUsingDescriptors:@[byTitle]];
+    } else if (order == KODataOrderChronologically) {
+        NSSortDescriptor *byScreeningTime = [NSSortDescriptor sortDescriptorWithKey:@"date"
+                                                                          ascending:YES];
+        values = [self.movies sortedArrayUsingDescriptors:@[byScreeningTime]];
+    } else {
+        NSLog(@"Incorrect data order for movies: %d", order);
+    }
+    return values;
+}
+
+- (KOCinema *)cinemaNamed:(NSString *)cinemaName {
+    __block KOCinema *foundCinema;
+    [self.cinemas enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        KOCinema *oneCinema = (KOCinema *)obj;
+        if ([oneCinema.name isEqualToString:cinemaName]) {
+            foundCinema = oneCinema;
+            *stop = YES;
+        }
+    }];
+    if (!foundCinema) {
+        NSLog(@"Didn't find KOCinema with name %@", cinemaName);
+    }
+    return foundCinema;
+
 }
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema {
     return [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^(id obj, NSDictionary *bindings) {
         KOMovie *movie = (KOMovie *)obj;
-        for (KOScreening *screening in movie.screenings) {
-            if ([screening.cinema.name isEqualToString:cinema.name]) {
-                return YES;
-            }
-        }
-        return NO;
+        return [movie.cinema.name isEqualToString:cinema.name];
     }]];
 }
 
-- (NSArray *)cinemasForMovie:(KOMovie *)movie {
-    NSMutableArray *cinemas = [NSMutableArray new];
-    for (KOScreening *screening in movie.screenings) {
-        NSString *screeningCinemaName = (NSString *)screening.cinema; // not sure why it's a NSString and not an KOCinema
-        for (KOCinema *cinema in self.cinemas) {
-            if ([cinema.name isEqualToString:screeningCinemaName]) {
-                [cinemas addObject:cinema];
-            }
+- (NSArray *)cinemasForMovie:(KOMovie *)theMovie {
+    NSMutableSet *cinemas = [NSMutableSet new];
+    for (KOMovie *movie in self.movies) {
+        if ([movie isEqual:theMovie]) { // TODO: check if this equal actually works
+            [cinemas addObject:movie];
         }
     }
-    return cinemas;
-}
-
-#pragma mark - Accessors
-
-- (void)setCinemasOrder:(enum KODataOrder)newOrder {
-    _cinemasOrder = newOrder;
-    [self sortCinemas];
-}
-
-- (void)setMoviesOrder:(enum KODataOrder)newOrder {
-    _moviesOrder = newOrder;
-    [self sortMovies];
-}
-
-#pragma mark - Private
-
-- (void)sortCinemas {
-    NSLog(@"TODO");
-}
-
-- (void)sortMovies {
-    if (self.moviesOrder == KODataOrderAlphabetically) {
-        NSSortDescriptor *byName = [NSSortDescriptor sortDescriptorWithKey:@"title"
-                                                                 ascending:YES
-                                                                  selector:@selector(localizedStandardCompare:)];
-        _movies = [self.movies sortedArrayUsingDescriptors:@[byName]];
-    }
+    return [cinemas allObjects];
 }
 
 @end

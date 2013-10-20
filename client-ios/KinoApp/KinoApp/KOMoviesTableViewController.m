@@ -9,7 +9,8 @@
 #import "KOAPIClient.h"
 #import "KODataManager.h"
 #import "KOModels.h"
-#import "KOMovieCell.h"
+#import "KOMovieNameCell.h"
+#import "KOMovieScreeningCell.h"
 #import "KOMoviesTableViewController.h"
 #import "KOSecondaryDetailTableViewController.h"
 
@@ -20,6 +21,13 @@ NS_ENUM(NSUInteger, KOMoviesOrder) {
 
 @interface KOMoviesTableViewController ()
 
+@property (nonatomic, copy) NSArray *displayedData;
+@property (nonatomic, strong) UISegmentedControl *sortSwitch;
+
+- (void)configureMovieNameCell:(KOMovieNameCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureMovieScreeningCell:(KOMovieScreeningCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)displayData;
+
 @end
 
 @implementation KOMoviesTableViewController
@@ -27,14 +35,7 @@ NS_ENUM(NSUInteger, KOMoviesOrder) {
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        NSString *alpha = NSLocalizedString(@"Alphabetically", @"Label in segmented control to order alphabetically");
-        NSString *chrono = NSLocalizedString(@"Chronologically", @"Label in segmented control to order by time");
-        UISegmentedControl *sortSwitch = [[UISegmentedControl alloc] initWithItems:@[alpha, chrono]];
-        sortSwitch.selectedSegmentIndex = 0;
-        [sortSwitch addTarget:self
-                       action:@selector(sortOrderChangeAction:)
-             forControlEvents:UIControlEventValueChanged];
-        self.navigationItem.titleView = sortSwitch;
+        self.navigationItem.titleView = self.sortSwitch;
         self.title = NSLocalizedString(@"Movies", @"Title of the movies tab/table");
     }
     return self;
@@ -48,46 +49,84 @@ NS_ENUM(NSUInteger, KOMoviesOrder) {
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"movieCell";
-    KOMovieCell *cell = (KOMovieCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[KOMovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    id cell;
+
+    if (self.sortSwitch.selectedSegmentIndex == KOMoviesAlphabetically) {
+        static NSString *movieNameCellID = @"movieNameCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:movieNameCellID];
+        if (!cell) {
+            cell = [[KOMovieNameCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                          reuseIdentifier:movieNameCellID];
+        }
+        [self configureMovieNameCell:cell atIndexPath:indexPath];
+    } else { // KOMoviesChronologically
+        static NSString *movieScreeningCellID = @"movieScreeningCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:movieScreeningCellID];
+        if (!cell) {
+            cell = [[KOMovieScreeningCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                               reuseIdentifier:movieScreeningCellID];
+        }
+        [self configureMovieScreeningCell:cell atIndexPath:indexPath];
     }
-    KOMovie *movie = [KODataManager sharedManager].movies[indexPath.row];
-    cell.textLabel.text = movie.title;
-    return cell;
+
+    return (UITableViewCell *)cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[KODataManager sharedManager].movies count];
+    return [self.displayedData count];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    KOMovie *movie = [KODataManager sharedManager].movies[indexPath.row];
+    KOMovie *movie = self.displayedData[indexPath.row];
     KOSecondaryDetailTableViewController *secondary = [[KOSecondaryDetailTableViewController alloc] initWithItem:movie];
     [self.navigationController pushViewController:secondary animated:YES];
 }
 
-- (void)updateData {
-   [[KOAPIClient sharedClient] getMovies:^{
-        [self.tableView reloadData];
-        if (self.refreshControl.isRefreshing) {
-            [self.refreshControl endRefreshing];
-        }
-    }];
+#pragma mark - Private
+
+- (void)configureMovieNameCell:(KOMovieNameCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    KOMovie *cellMovie = self.displayedData[indexPath.row];
+    cell.textLabel.text = cellMovie.title;
 }
 
-#pragma mark - Actions
+- (void)configureMovieScreeningCell:(KOMovieScreeningCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    KOMovie *cellMovie = self.displayedData[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", cellMovie.date, cellMovie.title];
+}
 
-- (void)sortOrderChangeAction:(UISegmentedControl *)control {
+- (void)displayData {
     NSUInteger orderBy = KODataOrderAlphabetically;
-    if (control.selectedSegmentIndex == KOMoviesChronologically) {
+    if (self.sortSwitch.selectedSegmentIndex == KOMoviesChronologically) {
         orderBy = KODataOrderChronologically;
     }
-    [KODataManager sharedManager].moviesOrder = orderBy;
+    self.displayedData = [[KODataManager sharedManager] moviesOrderedBy:orderBy];
     [self.tableView reloadData];
 }
+
+- (void)updateData {
+   [[KOAPIClient sharedClient] getMovies:^{
+       [self displayData];
+       if (self.refreshControl.isRefreshing) {
+           [self.refreshControl endRefreshing];
+       }
+   }];
+}
+
+#pragma mark - Subviews
+
+- (UISegmentedControl *)sortSwitch {
+    if (!_sortSwitch) {
+        NSString *alpha = NSLocalizedString(@"Alphabetically", @"Label in segmented control to order alphabetically");
+        NSString *chrono = NSLocalizedString(@"Chronologically", @"Label in segmented control to order by time");
+        _sortSwitch = [[UISegmentedControl alloc] initWithItems:@[alpha, chrono]];
+        _sortSwitch.selectedSegmentIndex = 0;
+        [_sortSwitch addTarget:self
+                        action:@selector(displayData)
+              forControlEvents:UIControlEventValueChanged];
+    }
+    return _sortSwitch;
+ }
 
 @end

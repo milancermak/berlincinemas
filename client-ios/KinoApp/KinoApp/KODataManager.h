@@ -17,14 +17,13 @@ NS_ENUM(NSUInteger, KODataOrder) {
 
 @interface KODataManager : NSObject
 
-@property (nonatomic, readonly) NSArray *cinemas;
-@property (nonatomic, readonly) NSArray *movies;
-@property (nonatomic, assign) enum KODataOrder cinemasOrder;
-@property (nonatomic, assign) enum KODataOrder moviesOrder;
 
 + (instancetype)sharedManager;
 - (void)updateCinemas:(NSArray *)newCinemas;
 - (void)updateMovies:(NSArray *)newMovies;
+
+- (NSArray *)moviesOrderedBy:(enum KODataOrder)order;
+- (KOCinema *)cinemaNamed:(NSString *)cinemaName;
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema;
 - (NSArray *)cinemasForMovie:(KOMovie *)movie;
