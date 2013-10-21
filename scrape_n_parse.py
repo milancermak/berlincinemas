@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from datetime import tzinfo, timedelta, datetime
 import itertools
 import urllib
 import json
@@ -13,6 +13,15 @@ from pymongo import MongoClient
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 STEP = 300
+
+# Berlin timezone GMT+2/+1
+TZBERLINDSTON  = (2*60)
+TZBERLINDSTOFF = (1*60)
+
+# DST Starts 31 march 2013 2 am
+DSTstarts = datetime(year=datetime.now().year, month=3, day=31, hour=2, minute=0, second=0)
+# DST Ends   27 oct 2013 3 am
+DSTends = datetime(year=datetime.now().year, month=10, day=27, hour=3, minute=0, second=0)
 
 def pairwise(iterable):
     return itertools.izip(*[iter(iterable)]*2)
@@ -89,6 +98,14 @@ def get_shows(cinema_group, cinema_name):
     return showtimes
 
 def get_showtimes(showtime_table, cinema_name):
+    class TZ(tzinfo):
+        def utcoffset(self, dt):
+            now = datetime.now()
+            if DSTstarts < now < DSTends :
+                return timedelta(minutes=TZBERLINDSTON)
+            else:
+                return timedelta(minutes=TZBERLINDSTOFF)
+
     showtimes = []
     for row in showtime_table.xpath(".//tr"):
         date_str = row.xpath(".//*[@class='datum']")[0].text # e.g. "Fr, 10.9.13"
@@ -98,8 +115,8 @@ def get_showtimes(showtime_table, cinema_name):
         day, month, year = map(int, date_str_sanitized.split("."))
         for a_time in times_str.split(", "):
             hour, minute = map(int, a_time.split(":"))
-            showtimes.append({"date": datetime.datetime(year=year+2000, month=month, day=day,
-                                                        hour=hour, minute=minute, second=0).isoformat("T"),
+            showtimes.append({"date": datetime(year=year+2000, month=month, day=day,
+                                        hour=hour, minute=minute, second=0, tzinfo=TZ()).isoformat("T"),
                               "cinema": cinema_name})
 
     return showtimes
