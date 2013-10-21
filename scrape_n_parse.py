@@ -9,7 +9,10 @@ import locale
 from lxml import etree
 import requests
 
-from pymongo import MongoClient
+import configparser
+
+from pymongo import MongoClient, database
+from os import path
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 STEP = 300
@@ -122,14 +125,18 @@ def get_showtimes(showtime_table, cinema_name):
     return showtimes
 
 def main():
+
+    config = configparser.ConfigParser()
+    config.read(path.join(path.abspath(path.dirname(__file__)), "config.py"))
+
     movies_to_add = []
     for html_data in scrape():
         for shows in parse(html_data):
             for show in shows:
                 movies_to_add.append(show)
 
-    client = MongoClient('localhost', 27017)
-    db = client.berlincinemas
+    db = MongoClient(config['DATABASE']['MONGODB_HOST'],
+        int(config['DATABASE']['MONGODB_PORT']))[config['DATABASE']['MONGODB_SCHEMA']]
     movies = db.movies
     movies.drop()
 
