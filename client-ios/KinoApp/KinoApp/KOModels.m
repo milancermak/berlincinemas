@@ -45,4 +45,10 @@
     }];
 }
 
++ (NSValueTransformer *)cinemaJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^(NSString *cinemaName) {
+        return [[KODataManager sharedManager] cinemaNamed:cinemaName];
+    }];
+}
+
 @end

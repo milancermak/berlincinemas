@@ -100,19 +100,20 @@
 }
 
 - (KOCinema *)cinemaNamed:(NSString *)cinemaName {
-    __block KOCinema *foundCinema;
+    __block KOCinema *foundCinema = nil;
     [self.cinemas enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         KOCinema *oneCinema = (KOCinema *)obj;
-        if ([oneCinema.name isEqualToString:cinemaName]) {
+        if ([oneCinema.name isEqual:cinemaName]) {
             foundCinema = oneCinema;
             *stop = YES;
         }
     }];
+#ifdef DEBUG
     if (!foundCinema) {
         NSLog(@"Didn't find KOCinema with name %@", cinemaName);
     }
+#endif
     return foundCinema;
-
 }
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema {
