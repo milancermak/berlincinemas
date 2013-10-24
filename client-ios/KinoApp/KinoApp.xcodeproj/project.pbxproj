@@ -46,6 +46,18 @@
 		4CD8D0B01814621200FC845F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A91814621200FC845F /* UIWebView+AFNetworking.m */; };
 		4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDBA14F18034C020012C7D4 /* CoreLocation.framework */; };
 		4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBA15218034C540012C7D4 /* KODataManager.m */; };
+		587A5AE4181958660028D038 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE3181958660028D038 /* GoogleMaps.framework */; };
+		587A5AE6181958B80028D038 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE5181958B80028D038 /* AVFoundation.framework */; };
+		587A5AE8181958C00028D038 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE7181958C00028D038 /* CoreData.framework */; };
+		587A5AEA181958C80028D038 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE9181958C80028D038 /* CoreText.framework */; };
+		587A5AEC181958CF0028D038 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AEB181958CF0028D038 /* GLKit.framework */; };
+		587A5AEE181958D80028D038 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AED181958D80028D038 /* ImageIO.framework */; };
+		587A5AF0181958E50028D038 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AEF181958E50028D038 /* libc++.dylib */; };
+		587A5AF2181958F50028D038 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF1181958F50028D038 /* libicucore.dylib */; };
+		587A5AF4181958FE0028D038 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF3181958FD0028D038 /* libz.dylib */; };
+		587A5AF6181959050028D038 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF5181959050028D038 /* OpenGLES.framework */; };
+		587A5AF81819590F0028D038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF71819590F0028D038 /* QuartzCore.framework */; };
+		587A5AFA181959190028D038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF9181959190028D038 /* SystemConfiguration.framework */; };
 		58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
 		58D19EEE17EB3C4200B9AB45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */; };
 		58D19EF017EB3C4200B9AB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEF17EB3C4200B9AB45 /* UIKit.framework */; };
@@ -141,6 +153,18 @@
 		4CDBA14F18034C020012C7D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4CDBA15118034C540012C7D4 /* KODataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KODataManager.h; sourceTree = "<group>"; };
 		4CDBA15218034C540012C7D4 /* KODataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KODataManager.m; sourceTree = "<group>"; };
+		587A5AE3181958660028D038 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = libs/GoogleMaps.framework; sourceTree = SOURCE_ROOT; };
+		587A5AE5181958B80028D038 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		587A5AE7181958C00028D038 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		587A5AE9181958C80028D038 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		587A5AEB181958CF0028D038 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		587A5AED181958D80028D038 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		587A5AEF181958E50028D038 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		587A5AF1181958F50028D038 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		587A5AF3181958FD0028D038 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		587A5AF5181959050028D038 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		587A5AF71819590F0028D038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		587A5AF9181959190028D038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		58D19EE817EB3C4200B9AB45 /* KinoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D19EEB17EB3C4200B9AB45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -165,9 +189,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587A5AFA181959190028D038 /* SystemConfiguration.framework in Frameworks */,
+				587A5AF81819590F0028D038 /* QuartzCore.framework in Frameworks */,
+				587A5AF6181959050028D038 /* OpenGLES.framework in Frameworks */,
+				587A5AF4181958FE0028D038 /* libz.dylib in Frameworks */,
+				587A5AF2181958F50028D038 /* libicucore.dylib in Frameworks */,
+				587A5AF0181958E50028D038 /* libc++.dylib in Frameworks */,
+				587A5AEE181958D80028D038 /* ImageIO.framework in Frameworks */,
+				587A5AEC181958CF0028D038 /* GLKit.framework in Frameworks */,
+				587A5AEA181958C80028D038 /* CoreText.framework in Frameworks */,
+				587A5AE8181958C00028D038 /* CoreData.framework in Frameworks */,
+				587A5AE6181958B80028D038 /* AVFoundation.framework in Frameworks */,
 				4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */,
 				58D19EEE17EB3C4200B9AB45 /* CoreGraphics.framework in Frameworks */,
 				58D19EF017EB3C4200B9AB45 /* UIKit.framework in Frameworks */,
+				587A5AE4181958660028D038 /* GoogleMaps.framework in Frameworks */,
 				58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				4C569CBF18033D3C00CDF60A /* AFNetworking */,
+				587A5AE3181958660028D038 /* GoogleMaps.framework */,
 				4C624C1D17F367EA00CB6DF3 /* Mantle */,
 				4CD8D09A1814621200FC845F /* UIKit+AFNetworking */,
 			);
@@ -330,9 +367,20 @@
 		58D19EEA17EB3C4200B9AB45 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4CDBA14F18034C020012C7D4 /* CoreLocation.framework */,
+				587A5AE5181958B80028D038 /* AVFoundation.framework */,
+				587A5AE7181958C00028D038 /* CoreData.framework */,
 				58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */,
+				4CDBA14F18034C020012C7D4 /* CoreLocation.framework */,
+				587A5AE9181958C80028D038 /* CoreText.framework */,
 				58D19EEB17EB3C4200B9AB45 /* Foundation.framework */,
+				587A5AEB181958CF0028D038 /* GLKit.framework */,
+				587A5AED181958D80028D038 /* ImageIO.framework */,
+				587A5AEF181958E50028D038 /* libc++.dylib */,
+				587A5AF1181958F50028D038 /* libicucore.dylib */,
+				587A5AF3181958FD0028D038 /* libz.dylib */,
+				587A5AF5181959050028D038 /* OpenGLES.framework */,
+				587A5AF71819590F0028D038 /* QuartzCore.framework */,
+				587A5AF9181959190028D038 /* SystemConfiguration.framework */,
 				58D19EEF17EB3C4200B9AB45 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -588,6 +636,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/milancermak/dev/bc/client-ios/KinoApp/libs",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KinoApp/KinoApp-Prefix.pch";
 				INFOPLIST_FILE = "KinoApp/KinoApp-Info.plist";
@@ -602,6 +654,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/milancermak/dev/bc/client-ios/KinoApp/libs",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KinoApp/KinoApp-Prefix.pch";
 				INFOPLIST_FILE = "KinoApp/KinoApp-Info.plist";

@@ -6,14 +6,16 @@
 //  Copyright (c) 2013 Milan Cermak. All rights reserved.
 //
 
-#import "UIKit+AFNetworking.h"
+#import <GoogleMaps/GoogleMaps.h>
 #import "KOAppDelegate.h"
 #import "KOMoviesTableViewController.h"
+#import "UIKit+AFNetworking.h"
 
 @implementation KOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    [GMSServices provideAPIKey:@"AIzaSyAEL-LgDwm_tek0o4p41DG4xop6V6yAF-M"];
 
     UINavigationController *movies = [[UINavigationController alloc] initWithRootViewController:[KOMoviesTableViewController new]];
     UITabBarController *tab = [UITabBarController new];
