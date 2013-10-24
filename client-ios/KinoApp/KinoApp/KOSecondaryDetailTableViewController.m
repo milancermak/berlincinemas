@@ -9,6 +9,7 @@
 #import "KODataManager.h"
 #import "KOModels.h"
 #import "KOSecondaryDetailTableViewController.h"
+#import "KOMovieScreeningViewController.h"
 
 NS_ENUM(NSUInteger, KOSecondaryDetailDisplayType) {
     KOSecondaryCinema,
@@ -33,10 +34,12 @@ NS_ENUM(NSUInteger, KOSecondaryDetailDisplayType) {
             self.cinema = item;
             self.data = [[KODataManager sharedManager] moviesForCinema:self.cinema];
             self.displayOf = KOSecondaryCinema;
+            self.title = self.cinema.name;
         } else if ([item isKindOfClass:[KOMovie class]]) {
             self.movie = item;
             self.data = [[KODataManager sharedManager] cinemasForMovie:self.movie];
             self.displayOf = KOSecondaryMovie;
+            self.title = self.movie.title;
         } else {
             NSAssert(@"Unknown model class to display secondary listing: %@",
                      NSStringFromClass([item class]));
@@ -49,7 +52,7 @@ NS_ENUM(NSUInteger, KOSecondaryDetailDisplayType) {
     [super viewDidLoad];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -75,6 +78,22 @@ NS_ENUM(NSUInteger, KOSecondaryDetailDisplayType) {
     }
     cell.textLabel.text = text;
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    KOMovie *screening;
+    if (self.displayOf == KOSecondaryMovie) {
+        screening = [[KODataManager sharedManager] movieNamed:self.movie.title
+                                                inCinemaNamed:((KOCinema *)self.data[indexPath.row]).name];
+    } else if (self.displayOf == KOSecondaryCinema) {
+        screening = [[KODataManager sharedManager] movieNamed:((KOMovie *)self.data[indexPath.row]).title
+                                                inCinemaNamed:self.cinema.name];
+    }
+    NSLog(@"showing %@", screening);
+    KOMovieScreeningViewController *screeningVC = [[KOMovieScreeningViewController alloc] initWithMovie:screening];
+    [self.navigationController pushViewController:screeningVC animated:YES];
 }
 
 @end

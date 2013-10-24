@@ -58,6 +58,7 @@
 		587A5AF6181959050028D038 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF5181959050028D038 /* OpenGLES.framework */; };
 		587A5AF81819590F0028D038 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF71819590F0028D038 /* QuartzCore.framework */; };
 		587A5AFA181959190028D038 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AF9181959190028D038 /* SystemConfiguration.framework */; };
+		587A5AFD181974E60028D038 /* KOMovieScreeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587A5AFC181974E60028D038 /* KOMovieScreeningViewController.m */; };
 		58D19EEC17EB3C4200B9AB45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEB17EB3C4200B9AB45 /* Foundation.framework */; };
 		58D19EEE17EB3C4200B9AB45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */; };
 		58D19EF017EB3C4200B9AB45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D19EEF17EB3C4200B9AB45 /* UIKit.framework */; };
@@ -165,6 +166,8 @@
 		587A5AF5181959050028D038 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		587A5AF71819590F0028D038 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		587A5AF9181959190028D038 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		587A5AFB181974E60028D038 /* KOMovieScreeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOMovieScreeningViewController.h; sourceTree = "<group>"; };
+		587A5AFC181974E60028D038 /* KOMovieScreeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOMovieScreeningViewController.m; sourceTree = "<group>"; };
 		58D19EE817EB3C4200B9AB45 /* KinoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D19EEB17EB3C4200B9AB45 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		58D19EED17EB3C4200B9AB45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -401,6 +404,8 @@
 				58D19F2A17EB534300B9AB45 /* KOCinemasTableViewController.m */,
 				58D19F3017EB59C000B9AB45 /* KOMoviesTableViewController.h */,
 				58D19F3117EB59C000B9AB45 /* KOMoviesTableViewController.m */,
+				587A5AFB181974E60028D038 /* KOMovieScreeningViewController.h */,
+				587A5AFC181974E60028D038 /* KOMovieScreeningViewController.m */,
 				4C7549D9180DC04A009E88BE /* KOSecondaryDetailTableViewController.h */,
 				4C7549DA180DC04A009E88BE /* KOSecondaryDetailTableViewController.m */,
 				58D19EF217EB3C4200B9AB45 /* Supporting Files */,
@@ -520,6 +525,7 @@
 				58D19EFC17EB3C4200B9AB45 /* KOAppDelegate.m in Sources */,
 				4C624C4517F367EA00CB6DF3 /* MTLModel+NSCoding.m in Sources */,
 				58D19F3217EB59C000B9AB45 /* KOMoviesTableViewController.m in Sources */,
+				587A5AFD181974E60028D038 /* KOMovieScreeningViewController.m in Sources */,
 				4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */,
 				4C624C4017F367EA00CB6DF3 /* EXTRuntimeExtensions.m in Sources */,
 				4C569CBE180336FE00CDF60A /* KOAPIClient.m in Sources */,

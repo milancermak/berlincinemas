@@ -116,6 +116,17 @@
     return foundCinema;
 }
 
+- (KOMovie *)movieNamed:(NSString *)movieName inCinemaNamed:(NSString *)cinemaName {
+    for (KOMovie *aMovie in self.movies) {
+        if ([aMovie.title isEqual:movieName] &&
+            [aMovie.cinema.name isEqual:cinemaName]) {
+            return aMovie;
+        }
+    }
+    NSLog(@"Could not find movie %@ in cinema %@", movieName, cinemaName);
+    return nil;
+}
+
 - (NSArray *)moviesForCinema:(KOCinema *)cinema {
     return [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K = %@", @"cinema.name", cinema.name]];
 }

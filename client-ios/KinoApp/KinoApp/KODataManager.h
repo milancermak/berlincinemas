@@ -22,8 +22,9 @@ NS_ENUM(NSUInteger, KODataOrder) {
 - (void)updateCinemas:(NSArray *)newCinemas;
 - (void)updateMovies:(NSArray *)newMovies;
 
-- (NSArray *)moviesOrderedBy:(enum KODataOrder)order;
 - (KOCinema *)cinemaNamed:(NSString *)cinemaName;
+- (KOMovie *)movieNamed:(NSString *)movieName inCinemaNamed:(NSString *)cinemaName;
+- (NSArray *)moviesOrderedBy:(enum KODataOrder)order;
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema;
 - (NSArray *)cinemasForMovie:(KOMovie *)movie;
