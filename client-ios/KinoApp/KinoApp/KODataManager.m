@@ -117,19 +117,16 @@
 }
 
 - (NSArray *)moviesForCinema:(KOCinema *)cinema {
-    return [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^(id obj, NSDictionary *bindings) {
-        KOMovie *movie = (KOMovie *)obj;
-        return [movie.cinema.name isEqualToString:cinema.name];
-    }]];
+    return [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K = %@", @"cinema.name", cinema.name]];
 }
 
 - (NSArray *)cinemasForMovie:(KOMovie *)theMovie {
+    NSArray *sameMovies = [self.movies filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K = %@", @"title", theMovie.title]];
     NSMutableSet *cinemas = [NSMutableSet new];
-    for (KOMovie *movie in self.movies) {
-        if ([movie isEqual:theMovie]) { // TODO: check if this equal actually works
-            [cinemas addObject:movie];
-        }
+    for (KOMovie *movie in sameMovies) {
+        [cinemas addObject:movie.cinema];
     }
+
     return [cinemas allObjects];
 }
 
