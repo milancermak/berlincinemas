@@ -37,7 +37,7 @@
 
 + (NSValueTransformer *)dateJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^(NSString *RFC3339) {
-        NSString *RFC3339Format = @"yyyy-MM-dd'T'HH:mm:ss";
+        NSString *RFC3339Format = @"yyyy-MM-dd'T'HH:mm:ssZ";
         // TODO: cache this date formatter
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:RFC3339Format];
