@@ -15,7 +15,7 @@
 
 @implementation KOMovieScreeningViewController
 
-- (instancetype)initWithMovie:(KOMovie *)movie; {
+- (instancetype)initWithMovie:(KOMovie *)movie {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.title = movie.title;
