@@ -1,30 +1,22 @@
 # -*- coding: utf-8 -*-
 
-from datetime import tzinfo, timedelta, datetime
+from datetime import datetime
 import itertools
 import urllib
 import json
 import locale
+from os import path
 
 from lxml import etree
+import pytz
+from pymongo import MongoClient, database
 import requests
 
 import configparser
 
-from pymongo import MongoClient, database
-from os import path
 
 BASE_URL = "http://www.berlin.de/kino/_bin/trefferliste.php"
 STEP = 300
-
-# Berlin timezone GMT+2/+1
-TZBERLINDSTON  = (2*60)
-TZBERLINDSTOFF = (1*60)
-
-# DST Starts 31 march 2013 2 am
-DSTstarts = datetime(year=datetime.now().year, month=3, day=31, hour=2, minute=0, second=0)
-# DST Ends   27 oct 2013 3 am
-DSTends = datetime(year=datetime.now().year, month=10, day=27, hour=3, minute=0, second=0)
 
 def pairwise(iterable):
     return itertools.izip(*[iter(iterable)]*2)
@@ -96,20 +88,15 @@ def get_shows(cinema_group, cinema_name):
         movie_name = movie_name_tag[0].text
         movie_times = get_showtimes(movie_times_group.xpath(".//table")[0],cinema_name)
         for movie_time in movie_times:
-            showtimes.append( dict({"title": movie_name}.items() +
-                              movie_time.items()) )
+            showtimes.append(dict({"title": movie_name}.items() +
+                                  movie_time.items()))
     return showtimes
 
 def get_showtimes(showtime_table, cinema_name):
-    class TZ(tzinfo):
-        def utcoffset(self, dt):
-            now = datetime.now()
-            if DSTstarts < now < DSTends :
-                return timedelta(minutes=TZBERLINDSTON)
-            else:
-                return timedelta(minutes=TZBERLINDSTOFF)
-
     showtimes = []
+    rfc_3339_fmt = "%Y-%m-%dT%H:%M:%S%z"
+    berlin_tz = pytz.timezone("Europe/Berlin")
+
     for row in showtime_table.xpath(".//tr"):
         date_str = row.xpath(".//*[@class='datum']")[0].text # e.g. "Fr, 10.9.13"
         times_str = row.xpath(".//*[@class='uhrzeit']")[0].text # e.g. "20:00, 22:30"
@@ -118,8 +105,10 @@ def get_showtimes(showtime_table, cinema_name):
         day, month, year = map(int, date_str_sanitized.split("."))
         for a_time in times_str.split(", "):
             hour, minute = map(int, a_time.split(":"))
-            showtimes.append({"date": datetime(year=year+2000, month=month, day=day,
-                                        hour=hour, minute=minute, second=0, tzinfo=TZ()).isoformat("T"),
+            date = datetime(year=year+2000, month=month, day=day,
+                            hour=hour, minute=minute, second=0)
+            date_tz = berlin_tz.localize(date)
+            showtimes.append({"date": date_tz.strftime(rfc_3339_fmt),
                               "cinema": cinema_name})
 
     return showtimes
