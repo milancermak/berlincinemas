@@ -46,6 +46,7 @@
 		4CD8D0B01814621200FC845F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD8D0A91814621200FC845F /* UIWebView+AFNetworking.m */; };
 		4CDBA15018034C020012C7D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDBA14F18034C020012C7D4 /* CoreLocation.framework */; };
 		4CDBA15318034C540012C7D4 /* KODataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBA15218034C540012C7D4 /* KODataManager.m */; };
+		584D0377181ACDB50020C718 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 58DCA608181ACC9B00F1D65F /* GoogleMaps.bundle */; };
 		587A5AE4181958660028D038 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE3181958660028D038 /* GoogleMaps.framework */; };
 		587A5AE6181958B80028D038 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE5181958B80028D038 /* AVFoundation.framework */; };
 		587A5AE8181958C00028D038 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587A5AE7181958C00028D038 /* CoreData.framework */; };
@@ -185,6 +186,7 @@
 		58D19F2A17EB534300B9AB45 /* KOCinemasTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOCinemasTableViewController.m; sourceTree = "<group>"; };
 		58D19F3017EB59C000B9AB45 /* KOMoviesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOMoviesTableViewController.h; sourceTree = "<group>"; };
 		58D19F3117EB59C000B9AB45 /* KOMoviesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOMoviesTableViewController.m; sourceTree = "<group>"; };
+		58DCA608181ACC9B00F1D65F /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +410,7 @@
 				587A5AFC181974E60028D038 /* KOMovieScreeningViewController.m */,
 				4C7549D9180DC04A009E88BE /* KOSecondaryDetailTableViewController.h */,
 				4C7549DA180DC04A009E88BE /* KOSecondaryDetailTableViewController.m */,
+				58DCA607181ACC9B00F1D65F /* Resources */,
 				58D19EF217EB3C4200B9AB45 /* Supporting Files */,
 				58D19F0917EB3C4200B9AB45 /* Images.xcassets */,
 			);
@@ -423,6 +426,15 @@
 				58D19EF917EB3C4200B9AB45 /* KinoApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58DCA607181ACC9B00F1D65F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				58DCA608181ACC9B00F1D65F /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			path = ../libs/GoogleMaps.framework/Versions/A/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -478,6 +490,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				584D0377181ACDB50020C718 /* GoogleMaps.bundle in Resources */,
 				58D19F0A17EB3C4200B9AB45 /* Images.xcassets in Resources */,
 				4C624C4217F367EA00CB6DF3 /* Mantle-Info.plist in Resources */,
 				58D19EF617EB3C4200B9AB45 /* InfoPlist.strings in Resources */,
@@ -592,6 +605,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -631,6 +645,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
