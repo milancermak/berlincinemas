@@ -5,6 +5,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/moment.js" type="text/javascript" charset="utf-8"></script>
         
         <!-- Models -->
         <script src="js/movieModel.js" type="text/javascript" charset="utf-8"></script>
@@ -22,7 +23,7 @@
         var movies = {};
 
 
-        var moviesToday = {};
+        var moviesToday = new MoviesCollection();
 
         var today = new Date();
 
@@ -31,13 +32,23 @@
         // var moviesCollection = new MoviesCollection( );
         
 
+        moviesCollection.each( function( movie ) 
+        {
 
+            var timesArray = movie.get( 'showTimes' );
+             today = moment();
 
-        // $(document).ready( function( )
-        // {
-        //     console.log( fakeResponse );
-        // });
-        
+            _.each( timesArray, function( time, i )
+            {
+
+                if( time.isSame( today, 'day' ) )
+                {
+                    moviesToday.add( movie );
+                } 
+            } );
+
+        });
+
 
 
 

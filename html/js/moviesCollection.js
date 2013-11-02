@@ -1,7 +1,7 @@
 var MoviesCollection = Backbone.Collection.extend({
 	  model: Movie,
 
-  	  // url : 'fake-response'
+  	  // url : '/berlin/cinemas',
 	  initialize : function ( options )
 	  {
 	    _.bindAll ( this, 'initialize', 'parse' );
@@ -22,26 +22,31 @@ var MoviesCollection = Backbone.Collection.extend({
 	    	{
 	    		//update it
 
-	    		var kinos = thisMovie.get( 'cinemas' );
+	    		var kinos = thisMovie.get( 'kinos' );
 
 	    		var thisKino = movie.cinema;
-		        var showTime = Date.parse( movie.date );
+		        var showTime = moment( Date.parse( movie.date ) );
+		        // var showTime = new Date( Date.parse( movie.date ) );
 
 	    		if( kinos[ thisKino ] )
 	    		{
 	    			//this kino is already there!
 	    			kinos[ thisKino ].push( showTime )
+	    			thisMovie.get( 'showTimes' ).push( showTime )
 	    		}
 	    		else
 	    		{
 	    			//let's add the kino and the time
 	    			kinos[ thisKino ] = [ showTime ];
+
+	    			if( showTime == new Date() )
+			        {
+			            console.log( 'is today!' );
+			        }
 	    		}
 
-	    		// console.log( kinos );
-
 	    		
-	    		thisMovie.set( 'cinemas', kinos )
+	    		thisMovie.set( 'kinos', kinos )
 
 	    	}
 	    	else
