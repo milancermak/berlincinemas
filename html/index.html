@@ -30,7 +30,7 @@
        
         var moviesCollection = new MoviesCollection();
 
-
+        var totalShowings = 0;
 
         $( document ).ready( function( )
         {
@@ -59,22 +59,24 @@
                     var timesArray  = movie.get( 'showTimes' );
                     var movieList   = $( '.moviesToday' );
 
-                    _.each( timesArray, function( time, i )
+                    _.find( timesArray, function( time, i )
                     {
 
                         if( time.isSame( today, 'day' ) )
                         {
                             moviesToday.add( movie );   
                             movieList.append( '<li class="movie">' + movie.get( 'title' ) + '</li>' );
+
+                            return true;
                         } 
                     } );
 
                 });
 
 
+                var movieStat = $( '.stats__movies' );
 
-
-
+                movieStat.text( moviesToday.length + ' movies');
 
             } );
 
@@ -84,7 +86,9 @@
     <body> 
         <div class="page">
             <h1>Here is what the fuck is on today:</h1>
-            
+            <ul class="stats">
+                <li class="stats__movies"></li>
+            </ul>
             <ul class="moviesToday">
                 
             </ul>

@@ -6165,3 +6165,50 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page
+{
+  display:    block;
+  width:      800px;
+  margin:     0 auto;
+}
+
+.moviesToday
+{
+  
+}
+
+.movie
+{
+  list-style:     none;
+}
+
+
+.stats
+{
+    position: absolute;
+    right:      2em;
+}
+
+.stats__movies 
+{
+  list-style: none;
+  font-size: 4em;
+  position: relative;
+}
