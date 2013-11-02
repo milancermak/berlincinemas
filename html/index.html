@@ -1,24 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Berlin Kinos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-  </head>
-  <body>
-    <div class="hero-unit text-center">
-      <h1>Berlin Kinos</h1>
-      <p>Discover the next movie to watch in Berlin!</p>
-      <p>
-        <a class="btn btn-primary btn-large">
-          Download via Appstore
-        </a>
-      </p>
-    </div>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.css"/>
+        <title>What The Fuck is on?</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/backbone.js" type="text/javascript" charset="utf-8"></script>
+        
+        <!-- Models -->
+        <script src="js/movieModel.js" type="text/javascript" charset="utf-8"></script>
+        
+        <!-- Models -->
+        <script src="js/moviesCollection.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="fake-response.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/javascript" charset="utf-8" async defer>
+        
+
+        var kinos = {};
+        var movies = {};
 
 
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+        var moviesToday = {};
+
+        var today = new Date();
+
+        
+        var moviesCollection = new MoviesCollection( fakeResponse.movies, { parse : true } );
+        // var moviesCollection = new MoviesCollection( );
+        
+
+
+
+        // $(document).ready( function( )
+        // {
+        //     console.log( fakeResponse );
+        // });
+        
+
+
+
+        // $(document).ready( function( )
+        // {
+        //     $.ajax(
+        //     {
+        //         type : 'get',
+        //         dataType: 'json',
+        //         contentType: "application/json",
+        //         url  : 'http://fidgetmag.co.uk/berlin/cinemas/'
+        //     } ).then( function( resp, a, xhr ) {
+        //         // var date = new date( xhr.getResponseHeader('Date') );
+
+        //         kinos = resp.cinemas;
+        //         movies = resp.movies;
+
+        //         moviesCollection.add( movies );
+
+
+        //         // console.log( today, new Date() );
+        //         // consolge.log( today.getDay() );
+        //         // todayDay = today.getDay();
+                 
+        //          // moviesToday = moviesCollection.where( { day : todayDay } );  
+        //         // console.log( kinos, movies );
+
+        //         // self.loginObject.Date = date.toISOString();
+        //     } );
+
+        // });
+</script>
+    </head>
+    <body> 
+        <h1>A sample page</h1>
+
+        
+        
+    </body>
 </html>
