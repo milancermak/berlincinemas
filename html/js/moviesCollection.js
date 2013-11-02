@@ -17,10 +17,12 @@ var MoviesCollection = Backbone.Collection.extend({
 	    _.each( response, function ( movie, i ) 
 	    {
 	    	var thisMovie = self.findWhere( { title: movie.title }) ;
-	    	
+	    	// console.log( movie.title, thisMovie );
 	    	if( thisMovie )
 	    	{
 	    		//update it
+
+	    		// console.log( 'its already there');
 
 	    		var kinos = thisMovie.get( 'kinos' );
 
@@ -39,10 +41,6 @@ var MoviesCollection = Backbone.Collection.extend({
 	    			//let's add the kino and the time
 	    			kinos[ thisKino ] = [ showTime ];
 
-	    			if( showTime == new Date() )
-			        {
-			            console.log( 'is today!' );
-			        }
 	    		}
 
 	    		
@@ -51,6 +49,7 @@ var MoviesCollection = Backbone.Collection.extend({
 	    	}
 	    	else
 	    	{
+	    		// console.log( 'this wasnt there already', movie.title );
 	    		self.add( movie, { silent: true} );
 	    	}
 

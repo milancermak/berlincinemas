@@ -25,66 +25,71 @@
 
         var moviesToday = new MoviesCollection();
 
-        var today = new Date();
+        var today = moment();
 
-        
-        var moviesCollection = new MoviesCollection( fakeResponse.movies, { parse : true } );
-        // var moviesCollection = new MoviesCollection( );
-        
+       
+        var moviesCollection = new MoviesCollection();
 
-        moviesCollection.each( function( movie ) 
+
+
+        $( document ).ready( function( )
         {
-
-            var timesArray = movie.get( 'showTimes' );
-             today = moment();
-
-            _.each( timesArray, function( time, i )
+            $.ajax(
             {
+                type : 'get',
+                dataType: 'json',
+                contentType: "application/json",
+                url  : 'http://fidgetmag.co.uk/berlin/cinemas/'
+            } ).then( function( resp, a, xhr ) {
+                // var date = new date( xhr.getResponseHeader('Date') );
 
-                if( time.isSame( today, 'day' ) )
+                kinos = resp.cinemas;
+                movies = resp.movies;
+
+                moviesCollection.add( movies, { parse: true} );
+        
+
+
+
+
+                //get todays movies
+                moviesCollection.each( function( movie ) 
                 {
-                    moviesToday.add( movie );
-                } 
+                    // console.log( movie.get( 'title') );
+                    var timesArray  = movie.get( 'showTimes' );
+                    var movieList   = $( '.moviesToday' );
+
+                    _.each( timesArray, function( time, i )
+                    {
+
+                        if( time.isSame( today, 'day' ) )
+                        {
+                            moviesToday.add( movie );   
+                            movieList.append( '<li class="movie">' + movie.get( 'title' ) + '</li>' );
+                        } 
+                    } );
+
+                });
+
+
+
+
+
+
             } );
 
         });
-
-
-
-
-        // $(document).ready( function( )
-        // {
-        //     $.ajax(
-        //     {
-        //         type : 'get',
-        //         dataType: 'json',
-        //         contentType: "application/json",
-        //         url  : 'http://fidgetmag.co.uk/berlin/cinemas/'
-        //     } ).then( function( resp, a, xhr ) {
-        //         // var date = new date( xhr.getResponseHeader('Date') );
-
-        //         kinos = resp.cinemas;
-        //         movies = resp.movies;
-
-        //         moviesCollection.add( movies );
-
-
-        //         // console.log( today, new Date() );
-        //         // consolge.log( today.getDay() );
-        //         // todayDay = today.getDay();
-                 
-        //          // moviesToday = moviesCollection.where( { day : todayDay } );  
-        //         // console.log( kinos, movies );
-
-        //         // self.loginObject.Date = date.toISOString();
-        //     } );
-
-        // });
 </script>
     </head>
     <body> 
-        <h1>A sample page</h1>
-
+        <div class="page">
+            <h1>Here is what the fuck is on today:</h1>
+            
+            <ul class="moviesToday">
+                
+            </ul>
+            
+        </div>
         
         
     </body>
