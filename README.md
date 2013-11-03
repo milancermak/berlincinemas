@@ -29,4 +29,5 @@ This structure is based on one [night of heavy drinking and listening to psyched
 Two quite useful endpoints so far.
 
 `berin/cinemas` : Shows all the info available.
+
 `berlin/cinemas/today` : Shows the cinema listing and the movies only for today.
