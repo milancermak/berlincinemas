@@ -87,28 +87,30 @@
 
                 movieStat.text( moviesToday.length + ' movies');
 
+                // Add classes
+
+
+                // Filter Omu
+                var omuButton =  $( '.js-filters__omu' );
+
+                omuButton.click( function ( e )
+                {
+
+                    var movieLis = $( '.js-movie' );
+                    var omuListings = $( '.js-has-omu' );
+
+                    e.preventDefault();
+
+                    movieLis.addClass( 'hide' );
+                    omuListings.removeClass( 'hide' );
+
+                    movieStat.text( omuListings.length + ' movies' );
+
+                });
             } );
 
 
 
-            // Add classes
-
-
-            // Filter Omu
-            var omuButton =  $( '.js-filters__omu' );
-
-            omuButton.click( function ( e )
-            {
-
-                var movieLis = $( '.js-movie' );
-                var omuListings = $( '.js-has-omu' );
-
-                e.preventDefault();
-
-                movieLis.addClass( 'hide' );
-                omuListings.removeClass( 'hide' );
-
-            });
 
 
         });
