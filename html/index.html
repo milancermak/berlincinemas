@@ -58,14 +58,23 @@
                     // console.log( movie.get( 'title') );
                     var timesArray  = movie.get( 'showTimes' );
                     var movieList   = $( '.moviesToday' );
+                    var extraClasses = '';
 
                     _.find( timesArray, function( time, i )
                     {
+                        if( movie.get( 'title' ).search( 'OmU' ) > 0 )
+                        {
+                            extraClasses = ' js-has-omu';
+                        }
+                        else
+                        {
+                            extraClasses = '';
+                        }
 
                         if( time.isSame( today, 'day' ) )
                         {
                             moviesToday.add( movie );   
-                            movieList.append( '<li class="movie">' + movie.get( 'title' ) + '</li>' );
+                            movieList.append( '<li class="js-movie  movie ' + extraClasses + '">' + movie.get( 'title' ) + '</li>' );
 
                             return true;
                         } 
@@ -80,6 +89,28 @@
 
             } );
 
+
+
+            // Add classes
+
+
+            // Filter Omu
+            var omuButton =  $( '.js-filters__omu' );
+
+            omuButton.click( function ( e )
+            {
+
+                var movieLis = $( '.js-movie' );
+                var omuListings = $( '.js-has-omu' );
+
+                e.preventDefault();
+
+                movieLis.addClass( 'hide' );
+                omuListings.removeClass( 'hide' );
+
+            });
+
+
         });
 </script>
     </head>
@@ -88,6 +119,9 @@
             <h1>Here is what the fuck is on today:</h1>
             <ul class="stats">
                 <li class="stats__movies"></li>
+            </ul>
+            <ul class="filters">
+                <li class="filters__omu"><a href="" class="js-filters__omu">Only OmU</a></li>
             </ul>
             <ul class="moviesToday">
                 
