@@ -25,3 +25,8 @@ API server the available data in JSON format in the following structure:
 }
 ```
 This structure is based on one [night of heavy drinking and listening to psychedelic music at Lautaro's](doc/images/2013-09-25-use_cases_and_json_format.jpg). Most fields should be self-descriptive. The `date` field is formatted in [RFC 3339](http://tools.ietf.org/html/rfc3339) format. The `ll` field is a comma-delimited string of the latitude and longitude values of the cinema.
+
+Two quite useful endpoints so far.
+
+`berin/cinemas` : Shows all the info available.
+`berlin/cinemas/today` : Shows the cinema listing and the movies only for today.
