@@ -23,7 +23,7 @@ def main():
         if firstline:    #skip first line
             firstline = False
             continue
-        cinemas.insert([{'name': cinema[0], 'll' : cinema[1] + ',' + cinema[2] }])
+        cinemas.insert([{'name': cinema[0].strip(), 'll' : cinema[1].strip() + ',' + cinema[2].strip() }])
 
 if __name__ == "__main__":
     locale.setlocale(locale.LC_ALL, "de_DE.UTF-8")
