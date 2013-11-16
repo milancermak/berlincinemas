@@ -28,7 +28,7 @@
         var today = moment();
 
        
-        var moviesCollection = new MoviesCollection();
+        // var moviesCollection = new MoviesCollection();
 
         var totalShowings = 0;
 
@@ -39,46 +39,40 @@
                 type : 'get',
                 dataType: 'json',
                 contentType: "application/json",
-                url  : 'http://fidgetmag.co.uk/berlin/cinemas/'
+                url  : 'http://fidgetmag.co.uk/berlin/cinemas/today'
             } ).then( function( resp, a, xhr ) {
                 // var date = new date( xhr.getResponseHeader('Date') );
 
                 kinos = resp.cinemas;
                 movies = resp.movies;
 
-                moviesCollection.add( movies, { parse: true} );
-        
-
+                moviesToday.add( movies, { parse: true} );
 
 
 
                 //get todays movies
-                moviesCollection.each( function( movie ) 
+                moviesToday.each( function( movie ) 
                 {
-                    // console.log( movie.get( 'title') );
                     var timesArray  = movie.get( 'showTimes' );
                     var movieList   = $( '.moviesToday' );
                     var extraClasses = '';
 
-                    _.find( timesArray, function( time, i )
-                    {
-                        if( movie.get( 'title' ).search( 'OmU' ) > 0 )
+                        if( movie.get( 'original' ) )
                         {
                             extraClasses = ' js-has-omu';
                         }
                         else
                         {
-                            extraClasses = '';
+                            extraClasses = ' hide';
                         }
 
-                        if( time.isSame( today, 'day' ) )
-                        {
-                            moviesToday.add( movie );   
-                            movieList.append( '<li class="js-movie  movie ' + extraClasses + '">' + movie.get( 'title' ) + '</li>' );
+                        var uriTitle = encodeURIComponent( movie.get('title') );
 
-                            return true;
-                        } 
-                    } );
+                        var youTubeLink = ' <a href="http://www.youtube.com/results?search_query=' + uriTitle + '&page=&utm_source=opensearch" class="youTube-Link" target="_blank">'
+                                    + ' yT</a>';
+ 
+                        movieList.append( '<li class="js-movie  movie ' + extraClasses + '">' + movie.get( 'title' ) + youTubeLink + '</li>' );
+
 
                 });
 
@@ -101,12 +95,29 @@
 
                     e.preventDefault();
 
-                    movieLis.addClass( 'hide' );
-                    omuListings.removeClass( 'hide' );
+                    if( omuButton.hasClass( 'js-showAll' ) )
+                    {
+                        omuButton.text( 'Only Original Language' );
+                        movieLis.removeClass( 'hide' );
+                        movieStat.text( movieLis.length + ' fucking movies' );
+                        omuButton.removeClass( 'js-showAll' );
+                    }
+                    else
+                    {
+                        omuButton.text( 'Show All Movies' );
+                        omuButton.addClass( 'js-showAll' );
 
-                    movieStat.text( omuListings.length + ' movies' );
+                        movieLis.addClass( 'hide' );
+                        omuListings.removeClass( 'hide' );
+
+                        movieStat.text( omuListings.length + ' fucking movies' );
+                        
+                    }
+
 
                 });
+
+                // omuButton.trigger( 'click' );
             } );
 
 
@@ -123,7 +134,7 @@
                 <li class="stats__movies"></li>
             </ul>
             <ul class="filters">
-                <li class="filters__omu"><a href="" class="js-filters__omu">Only OmU</a></li>
+                <li class="filters__omu"><a href="" class="fuckingButton js-showAll js-filters__omu">Show All Movies</a></li>
             </ul>
             <ul class="moviesToday">
                 
