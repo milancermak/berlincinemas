@@ -6240,3 +6240,7 @@ list-style: none;
   text-shadow: 1px 1px 1px #353434;
   border-radius: 5px;
 }
+.fuckingButton:hover {
+  color: white;
+  text-decoration: none;
+}
