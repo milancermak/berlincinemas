@@ -19,13 +19,13 @@ var Movie = Backbone.Model.extend({
 
         this.setOriginalLanguage();
 
+        this.getYoutubeJson();
+
    },
 
    setOriginalLanguage : function( )
    {
         var self = this;
-
-
         var omuPosition = self.get( 'title' ).search( 'OmU' );
         var ovPosition = self.get( 'title' ).search( 'OV' );
 
@@ -37,5 +37,32 @@ var Movie = Backbone.Model.extend({
         {
             self.set( 'original', false )
         }
+   },
+
+   getYoutubeJson : function ( )
+   {
+        var uriTitle = encodeURIComponent( this.get('title') );
+
+        var url = 'http://gdata.youtube.com/feeds/api/videos?q=' + uriTitle + '&page=&utm_source=opensearch&alt=json'
+        
+        console.log( 'things', uriTitle, url );
+
+        $.ajax(
+        {
+            type : 'get',
+            dataType: 'json',
+            contentType: "application/json",
+            url  : url
+        } )
+        .then( function( resp, a, xhr ) 
+        {
+            console.log( 'REPSONSE', resp );
+        
+        });
+
    }
 });
+
+
+
+
