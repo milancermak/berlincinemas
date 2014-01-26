@@ -14,7 +14,7 @@
         <script src="js/moviesCollection.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="fake-response.js" type="text/javascript" charset="utf-8"></script>
+        <!-- // <script src="fake-response.js" type="text/javascript" charset="utf-8"></script> -->
 
         <script type="text/javascript" charset="utf-8" async defer>
         
@@ -46,7 +46,7 @@
                 kinos = resp.cinemas;
                 movies = resp.movies;
 
-                moviesToday.add( movies, { parse: true} );
+                moviesToday.add( movies, { parse: true } );
 
 
 
@@ -68,10 +68,29 @@
 
                         var uriTitle = encodeURIComponent( movie.get('title') );
 
+                        movie.getYoutubeJson();
+
                         var youTubeLink = ' <a href="http://www.youtube.com/results?search_query=' + uriTitle + '&page=&utm_source=opensearch" class="youTube-Link" target="_blank">'
                                     + ' yT</a>';
+
+                        // var thumbnail;
+                        
+                        // if ( movie.has( 'thumbnail' ) )
+                        // {
+                        //     console.log( 'THERE IS A THUMB' );
+                        //     thumbnail = $( '<img src="" target="_blank">' );
+
+
+                        //     thumbnail.attr( 'src', movie.get( 'link' ) );
+                        //     thumbnail.attr( 'alt', movie.get( 'title' ) );
+
+                        // }
+
+                        // if ( movie.has( 'link' ) )
+
+                        // youtubeJson = $.ajax
  
-                        movieList.append( '<li class="js-movie  movie ' + extraClasses + '">' + movie.get( 'title' ) + youTubeLink + '</li>' );
+                        movieList.append( '<li class="js-movie  movie ' + extraClasses + '">' + movie.get( 'title' ) + youTubeLink + thumbnail + '</li>' );
 
 
                 });

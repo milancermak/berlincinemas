@@ -19,7 +19,7 @@ var Movie = Backbone.Model.extend({
 
         this.setOriginalLanguage();
 
-        this.getYoutubeJson();
+        // this.getYoutubeJson();
 
    },
 
@@ -41,11 +41,11 @@ var Movie = Backbone.Model.extend({
 
    getYoutubeJson : function ( )
    {
-        var uriTitle = encodeURIComponent( this.get('title') );
-
-        var url = 'http://gdata.youtube.com/feeds/api/videos?q=' + uriTitle + '&page=&utm_source=opensearch&alt=json'
+        var uriTitle    = encodeURIComponent( this.get('title') ),
+            url         = 'http://gdata.youtube.com/feeds/api/videos?q=' + uriTitle + '&alt=json',
+            self        = this;
         
-        console.log( 'things', uriTitle, url );
+        // console.log( 'things', uriTitle, url );
 
         $.ajax(
         {
@@ -56,7 +56,27 @@ var Movie = Backbone.Model.extend({
         } )
         .then( function( resp, a, xhr ) 
         {
-            console.log( 'REPSONSE', resp );
+            var response = resp.feed.entry;
+            // console.log( resp );
+            if( response )
+            {
+                //it has responses. so we're winning
+                // console.log( 'REPSONSE', response );
+                var youtube_link = response[0].link[0].href,
+                    youtube_media = response[0].media$group,
+                    youtube_thumb = youtube_media.media$thumbnail[0].url; //the first thumb;
+
+
+                self.set( {
+                    'link'      : youtube_link,
+                    'thumbnail' : youtube_thumb
+                });
+
+                // console.log( self );
+
+                // response[0]
+                
+            }
         
         });
 
