@@ -1,9 +1,10 @@
 define([
 	'backbone',
 	'views/item/movieItem',
+	'collections/moviesCollection',
 	'hbs!tmpl/composite/moviesListComposite_tmpl'
 ],
-function( Backbone, Movieitem, MovieslistcompositeTmpl  ) {
+function( Backbone, Movieitem, moviesCollection, MoviesListCompositeTmpl  ) {
     'use strict';
 
 	/* Return a CompositeView class definition */
@@ -11,18 +12,20 @@ function( Backbone, Movieitem, MovieslistcompositeTmpl  ) {
 
 		initialize: function() {
 			console.log("initialize a Movieslistcomposite CompositeView");
+		
+			this.collection 
 		},
 		
     	itemView: Movieitem,
     	
-    	template: MovieslistcompositeTmpl,
+    	template: MoviesListCompositeTmpl,
     	
 
     	/* ui selector cache */
     	ui: {},
 
     	/* where are we appending the items views */
-    	itemViewContainer: "",
+    	itemViewContainer: ".moviesss",
 
 		/* Ui events hash */
 		events: {},
