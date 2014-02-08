@@ -1,7 +1,8 @@
 define([
-	'backbone'
+	'backbone',
+    'moment'
 ],
-function( Backbone ) {
+function( Backbone, Moment ) {
     'use strict';
 
 	/* Return a model class definition */
@@ -15,6 +16,8 @@ function( Backbone ) {
 
     initialize: function() 
     { 
+        var moment = Moment;
+        
 		console.log("initialize a mmmMovie model");
         _.bindAll ( this, 'initialize', 'parse' );
 
