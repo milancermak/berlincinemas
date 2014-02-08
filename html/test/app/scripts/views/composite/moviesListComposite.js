@@ -13,7 +13,9 @@ function( Backbone, Movieitem, moviesCollection, MoviesListCompositeTmpl  ) {
 		initialize: function() {
 			console.log("initialize a Movieslistcomposite CompositeView");
 		
-			this.collection 
+			this.collection  =  new moviesCollection();
+
+			console.log( this.collection );
 		},
 		
     	itemView: Movieitem,

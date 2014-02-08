@@ -11,7 +11,17 @@ function( Backbone, Movie ) {
 			console.log("initialize a Moviescollection collection");
 		},
 
-		model: Movie
+		model: Movie,
+
+		// url: 'http://fidgetmag.co.uk/berlin/cinemas/today',
+		url: 'fake-response.js',
+
+		parse : function ( response )
+		{
+			console.log( 'parsessss', response );
+
+			return response.movies;
+		}
 		
 	});
 });

@@ -14,6 +14,7 @@ function( Backbone, Communicator, Header, Footer, MoviesListComposite,
 
 	var App = new Backbone.Marionette.Application();
 
+	window.App = App;
 	/* Add application regions here */
 	App.addRegions({
 		header: 		'#header', 

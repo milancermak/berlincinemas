@@ -70,12 +70,12 @@ module.exports = function (grunt) {
         },
 
         // mocha command
-        exec: {
-            mocha: {
-                command: 'mocha-phantomjs http://localhost:<%= connect.testserver.options.port %>/test',
-                stdout: true
-            }
-        },
+        // exec: {
+        //     mocha: {
+        //         command: 'mocha-phantomjs http://localhost:<%= connect.testserver.options.port %>/test',
+        //         stdout: true
+        //     }
+        // },
 
         
         // express app
