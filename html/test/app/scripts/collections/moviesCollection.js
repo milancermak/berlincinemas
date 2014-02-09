@@ -20,6 +20,8 @@ function( Backbone, Movie ) {
         {
             var self = this;
 
+            console.log( response );
+
             var refinedMovies = [];
 
             _.each( response.movies, function ( movie, i ) 
@@ -56,6 +58,7 @@ function( Backbone, Movie ) {
                     if( existingKino )
                     {
                         //this kino is already there!
+                        console.log( thisMovie , showTime );
                         existingKino.show_times.push( showTime )
                         thisMovie.showTimes.push( showTime )
                     }
