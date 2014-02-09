@@ -33,18 +33,18 @@ function( Backbone, MovieitemTmpl  ) {
 
         showKinos : function ()
         {
+            // console.log( 'showing kinos' );
             var cinemas = this.model.get( 'cinemas' );
             var cinemaList = this.$( '.js-movie__cinemas' );
+            var self = this;
 
-            console.log( cinemaList );
-
-            // console.log( kinos );
-            _.each( cinemas, function( cinema, i)
+            _.each( cinemas, function( cinema, i )
             {
                 cinemaList.append( '<li class="cinema">' + cinema.kino_name + '</li>');
-                // console.log( cinema );
             } );
+
         }
+
 	});
 
 });
