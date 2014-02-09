@@ -17,12 +17,11 @@ function( Backbone, Moment ) {
     initialize: function() 
     { 
         var moment = Moment;
-        
+
 		console.log("initialize a mmmMovie model");
         _.bindAll ( this, 'initialize', 'parse' );
 
         var showTime =  moment( Date.parse( this.get('date') ) );
-
 
         // Add a list of kinos
         var kinoObj = {};
@@ -35,6 +34,7 @@ function( Backbone, Moment ) {
         this.setOriginalLanguage();
 
         // this.getYoutubeJson();
+        
 
    },
 

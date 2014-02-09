@@ -10,9 +10,13 @@ function( Backbone, MovieitemTmpl  ) {
 
 		initialize: function() {
 			console.log("initialize a Movieitem ItemView");
+
+            // console.log( this.model.kinos );
 		},
 		
     	template: MovieitemTmpl,
+
+        className: "movie-box",
         
 
     	/* ui selector cache */
@@ -22,7 +26,25 @@ function( Backbone, MovieitemTmpl  ) {
 		events: {},
 
 		/* on render callback */
-		onRender: function() {}
+		onRender: function() {
+
+            this.showKinos();
+        },
+
+        showKinos : function ()
+        {
+            var cinemas = this.model.get( 'cinemas' );
+            var cinemaList = this.$( '.js-movie__cinemas' );
+
+            console.log( cinemaList );
+
+            // console.log( kinos );
+            _.each( cinemas, function( cinema, i)
+            {
+                cinemaList.append( '<li class="cinema">' + cinema.kino_name + '</li>');
+                // console.log( cinema );
+            } );
+        }
 	});
 
 });

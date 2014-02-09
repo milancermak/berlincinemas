@@ -14,8 +14,8 @@ function( Backbone, Movieitem, moviesCollection, MoviesListCompositeTmpl  ) {
 			console.log("initialize a Movieslistcomposite CompositeView");
 		
 			this.collection  =  new moviesCollection();
-
-			console.log( this.collection );
+            this.collection.fetch();
+			// console.log( this.collection );
 		},
 		
     	itemView: Movieitem,
@@ -27,7 +27,7 @@ function( Backbone, Movieitem, moviesCollection, MoviesListCompositeTmpl  ) {
     	ui: {},
 
     	/* where are we appending the items views */
-    	itemViewContainer: ".moviesss",
+    	itemViewContainer: ".movies",
 
 		/* Ui events hash */
 		events: {},
