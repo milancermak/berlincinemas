@@ -20,47 +20,32 @@ function( Backbone, Movie ) {
         {
             var self = this;
 
-            console.log( response );
+            // console.log( response );
 
             var refinedMovies = [];
 
             _.each( response.movies, function ( movie, i ) 
             {
-                // console.log( movie );
                 var thisMovie = _.findWhere( refinedMovies, { title: movie.title }) ;
 
                 var thisKino = movie.cinema;
                 var showTime = moment( Date.parse( movie.date ) );
 
-
-                // console.log( movie.title, thisMovie );
                 if( thisMovie )
                 {
-                var cinemas = thisMovie.cinemas;
+                    var cinemas = thisMovie.cinemas;
 
-                if( ! cinemas )
-                {
-                    cinemas = {};
-                }
-                    var showTimes = thisMovie.showTimes;
-                    if( ! showTimes )
+                    if( ! cinemas )
                     {
-                        thisMovie.showTimes = [];
+                        cinemas = {};
                     }
-                    //update it
-                    // console.log( 'its already there', thisMovie );
 
-                    // var showTime = new Date( Date.parse( movie.date ) );
-                    var existingKino = _.findWhere( cinemas, thisKino );
-
-                    // console.log( existingKino );
+                    var existingKino = _.findWhere( cinemas, { 'kino_name' : thisKino } );
 
                     if( existingKino )
                     {
                         //this kino is already there!
-                        console.log( thisMovie , showTime );
-                        existingKino.show_times.push( showTime )
-                        thisMovie.showTimes.push( showTime )
+                        existingKino.show_times.push( showTime );
                     }
                     else
                     {
@@ -74,18 +59,14 @@ function( Backbone, Movie ) {
                 else
                 {
                     // console.log( 'this wasnt there already', movie.title );
-                    // maybe this isnt happening all the time, the parsing to the times etc.
                     movie.cinemas = {};
 
                     movie.cinemas[ thisKino ] = {   kino_name : thisKino,
-                                                        show_times: [ showTime ] };
-                    movie.showTimes = [ showTime ];
+                                                    show_times: [ showTime ] 
+                                                };
                     movie = _.omit( movie, [ 'kinos', 'cinema' ] );
 
-                    // refinedMovies = _.extend( refinedMovies, movie );
                     refinedMovies.push( movie );
-
-                    // refinedMovies = 
                 }
 
             } );

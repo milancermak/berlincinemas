@@ -1,9 +1,8 @@
 define([
 	'backbone',
-	'hbs!tmpl/item/movieItem_tmpl',
-    'moment'
+	'hbs!tmpl/item/movieItem_tmpl'
 ],
-function( Backbone, MovieitemTmpl, Moment  ) {
+function( Backbone, MovieitemTmpl  ) {
     'use strict';
 
 	/* Return a ItemView class definition */
@@ -55,7 +54,7 @@ function( Backbone, MovieitemTmpl, Moment  ) {
 
                 _.each( showTimes, function( showTime, i )
                 {
-                    console.log( showTime );
+                    // console.log( showTime );
                     //each shotime should be a moment.js object
                     cinemaTimes.append( '<li>' + showTime.format(" h:mm:ss a") + '</li>' )
                 });
