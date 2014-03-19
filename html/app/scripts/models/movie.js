@@ -18,7 +18,7 @@ function( Backbone, Moment ) {
     { 
         var moment = Moment;
 
-		console.log("initialize a mmmMovie model");
+		// console.log("initialize a mmmMovie model");
         _.bindAll ( this, 'initialize', 'parse' );
 
         var showTime =  moment( Date.parse( this.get('date') ) );
