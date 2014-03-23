@@ -20,7 +20,7 @@ function( Backbone, Movie ) {
         {
             var self = this;
 
-            // console.log( response );
+            console.log( response );
 
             var refinedMovies = [];
 

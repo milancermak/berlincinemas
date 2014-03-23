@@ -3,11 +3,12 @@ define([
 	'communicator',
 	'views/header',
 	'views/footer',
-	'views/composite/moviesListComposite',
+    'views/composite/moviesListComposite',
+	'views/composite/kinoListComposite',
 ],
 
 function( Backbone, Communicator, Header, Footer, MoviesListComposite,
-			moviesCollection ) {
+			KinoListComposite ) {
     'use strict';
 
 	// var welcomeTmpl = Welcome_tmpl;
@@ -26,8 +27,12 @@ function( Backbone, Communicator, Header, Footer, MoviesListComposite,
 	App.addInitializer( function () {
 		App.header.show( new Header );
 		App.footer.show( new Footer );
-		App.main.show( new MoviesListComposite );
-		// document.body.innerHTML = welcomeTmpl({ success: "BLABLA!" });
+
+        // App.main.show( new MoviesListComposite );
+		App.main.show( new KinoListComposite );
+		
+
+        // document.body.innerHTML = welcomeTmpl({ success: "BLABLA!" });
 		Communicator.mediator.trigger("APP:START");
 	});
 	console.log( App );
