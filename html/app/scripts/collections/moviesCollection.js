@@ -20,7 +20,7 @@ function( Backbone, Movie ) {
         {
             var self = this;
 
-            console.log( response );
+            // console.log( response );
 
             var refinedMovies = [];
 
@@ -67,21 +67,11 @@ function( Backbone, Movie ) {
                 }
                 else
                 {
-                    // console.log( 'this wasnt there already', movie.title );
                     movie.cinemas = {};
-
-                    // showTimeArray = movie.showTimes;
-
-                    // movie.showTimes = 
-                    // {
-                        
-                    // }
-                    
 
                     movie.cinemas[ thisKino ] = {   kino_name : thisKino,
                                                     show_times: [ showTime ] 
                                                 };
-                    // movie.showTimes[ showTime ].allKinos = [ thisKino ];
 
                     movie = _.omit( movie, [ 'kinos', 'cinema' ] );
 

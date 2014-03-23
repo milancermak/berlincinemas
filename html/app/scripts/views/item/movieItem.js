@@ -75,19 +75,13 @@ function( Backbone, MovieitemTmpl  ) {
          */
         showKinoTimes : function ()
         {
-            // console.log( 'showing kinos' );
             var self = this;
             var cinemas = this.model.get( 'cinemas' );
             var showTimeList = this.$( '.js-movie__times' );
-
-            // console.log( 'SHOWTIMES', showTimes, showTimeList );
             var showTimeArray = [];
 
             _.each( cinemas, function( cinema, i )
-            {
-
-                // var cinemaTimes = $( '<ol class="cinema__times"></ol>' );
-                
+            {                
                 var showTimes = cinema.show_times;
 
                 _.each( showTimes, function( showTime, i )
@@ -101,21 +95,18 @@ function( Backbone, MovieitemTmpl  ) {
                     }
 
                     showTimeArray.push( sortableTime );
-                    
-                    // console.log( showTime );
-                    //each shotime should be a moment.js object
                 });
 
             } );
 
+            //sort by showtime
             showTimeArray = _.sortBy( showTimeArray, function( time )
             {
                 return time.moment;
 
             } );
 
-            console.log( 'TIMES ARRAY:', showTimeArray );
-
+            //add to the list
             _.each( showTimeArray, function( showTime )
             {
                 showTimeList.append( showTime.listItem );
