@@ -31,8 +31,8 @@ function( Backbone, Communicator, Header, Footer, MoviesListComposite,
     App.addInitializer( function () {
         App.header.show( new Header );
         App.footer.show( new Footer );
-        // App.main.show( new MoviesListComposite );
-        App.main.show( new KinoListComposite );
+        App.main.show( new MoviesListComposite );
+        // App.main.show( new KinoListComposite );
         
 
         // document.body.innerHTML = welcomeTmpl({ success: "BLABLA!" });

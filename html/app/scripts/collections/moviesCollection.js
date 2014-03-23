@@ -52,7 +52,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
         {
             var self = this;
 
-            console.log( 'parsing', response );
+            // console.log( 'parsing', response );
 
             var refinedMovies = [];
 

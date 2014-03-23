@@ -1,6 +1,118 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 400px;
+
+// REM function
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
 }
+
+@mixin rem-fallback($property, $values...) {
+  $max: length($values);
+  $pxValues: '';
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value*16}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  } 
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  } 
+  
+  #{$property}: $pxValues; 
+  #{$property}: $remValues; 
+}
+// .hero-unit {
+//     margin: 50px auto 0 auto;
+//     width: 400px;
+// }
+
+html
+{
+    font-size: 62.5%
+}
+
+body
+{
+    // width: 480px;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: block;
+    margin: 0 auto;
+}
+
+.movie-box
+{   
+    // display: inline-block;
+    clear: left;
+}
+
+.movie__by-kino,
+.movie__by-times
+{
+    position: relative;
+    display: inline-block;
+    float: left;
+    clear: left;
+
+    .dropdown__button
+    {
+        display: inline-block;
+
+        &:hover 
+        {
+            background-color: grey;
+            cursor: pointer;
+        }
+        
+    }
+    
+    .dropdown
+   {
+        position: absolute;
+        left: -9999px;
+    }
+
+    &:hover 
+    {
+        .dropdown
+        {
+            left: auto;
+        }
+    }
+}
+
+
+.dropdown
+{
+    width:      200px;
+    width:      20rem;
+    background-color: #fff;
+    border:     1px solid grey;
+    list-style: none;
+    z-index:    1;
+    @include rem-fallback( top , 3 );
+    @include rem-fallback( padding , 1 );
+}
+
+
+
+
+
+.cinemas__cinema__name
+{
+    font-weight: bold;
+}
+
+
+

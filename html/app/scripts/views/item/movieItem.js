@@ -47,7 +47,7 @@ function( Backbone, MovieitemTmpl  ) {
             _.each( cinemas, function( cinema, i )
             {
                 var cinemaItem = $( '<li class="cinemas__cinema  kino--' + cinema.kino_name +
-                                    '">' + cinema.kino_name + '</li>');
+                                    '"><span class="cinemas__cinema__name">' + cinema.kino_name + '</span></li>');
 
                 var cinemaTimes = $( '<ol class="cinema__times"></ol>' );
                 
