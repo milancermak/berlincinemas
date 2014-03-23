@@ -28,6 +28,7 @@ function( Backbone, MovieitemTmpl  ) {
 		onRender: function() {
 
             this.showKinos();
+            this.showKinoTimes();
         },
 
         /**
@@ -66,25 +67,41 @@ function( Backbone, MovieitemTmpl  ) {
         },
 
 
-        // /**
-        //  * Show KinoTimes
-        //  * 
-        //  * Adds Kinos to the .js-movie__cinemas list
-        //  * @return {[type]} [description]
-        //  */
-        // showKinoTimes : function ()
-        // {
-        //     // console.log( 'showing kinos' );
-        //     var cinemas = this.model.get( 'cinemas' );
-        //     var cinemaList = this.$( '.js-movie__cinemas' );
-        //     var self = this;
+        /**
+         * Show KinoTimes
+         * 
+         * Adds Kinos to the .js-movie__cinemas list
+         * @return {[type]} [description]
+         */
+        showKinoTimes : function ()
+        {
+            // console.log( 'showing kinos' );
+            var self = this;
+            var cinemas = this.model.get( 'cinemas' );
+            var showTimeList = this.$( '.js-movie__times' );
 
-        //     _.each( cinemas, function( cinema, i )
-        //     {
-        //         cinemaList.append( '<li class="cinema">' + cinema.kino_name + '</li>');
-        //     } );
+            // console.log( 'SHOWTIMES', showTimes, showTimeList );
 
-        // }
+            _.each( cinemas, function( cinema, i )
+            {
+
+                // var cinemaTimes = $( '<ol class="cinema__times"></ol>' );
+                
+                var showTimes = cinema.show_times;
+
+                _.each( showTimes, function( showTime, i )
+                {
+                    var showTimeItem = $( '<li class="cinemas__showTimes  kino--' + cinema.kino_name +
+                                    '">' + showTime.format(" h:mm:ss a") + ' at ' + cinema.kino_name + '</li>');
+                    
+                    // console.log( showTime );
+                    //each shotime should be a moment.js object
+                    showTimeList.append( showTimeItem );
+                });
+
+            } );
+
+        }
 
 	});
 

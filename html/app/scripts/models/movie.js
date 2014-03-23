@@ -12,7 +12,7 @@ function( Backbone, Moment ) {
 
 		defaults: {},
 
-		  // idAttribute : 'title',
+		idAttribute : 'title',
 
     initialize: function() 
     { 

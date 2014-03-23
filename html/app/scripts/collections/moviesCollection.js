@@ -24,6 +24,9 @@ function( Backbone, Movie ) {
 
             var refinedMovies = [];
 
+            //parse each movie, see if it exists, if not, lets add it
+            //if so, we extend it.
+            
             _.each( response.movies, function ( movie, i ) 
             {
                 var thisMovie = _.findWhere( refinedMovies, { title: movie.title }) ;
@@ -45,6 +48,10 @@ function( Backbone, Movie ) {
                     if( existingKino )
                     {
                         //this kino is already there!
+                        
+                        //put the kino int he showTime kino list
+                        // showTime.allKinos.push( existingKino.thisKino );
+
                         existingKino.show_times.push( showTime );
                     }
                     else
@@ -54,6 +61,8 @@ function( Backbone, Movie ) {
                                                     show_times: [ showTime ] };
                     }
                     thisMovie.cinemas = cinemas;
+
+                    //neither omit here or below is working
                     thisMovie = _.omit( thisMovie, [ 'kinos', 'cinema' ] );
                 }
                 else
@@ -61,9 +70,19 @@ function( Backbone, Movie ) {
                     // console.log( 'this wasnt there already', movie.title );
                     movie.cinemas = {};
 
+                    // showTimeArray = movie.showTimes;
+
+                    // movie.showTimes = 
+                    // {
+                        
+                    // }
+                    
+
                     movie.cinemas[ thisKino ] = {   kino_name : thisKino,
                                                     show_times: [ showTime ] 
                                                 };
+                    // movie.showTimes[ showTime ].allKinos = [ thisKino ];
+
                     movie = _.omit( movie, [ 'kinos', 'cinema' ] );
 
                     refinedMovies.push( movie );
