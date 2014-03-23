@@ -8,11 +8,13 @@ function( Backbone ) {
 	return Backbone.Model.extend({
 		initialize: function() {
 			console.log("initialize a Kino model");
+
+            // console.log( 'KINO MODEL', this );
 		},
 
 		defaults: {},
 
-        idAttribute: name
+        idAttribute: 'name'
 
     });
 });

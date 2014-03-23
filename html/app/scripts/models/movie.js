@@ -41,17 +41,22 @@ function( Backbone, Moment ) {
    setOriginalLanguage : function( )
    {
         var self = this;
-        var omuPosition = self.get( 'title' ).search( 'OmU' );
-        var ovPosition = self.get( 'title' ).search( 'OV' );
 
-        if( omuPosition > 0 || ovPosition > 0 )
+        if( self.get('title') )
         {
-            self.set( 'original', true )
+            var omuPosition = self.get( 'title' ).search( 'OmU' );
+            var ovPosition = self.get( 'title' ).search( 'OV' );
+            
+            if( omuPosition > 0 || ovPosition > 0 )
+            {
+                self.set( 'original', true )
+            }
+            else
+            {
+                self.set( 'original', false )
+            }
         }
-        else
-        {
-            self.set( 'original', false )
-        }
+
    },
 
    getYoutubeJson : function ( )

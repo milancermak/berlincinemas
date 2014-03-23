@@ -1,14 +1,23 @@
 define([
 	'backbone',
-	'models/movie'
+    'communicator',
+	'models/movie',
+    'collections/kinos'
 ],
-function( Backbone, Movie ) {
+function( Backbone, Communicator, Movie, KinosCollection ) {
     'use strict';
 
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
-		initialize: function() {
-			console.log("initialize a Moviescollection collection");
+		initialize: function( ) {
+			var self = this;
+            _.bindAll( this );
+
+            console.log("initialize a Moviescollection collection" );
+
+            this.on( 'change', Communicator.mediator.trigger('MOVIES:CHANGED') );
+
+            // Communicator.mediator.on('KINOS:UPTODATE', self.updateKinos );
 		},
 
 		model: Movie,
@@ -16,13 +25,39 @@ function( Backbone, Movie ) {
 		// url: 'http://fidgetmag.co.uk/berlin/cinemas/today',
 		url: 'fake-response.js',
 
+        updateKinos : function ( e )
+        {
+            var self = this;
+            console.log( 'UPDATING KINOS' );
+            var kinosCollection = App.collections.kinos;
+
+            if ( kinosCollection )
+            {
+                // App.collections.kinos = new KinosCollection();
+                // kinosCollection = App.collections.kinos;
+                // kinosCollection.fetch();
+
+            }
+
+            console.log( 'kinosCollection AS MOVIES', kinosCollection, self );
+
+            _.each( self, function( movie)
+            {
+                console.log( movie );
+            } );
+
+        },
+
         parse: function( response )
         {
             var self = this;
 
-            console.log( response );
+            console.log( 'parsing', response );
 
             var refinedMovies = [];
+
+
+    
 
             //parse each movie, see if it exists, if not, lets add it
             //if so, we extend it.
@@ -32,6 +67,12 @@ function( Backbone, Movie ) {
                 var thisMovie = _.findWhere( refinedMovies, { title: movie.title }) ;
 
                 var thisKino = movie.cinema;
+
+                // var theKINO = kinosCollection.get( thisKino );
+
+
+                // console.log( thisKino, 'kino from the movie', theKINO );
+
                 var showTime = moment( Date.parse( movie.date ) );
 
                 if( thisMovie )
@@ -80,7 +121,7 @@ function( Backbone, Movie ) {
 
             } );
                 // console.log( refinedMovies );
-                return refinedMovies;
+            return refinedMovies;
         }
 		
 	});

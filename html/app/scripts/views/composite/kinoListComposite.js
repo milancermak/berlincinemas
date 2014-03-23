@@ -1,10 +1,11 @@
 define([
 	'backbone',
+    'communicator',
 	'views/item/kinoItem',
     'collections/kinos',
 	'hbs!tmpl/composite/kinoListComposite_tmpl'
 ],
-function( Backbone, Kinoitem, kinosCollection, KinolistcompositeTmpl  ) {
+function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTmpl  ) {
     'use strict';
 
 	/* Return a CompositeView class definition */
@@ -12,9 +13,31 @@ function( Backbone, Kinoitem, kinosCollection, KinolistcompositeTmpl  ) {
 
 		initialize: function() {
 			console.log("initialize a Kinolistcomposite CompositeView");
+            var self = this;
+            //TODO: check for an init of App Collection
+            if( ! this.collection )
+            {
+                this.collection = App.collections.kinos;
+                
+                if( App.collections.kinos.length < 1 )
+                {
+                    Communicator.mediator.trigger( 'KINOS:FETCH' );
+                }
+                // else
+                // {
+                // }
+                // this.collection  =  new kinosCollection();
+                // this.collection.fetch().done( function( )
+                //     {
+                //         App.collections.kinos = this.collection;
+                        
+                //         console.log( self.collection.toJSON() );
+                //     });
 
-            this.collection  =  new kinosCollection();
-            this.collection.fetch();
+                //set app wide one
+                
+            }
+
 		},
 		
     	itemView: Kinoitem,

@@ -1,14 +1,23 @@
 define([
 	'backbone',
-	'models/kino'
+    'communicator',
+    'models/kino',
+    'collections/moviesCollection'
 ],
-function( Backbone, Kino ) {
+function( Backbone, Communicator, Kino, MoviesCollection ) {
     'use strict';
 
 	/* Return a collection class definition */
 	return Backbone.Collection.extend({
 		initialize: function() {
+            _.bindAll( this );
 			console.log("initialize a Kinos collection");
+
+            this.addMovies();
+
+            Communicator.mediator.on( 'MOVIES:UPTODATE', this.addMovies );
+            Communicator.mediator.on( 'KINOS:UPTODATE', this.addMovies );
+            // this.on( 'change', this.addMovies );
 		},
 
 		model: Kino,
@@ -16,72 +25,100 @@ function( Backbone, Kino ) {
         // url: 'http://fidgetmag.co.uk/berlin/cinemas/today',
         url: 'fake-response.js',
 
+        addMovies : function( )
+        {
+            console.log( 'ADDING MOVIES' );
+
+            var self = this;
+
+            console.log( this );
+
+            if( this.length < 1 )
+            {
+                return;
+            }
+
+            var moviesCollection = App.collections.movies.toJSON() ;
+            //if there isnt already a movies collection
+            //
+            console.log( 'MOVIES COLLECTION LENGTH', moviesCollection.length );
+            
+            if( moviesCollection.length < 1 )
+            {
+
+                Communicator.mediator.trigger("MOVIES:FETCH");
+                // App.collections.movies = new MoviesCollection();
+                // moviesCollection = App.collections.movies;
+                // moviesCollection.fetch();
+
+                // console.log( moviesCollection.toJSON() );
+            }
+            else
+            {
+                console.log( moviesCollection );
+                _.each( moviesCollection, function ( movie, i ) 
+                {
+                    // console.log( movie );
+
+                    _.each( movie.cinemas, function( kino )
+                    {
+                        // console.log( kino );
+
+                        var kinoModel = self.get( kino.kino_name );
+
+                        if( kinoModel )
+                        {
+                            var kinoMovies = kinoModel.get( 'movies' );
+
+                            if ( ! kinoMovies )
+                            {
+                                var kinoMovies = [ movie ];
+                            }
+                            else
+                            {
+                                kinoMovies.push( movie );
+                            }
+
+                            kinoModel.set( { 'movies': kinoMovies }, true );
+                            
+                            console.log( kinoModel );
+                        }
+
+
+                    } );
+
+                });
+                
+            }
+
+
+
+            // _.each( response.cinemas, function( cinema )
+            // {
+            //     console.log( 'cinema title', cinema.name );
+            //     var moviesShowing = moviesCollection.find( function( movie )
+            //     {
+            //         console.log( movie );
+            //         return movie.cinemas[ cinema.name ]
+            //     } );
+
+            //         // 'cinemas', [ cinema.name ])
+
+            //     console.log( moviesShowing );
+            // } );
+
+        },
+
         parse: function( response )
         {
             var self = this;
+            // App.todayResponse
 
             console.log( response );
 
-            // var refinedMovies = [];
 
-            // //parse each movie, see if it exists, if not, lets add it
-            // //if so, we extend it.
-            
-            // _.each( response.movies, function ( movie, i ) 
-            // {
-            //     var thisMovie = _.findWhere( refinedMovies, { title: movie.title }) ;
 
-            //     var thisKino = movie.cinema;
-            //     var showTime = moment( Date.parse( movie.date ) );
-
-            //     if( thisMovie )
-            //     {
-            //         var cinemas = thisMovie.cinemas;
-
-            //         if( ! cinemas )
-            //         {
-            //             cinemas = {};
-            //         }
-
-            //         var existingKino = _.findWhere( cinemas, { 'kino_name' : thisKino } );
-
-            //         if( existingKino )
-            //         {
-            //             //this kino is already there!
-                        
-            //             //put the kino int he showTime kino list
-            //             // showTime.allKinos.push( existingKino.thisKino );
-
-            //             existingKino.show_times.push( showTime );
-            //         }
-            //         else
-            //         {
-            //             //let's add the kino and the time
-            //             cinemas[ thisKino ] = {     kino_name : thisKino,
-            //                                         show_times: [ showTime ] };
-            //         }
-            //         thisMovie.cinemas = cinemas;
-
-            //         //neither omit here or below is working
-            //         thisMovie = _.omit( thisMovie, [ 'kinos', 'cinema' ] );
-            //     }
-            //     else
-            //     {
-            //         movie.cinemas = {};
-
-            //         movie.cinemas[ thisKino ] = {   kino_name : thisKino,
-            //                                         show_times: [ showTime ] 
-            //                                     };
-
-            //         movie = _.omit( movie, [ 'kinos', 'cinema' ] );
-
-            //         refinedMovies.push( movie );
-            //     }
-
-            // } );
-                // console.log( refinedMovies );
-                // return refinedMovies;
-            
+        
             return response.cinemas;
         }
 
