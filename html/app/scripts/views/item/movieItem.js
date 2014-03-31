@@ -109,7 +109,7 @@ function( Backbone, MovieitemTmpl  ) {
 				_.each( showTimes, function( showTime, i )
 				{
 					var showTimeItem = $( '<li class="cinemas__showTimes  kino--' + cinema.kino_name +
-									'">' + showTime.format(" h:mm:ss a") + ' at ' + cinema.kino_name + '</li>');
+									'">' + showTime.format(" h:mm:ss a") + ' at <span class="cinemas__cinema__name">' + cinema.kino_name + '</span></li>');
 					var sortableTime =
 					{
 						moment: showTime,
