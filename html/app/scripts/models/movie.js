@@ -14,27 +14,28 @@ function( Backbone, Moment ) {
 
 		idAttribute : 'title',
 
-    initialize: function() 
-    { 
+    initialize: function()
+    {
         var moment = Moment;
 
 		// console.log("initialize a mmmMovie model");
-        _.bindAll ( this, 'initialize', 'parse' );
+        _.bindAll ( this, 'initialize', 'parse', 'getYoutubeJson' );
 
         var showTime =  moment( Date.parse( this.get('date') ) );
 
         // Add a list of kinos
         var kinoObj = {};
 
-        kinoObj[ this.get( 'cinema' ) ] = [ showTime ];  
-        
+        kinoObj[ this.get( 'cinema' ) ] = [ showTime ];
+
         this.set( 'kinos', kinoObj );
         this.set( 'showTimes', [ showTime ] );
 
         this.setOriginalLanguage();
 
-        // this.getYoutubeJson();
-        
+        this.getYoutubeJson();
+		// this.on( 'change', Communicator.mediator.trigger('MOVIES:CHANGED') );
+
 
    },
 
@@ -46,7 +47,7 @@ function( Backbone, Moment ) {
         {
             var omuPosition = self.get( 'title' ).search( 'OmU' );
             var ovPosition = self.get( 'title' ).search( 'OV' );
-            
+
             if( omuPosition > 0 || ovPosition > 0 )
             {
                 self.set( 'original', true )
@@ -64,7 +65,7 @@ function( Backbone, Moment ) {
         var uriTitle    = encodeURIComponent( this.get('title') ),
             url         = 'http://gdata.youtube.com/feeds/api/videos?q=' + uriTitle + '&alt=json',
             self        = this;
-        
+
         // console.log( 'things', uriTitle, url );
 
         $.ajax(
@@ -74,10 +75,10 @@ function( Backbone, Moment ) {
             contentType: "application/json",
             url  : url
         } )
-        .then( function( resp, a, xhr ) 
+        .then( function( resp, a, xhr )
         {
             var response = resp.feed.entry;
-            // console.log( resp );
+            console.log( resp );
             if( response )
             {
                 //it has responses. so we're winning
@@ -85,19 +86,23 @@ function( Backbone, Moment ) {
                 var youtube_link = response[0].link[0].href,
                     youtube_media = response[0].media$group,
                     youtube_thumb = youtube_media.media$thumbnail[0].url; //the first thumb;
+                    // youtube_description = response[0]; //the first thumb;
 
 
                 self.set( {
                     'link'      : youtube_link,
-                    'thumbnail' : youtube_thumb
-                });
+                    'thumbnail' : youtube_thumb,
+					'description' : youtube_media.media$description.$t
+                }, { 'silent': true } );
+                // });
 
-                // console.log( self );
+				self.trigger( 'hasYouTube' );
+
 
                 // response[0]
-                
+
             }
-        
+
         });
 
    }
