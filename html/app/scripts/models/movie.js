@@ -78,7 +78,7 @@ function( Backbone, Moment ) {
         .then( function( resp, a, xhr )
         {
             var response = resp.feed.entry;
-            console.log( resp );
+            // console.log( resp );
             if( response )
             {
                 //it has responses. so we're winning

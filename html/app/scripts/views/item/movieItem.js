@@ -45,7 +45,7 @@ function( Backbone, MovieitemTmpl  ) {
 
 		// console.log();
 			// console.log( self.$el.( '.js-movie__thumbnail' ) );
-			console.log( self.model.toJSON() );
+			// console.log( self.model.toJSON() );
 
 			this.$( '.js-movie__thumbnail' ).prop( 'src', self.model.get( 'thumbnail' ) );
 			this.$( '.js-movie__link' ).prop( 'href', self.model.get( 'link' ) );
