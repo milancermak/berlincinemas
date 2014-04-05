@@ -1,6 +1,5 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
-
 // REM function
 @function strip-unit($num) {
   @return $num / ($num * 0 + 1);
@@ -53,7 +52,10 @@ body
 
 
 
-
+.hidden
+{
+    display: none !important;
+}
 
 
 // BOOTSRAP STYLE DROPDOWNS

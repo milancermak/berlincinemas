@@ -1,20 +1,26 @@
 define([
 	'backbone',
+	'communicator',
 	'hbs!tmpl/item/movieItem_tmpl'
 ],
-function( Backbone, MovieitemTmpl  ) {
+function( Backbone, Communicator, MovieitemTmpl  ) {
     'use strict';
 
 	/* Return a ItemView class definition */
 	return Backbone.Marionette.ItemView.extend({
 
-		initialize: function() {
-			_.bindAll( this, 'initialize', 'showKinoDetails' );
+		initialize: function()
+		{
+			_.bindAll( this, 'initialize', 'onRender', 'showKinoDetails', 'showMovie', 'hideIfNotOv' );
 			console.log("initialize a Movieitem ItemView");
 
             // console.log( this.model.kinos );
 
 			this.listenTo( this.model, 'hasYouTube', this.showKinoDetails )
+
+			Communicator.mediator.on( 'MOVIES:SHOW_ALL', this.showMovie );
+			Communicator.mediator.on( 'MOVIES:SHOW_ONLY_OV', this.hideIfNotOv );
+
 		},
 
     	template: MovieitemTmpl,
@@ -22,10 +28,14 @@ function( Backbone, MovieitemTmpl  ) {
         className: "movie-box",
 
     	/* ui selector cache */
-    	ui: {},
+    	ui: {
+			showtimeButton: '.js-showtimes__button'
+		},
 
 		/* Ui events hash */
-		events: {},
+		events: {
+			'click showtimeButton' : 'clickShowtimeButton'
+		},
 
 		/* on render callback */
 		onRender: function()
@@ -33,9 +43,34 @@ function( Backbone, MovieitemTmpl  ) {
             this.showKinos();
             this.showKinoTimes();
 
-
+			if( ! this.model.get( 'original') )
+			{
+				console.log( this.$el );
+				this.$el.addClass( 'hidden' );
+			}
             // this.showKinoDetails();
 	    },
+
+
+		showMovie :function (  )
+		{
+			console.log( 'showing tha movie' );
+			this.$el.removeClass( 'hidden' );
+		},
+
+		hideIfNotOv :function (  )
+		{
+			if( this.model.get( 'original' ) )
+			{
+				return;
+			}
+			else
+			{
+				this.$el.addClass( 'hidden' );
+
+			}
+			console.log( 'hiding tha movie' );
+		},
 
 
 		showKinoDetails : function ( )
@@ -43,9 +78,6 @@ function( Backbone, MovieitemTmpl  ) {
 
 			var self = this;
 
-		// console.log();
-			// console.log( self.$el.( '.js-movie__thumbnail' ) );
-			// console.log( self.model.toJSON() );
 
 			this.$( '.js-movie__thumbnail' ).prop( 'src', self.model.get( 'thumbnail' ) );
 			this.$( '.js-movie__link' ).prop( 'href', self.model.get( 'link' ) );
@@ -135,6 +167,11 @@ function( Backbone, MovieitemTmpl  ) {
 
 			} );
 
+		},
+
+		clickShowtimeButton : function ( e )
+		{
+			e.preventDefault();
 		}
 
 	});

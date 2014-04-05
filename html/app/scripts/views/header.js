@@ -5,11 +5,36 @@ define([
     'collections/moviesCollection',
     'collections/kinos',
 ],
-function(Backbone, Communicator, Header_tmpl, MoviesCollection, 
+function(Backbone, Communicator, Header_tmpl, MoviesCollection,
     KinosCollection ){
     'use strict';
 
 	return Backbone.View.extend({
+
+		events :
+		{
+			'click .js-toggle--showAllFilms' : 'showAllFilms',
+			'click .js-toggle--showOnlyOV' : 'showOnlyOV'
+		},
+
+		showAllFilms: function ( e )
+		{
+			e.preventDefault();
+
+			var movies
+				console.log( 'showing all films' );
+
+			Communicator.mediator.trigger( 'MOVIES:SHOW_ALL' );
+
+		},
+
+		showOnlyOV: function ( e )
+		{
+			e.preventDefault();
+				console.log( 'showing ov only' );
+			Communicator.mediator.trigger( 'MOVIES:SHOW_ONLY_OV' );
+		},
+
 		initialize: function() {
             var self = this;
 			console.log("initialize a Header View");
@@ -43,7 +68,7 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
             {
                 console.log( 'App.collections.movies FETCHED by HEADER' );
                 // App.collections.kinos = this.collection;
-                
+
                 // console.log( self.collection.toJSON() );
                 Communicator.mediator.trigger('MOVIES:UPTODATE');
             });
@@ -57,13 +82,14 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
             {
                 console.log( 'App.collections.kinos FETCHED by HEADER' );
                 // App.collections.kinos = this.collection;
-                
+
                 // console.log( self.collection.toJSON() );
                 Communicator.mediator.trigger('KINOS:UPTODATE');
             });
         },
 
-    	serializeData: function() {
+    	serializeData: function()
+		{
 	    viewData = { "headerText": "foo" };
 	    // console.log( 'seriasss' );
 	    return viewData;
