@@ -13,6 +13,9 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
 
 		initialize: function() {
 			console.log("initialize a Kinolistcomposite CompositeView");
+
+			_.bindAll( this, 'initialize', 'onRender', 'sortByLocation' );
+
             var self = this;
             //TODO: check for an init of App Collection
             if( ! this.collection )
@@ -35,8 +38,10 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
                 //     });
 
                 //set app wide one
+// Communicator.mediator.trigger('KINOS:UPTODATE');
 
-				Communicator.mediator.on( 'USER:HAS_LOCATION', self.sortByLocation );
+				Communicator.mediator.on( 'KINOS:UPTODATE', this.sortByLocation );
+				Communicator.mediator.on( 'USER:HAS_LOCATION', this.sortByLocation );
 
 				if( Communicator.user && Communicator.user.location )
 				{
@@ -62,7 +67,9 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
 		events: {},
 
 		/* on render callback */
-		onRender: function() {},
+		onRender: function() {
+
+		},
 
 		/**
 		* Sort by LOCATION
@@ -72,7 +79,13 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
 		*/
 		sortByLocation : function ( location )
 		{
+			console.log( 'the collection!?', this.collection );
 			console.log( 'WE HAVE THE LOCATION (kinos view)', location );
+
+			this.collection.sort();
+			this.collection.trigger( 'reset' );
+
+			//this.collection reset for the new distances?
 		}
 	});
 

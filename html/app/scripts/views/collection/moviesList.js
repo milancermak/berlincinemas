@@ -11,9 +11,11 @@ function( Backbone, Movieitem  ) {
 		initialize: function() {
 			console.log("initialize a Movieslist CollectionView");
 		},
-		
+
     	itemView: Movieitem,
-    	
+
+		// comparator : 
+
 
     	/* ui selector cache */
     	ui: {},

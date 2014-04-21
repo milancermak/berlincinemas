@@ -20,7 +20,7 @@ function( Backbone, Communicator, Header, Footer, MoviesListComposite,
     Communicator.collections = {};
     Communicator.user = {};
 
-    // window.App = App;
+    window.App = App;
     /* Add application regions here */
     App.addRegions({
         header:         '#header',
