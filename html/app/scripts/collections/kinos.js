@@ -1,3 +1,6 @@
+////////////////////////////////////////////////////////////////////////////////
+// KINOS COLLECTION
+////////////////////////////////////////////////////////////////////////////////
 define([
 	'backbone',
     'communicator',
@@ -25,7 +28,18 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
 		comparator: 'distance',
 
         // url: 'http://fidgetmag.co.uk/berlin/cinemas/today',
-        url: 'fake-response.js',
+        url: function ( )
+		{
+				if( document.location.hostname === 'localhost' )
+				{
+					return 'fake-response.js';
+				}
+				else
+				{
+					return 'berlin/cinemas/today';
+
+				}
+		},
 
         addMovies : function( )
         {
@@ -48,7 +62,10 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
             if( moviesCollection.length < 1 )
             {
 
-                Communicator.mediator.trigger("MOVIES:FETCH");
+                // Communicator.mediator.trigger("MOVIES:FETCH");
+
+
+
                 // App.collections.movies = new MoviesCollection();
                 // moviesCollection = App.collections.movies;
                 // moviesCollection.fetch();
@@ -68,6 +85,8 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
 
                         var kinoModel = self.get( kino.kino_name );
 
+						//if we have a kinoModel, lets update the model with
+						//this more solid representation
                         if( kinoModel )
                         {
                             var kinoMovies = kinoModel.get( 'movies' );
@@ -75,6 +94,8 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
                             if ( ! kinoMovies )
                             {
                                 var kinoMovies = [ movie ];
+
+								// console.log( 'whats this movie',movie );
                             }
                             else
                             {

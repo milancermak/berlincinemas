@@ -24,7 +24,6 @@ function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesLis
 
                 Communicator.collections.movies = this.collection;
 
-				Communicator.mediator.on( 'USER:HAS_LOCATION', this.sortByLocation );
 
 				if( Communicator.user && Communicator.user.location )
 				{
@@ -33,6 +32,9 @@ function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesLis
 
 
             }
+			Communicator.mediator.on( 'USER:HAS_LOCATION', this.sortByLocation );
+			Communicator.mediator.on( 'MOVIES:UPTODATE', this.sortByLocation );
+			Communicator.mediator.on( 'KINOS:UPTODATE', this.sortByLocation );
 			// console.log( this.collection );
 		},
 
@@ -61,7 +63,26 @@ function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesLis
 		*/
 		sortByLocation : function ( location )
 		{
-			console.log( 'WE HAVE THE LOCATION (movies view)', location );
+			// console.log( 'WE HAVE THE LOCATION (movies view)', location );
+
+			console.log( 'SORTING BY LOCATION' );
+
+			if( Communicator.collections.kinos.length > 0 && Communicator.collections.movies.length > 0 )
+			{
+				//This should be event based rather than depending upon THISSSS
+				this.collection.each( function( movieModel )
+				{
+					movieModel.setClosestDistance();
+				});
+
+				this.collection.sort();
+
+				this.collection.trigger( 'reset' );
+			}
+			else
+			{
+				Communicator.mediator.trigger('KINOS:FETCH');
+			}
 		}
 	});
 

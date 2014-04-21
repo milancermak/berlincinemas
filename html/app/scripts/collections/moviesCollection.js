@@ -11,7 +11,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 	return Backbone.Collection.extend({
 		initialize: function( ) {
 			var self = this;
-            _.bindAll( this );
+            _.bindAll( this, 'initialize' );
 
             console.log("initialize a Moviescollection collection" );
 
@@ -21,6 +21,8 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 		},
 
 		model: Movie,
+
+		comparator : 'nearestKino',
 
 		url: function ( )
 		{
@@ -57,6 +59,9 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
             } );
 
         },
+
+
+
 
         parse: function( response )
         {
@@ -95,6 +100,11 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
                     }
 
                     var existingKino = _.findWhere( cinemas, { 'kino_name' : thisKino } );
+
+					// console.log( thisKino );
+
+
+
 
                     if( existingKino )
                     {

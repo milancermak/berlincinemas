@@ -1,8 +1,9 @@
 define([
 	'backbone',
+	'communicator',
     'moment'
 ],
-function( Backbone, Moment ) {
+function( Backbone, Communicator, Moment ) {
     'use strict';
 
 	/* Return a model class definition */
@@ -18,8 +19,11 @@ function( Backbone, Moment ) {
     {
         var moment = Moment;
 
-		// console.log("initialize a mmmMovie model");
-        _.bindAll ( this, 'initialize', 'parse', 'getYoutubeJson' );
+
+		console.log("initialize a Movie model");
+
+
+        _.bindAll ( this, 'initialize', 'parse', 'getYoutubeJson', 'setClosestDistance' );
 
         var showTime =  moment( Date.parse( this.get('date') ) );
 
@@ -31,13 +35,75 @@ function( Backbone, Moment ) {
         this.set( 'kinos', kinoObj );
         this.set( 'showTimes', [ showTime ] );
 
+		// console.log( this );
+
         this.setOriginalLanguage();
 
         this.getYoutubeJson();
 		// this.on( 'change', Communicator.mediator.trigger('MOVIES:CHANGED') );
 
+		// Communicator.mediator.on( 'KINOS:UPTODATE', this.setClosestDistance );
+		// Communicator.mediatorger('KINOS:UPTODATE');
+
+
+		// this.setClosestDistance();
 
    },
+
+
+
+
+	setClosestDistance : function ( )
+	{
+		// console.log( 'JSON', this.toJSON() );
+		// LETS GET THE MOVIE DISTANCE
+			var self = this;
+
+			var kinosCollection = Communicator.collections.kinos;
+			// Communicator.collections.kinos
+
+			var kinosForThisMovie = this.get( 'cinemas' );
+
+			var distance = 9999999999;
+
+			// console.log( 'KINOSFORTHISMOVIE', kinosForThisMovie );
+			// console.log( 'KINOSFORTcollectionIE', kinosCollection );
+
+			_.each( kinosForThisMovie, function( cinema )
+			{
+				var thisKino = kinosCollection.get( cinema.kino_name );
+
+				// console.log( 'KINO NAME', cinema.kino_name );
+
+
+				// if( thisKino && thisKino.get( 'distance' ) && distance < thisKino.get( 'distance' ) )
+				if( thisKino  )
+				{
+				// console.log( 'THAT KINO', thisKino.get( 'distance' ) );
+
+					if( distance > thisKino.get( 'distance' ) )
+					{
+						distance = thisKino.get( 'distance' );
+
+					}
+				}
+
+
+				// console.log( 'A KINO', thisKino );
+			} );
+
+			this.set( 'nearestKino', distance, { silent: true } );
+
+			// console.log( 'distance is...', this.get( 'nearestKino' ) );
+
+			// var theKinoFromCollection = kinosCollection.get( thisKino );
+
+			// console.log( 'KINONNONON???', theKinoFromCollection );
+
+
+	},
+
+
 
    setOriginalLanguage : function( )
    {
