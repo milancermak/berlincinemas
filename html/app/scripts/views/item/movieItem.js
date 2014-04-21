@@ -12,7 +12,7 @@ function( Backbone, Communicator, MovieitemTmpl  ) {
 		initialize: function()
 		{
 			_.bindAll( this, 'initialize', 'onRender', 'showKinoDetails', 'showMovie', 'hideIfNotOv' );
-			console.log("initialize a Movieitem ItemView");
+			// console.log("initialize a Movieitem ItemView");
 
             // console.log( this.model.kinos );
 
@@ -45,7 +45,7 @@ function( Backbone, Communicator, MovieitemTmpl  ) {
 
 			if( ! this.model.get( 'original') )
 			{
-				console.log( this.$el );
+				// console.log( this.$el );
 				this.$el.addClass( 'hidden' );
 			}
             // this.showKinoDetails();

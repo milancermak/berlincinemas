@@ -17,12 +17,13 @@ function( Backbone, Communicator, Header, Footer, MoviesListComposite,
 	var App = new Backbone.Marionette.Application();
 
     //collections object
-    App.collections = {};
+    Communicator.collections = {};
+    Communicator.user = {};
 
-    window.App = App;
+    // window.App = App;
     /* Add application regions here */
     App.addRegions({
-        header:         '#header', 
+        header:         '#header',
         main:           '#mainContent',
         footer:         '#footer'
     });
@@ -31,9 +32,9 @@ function( Backbone, Communicator, Header, Footer, MoviesListComposite,
     App.addInitializer( function () {
         App.header.show( new Header );
         App.footer.show( new Footer );
-        App.main.show( new MoviesListComposite );
-        // App.main.show( new KinoListComposite );
-        
+        // App.main.show( new MoviesListComposite );
+        App.main.show( new KinoListComposite );
+
 
         // document.body.innerHTML = welcomeTmpl({ success: "BLABLA!" });
 		Communicator.mediator.trigger("APP:START");

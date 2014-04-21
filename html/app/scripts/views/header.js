@@ -17,6 +17,13 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 			'click .js-toggle--showOnlyOV' : 'showOnlyOV'
 		},
 
+		userLocation : {},
+
+		/*
+		* Show All show
+		*
+		* Triiggers the SHOW_ALL Movies event.
+		*/
 		showAllFilms: function ( e )
 		{
 			e.preventDefault();
@@ -37,8 +44,10 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 
 		initialize: function() {
             var self = this;
+
+			_.bindAll( this, 'getLocation', 'useLocation' );
+
 			console.log("initialize a Header View");
-            var self = this;
 			// console.log( this );
 			this.template( Header_tmpl );
 
@@ -46,15 +55,17 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
             Communicator.mediator.on( 'KINOS:FETCH', self.updateKinos );
 
 
-            if( ! App.collections.movies )
+			this.getLocation();
+
+            if( ! Communicator.collections.movies )
             {
-                App.collections.movies  =  new MoviesCollection();
+                Communicator.collections.movies  =  new MoviesCollection();
 
             }
 
-            if( ! App.collections.kinos )
+            if( ! Communicator.collections.kinos )
             {
-                App.collections.kinos  =  new KinosCollection();
+                Communicator.collections.kinos  =  new KinosCollection();
 
             }
 
@@ -64,7 +75,7 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
         {
             console.log( 'COMS::: Movies fetch was triggered' );
 
-            App.collections.movies.fetch().done( function( )
+            Communicator.collections.movies.fetch().done( function( )
             {
                 console.log( 'App.collections.movies FETCHED by HEADER' );
                 // App.collections.kinos = this.collection;
@@ -78,7 +89,7 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
         {
             console.log( 'COMS::: Kinos fetch was triggered' );
 
-            App.collections.kinos.fetch().done( function( )
+            Communicator.collections.kinos.fetch().done( function( )
             {
                 console.log( 'App.collections.kinos FETCHED by HEADER' );
                 // App.collections.kinos = this.collection;
@@ -88,12 +99,44 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
             });
         },
 
+
+
+		getLocation : function ( )
+		{
+			var self = this;
+
+			console.log( "location is being found." );
+
+			if (Modernizr.geolocation)
+			{
+			    navigator.geolocation.getCurrentPosition( self.useLocation );
+		    }
+			else
+			{
+			    // no native support; maybe try a fallback?
+			}
+		},
+
+
+		useLocation : function( location )
+		{
+			// console.log( 'blabla location',location );
+
+			console.log( 'FIRST LOCATION THING' );
+			Communicator.user.location = location;
+
+			Communicator.mediator.trigger( 'USER:HAS_LOCATION', location );
+
+
+		},
+
+
     	serializeData: function()
 		{
-	    viewData = { "headerText": "foo" };
-	    // console.log( 'seriasss' );
-	    return viewData;
-	  },
+		    viewData = { "headerText": "foo" };
+		    // console.log( 'seriasss' );
+		    return viewData;
+	    },
 
 		template: function ( Header_tmpl )
 		{

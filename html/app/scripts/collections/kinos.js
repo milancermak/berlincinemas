@@ -21,7 +21,9 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
 		},
 
 		model: Kino,
-		
+
+		comparator: 'distance',
+
         // url: 'http://fidgetmag.co.uk/berlin/cinemas/today',
         url: 'fake-response.js',
 
@@ -38,11 +40,11 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
                 return;
             }
 
-            var moviesCollection = App.collections.movies.toJSON() ;
+            var moviesCollection = Communicator.collections.movies.toJSON() ;
             //if there isnt already a movies collection
             //
             console.log( 'MOVIES COLLECTION LENGTH', moviesCollection.length );
-            
+
             if( moviesCollection.length < 1 )
             {
 
@@ -55,8 +57,8 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
             }
             else
             {
-                console.log( moviesCollection );
-                _.each( moviesCollection, function ( movie, i ) 
+                // console.log( moviesCollection );
+                _.each( moviesCollection, function ( movie, i )
                 {
                     // console.log( movie );
 
@@ -80,15 +82,15 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
                             }
 
                             kinoModel.set( { 'movies': kinoMovies }, true );
-                            
-                            console.log( kinoModel );
+
+                            // console.log( kinoModel );
                         }
 
 
                     } );
 
                 });
-                
+
             }
 
 
@@ -118,7 +120,7 @@ function( Backbone, Communicator, Kino, MoviesCollection ) {
 
 
 
-        
+
             return response.cinemas;
         }
 

@@ -27,6 +27,7 @@ require.config({
 
         /* Extra libs */
         moment: '../bower_components/moment/moment',
+        modernizr: '../bower_components/modernizr/modernizr',
 
         /* alias all marionette libs */
         'backbone.marionette': '../bower_components/backbone.marionette/lib/core/amd/backbone.marionette',

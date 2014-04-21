@@ -17,9 +17,9 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
             //TODO: check for an init of App Collection
             if( ! this.collection )
             {
-                this.collection = App.collections.kinos;
-                
-                if( App.collections.kinos.length < 1 )
+                this.collection = Communicator.collections.kinos;
+
+                if( Communicator.collections.kinos.length < 1 )
                 {
                     Communicator.mediator.trigger( 'KINOS:FETCH' );
                 }
@@ -30,20 +30,27 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
                 // this.collection.fetch().done( function( )
                 //     {
                 //         App.collections.kinos = this.collection;
-                        
+
                 //         console.log( self.collection.toJSON() );
                 //     });
 
                 //set app wide one
-                
+
+				Communicator.mediator.on( 'USER:HAS_LOCATION', self.sortByLocation );
+
+				if( Communicator.user && Communicator.user.location )
+				{
+					this.sortByLocation( Communicator.user.location );
+				}
+
             }
 
 		},
-		
+
     	itemView: Kinoitem,
-    	
+
     	template: KinolistcompositeTmpl,
-    	
+
 
     	/* ui selector cache */
     	ui: {},
@@ -55,7 +62,18 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
 		events: {},
 
 		/* on render callback */
-		onRender: function() {}
+		onRender: function() {},
+
+		/**
+		* Sort by LOCATION
+		*
+		* triggered by an event or manually, if the headerview.userLocation
+		* attribute is set.
+		*/
+		sortByLocation : function ( location )
+		{
+			console.log( 'WE HAVE THE LOCATION (kinos view)', location );
+		}
 	});
 
 });

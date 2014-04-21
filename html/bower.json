@@ -19,5 +19,8 @@
     "sinon": "~1.7.3"
   },
   "devDependencies": {},
-  "directory": "bower_components"
+  "directory": "bower_components",
+  "resolutions": {
+    "modernizr": "~2.6.2"
+  }
 }
