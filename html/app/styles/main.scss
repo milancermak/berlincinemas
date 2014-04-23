@@ -44,8 +44,7 @@ html
 body
 {
     // width: 480px;
-    padding-left: 10%;
-    padding-right: 10%;
+padding: 1rem;
     display: block;
     margin: 0 auto;
 }
@@ -56,6 +55,13 @@ body
 {
     display: none !important;
 }
+
+
+
+
+
+
+
 
 
 // BOOTSRAP STYLE DROPDOWNS
@@ -113,21 +119,6 @@ body
 
 
 
-
-.movie-box
-{
-    display: inline-block;
-    clear: left;
-    margin:     5rem;
-    vertical-align: top;
-
-    &.saved
-    {
-        background-color: #ddd;    
-    }
-
-}
-
 // .movie__by-kino,
 // .movie__by-times
 // {
@@ -162,6 +153,17 @@ body
 //    //      }
 //    //  }
 // }
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// $HEADER
+//////////////////////////////////////////////////////////////////////////////
+
+header
+{
+    text-align: center;
+}
 
 
 .dropdown //the button container
@@ -219,11 +221,61 @@ body
 
 
 
-@media ( min-width: 30.0625rem )
+
+
+
+// $movie boxes
+
+
+.movies
+{
+    padding-top: 4rem;
+    text-align: center;
+}
+
+.movie-box
+{
+    display:              inline-block;
+    clear:                left;
+    margin-bottom:        5rem;
+
+    vertical-align:       top;
+
+    padding:              1rem;
+
+    width:                95%;
+
+    &.saved
+    {
+        background-color: #A8DBA8;
+    }
+
+}
+
+
+
+
+
+
+@media ( min-width: 35.0625rem )
+{
+    .movie-box
+    {
+        // width:        15rem;
+        width:        40%;
+        margin-right:         2rem;
+        // margin-left:          2rem;
+
+    }
+}
+
+@media ( min-width: 45.0625rem )
 {
     .movie-box
     {
         width:        25rem;
+
+        font-size:     1.2rem;
 
     }
 }
