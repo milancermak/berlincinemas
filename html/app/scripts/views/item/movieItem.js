@@ -26,7 +26,9 @@ function(
 
             // console.log( this.model.kinos );
 
-			this.listenTo( this.model, 'hasYouTube', this.showKinoDetails )
+			this.listenTo( this.model, 'hasYouTube', this.showKinoDetails );
+			this.listenTo( this.model, 'change:saved', this.updateSavedStyles );
+
 
 			Communicator.mediator.on( 'MOVIES:SHOW_ALL', this.showMovie );
 			Communicator.mediator.on( 'MOVIES:SHOW_ONLY_OV', this.hideIfNotOv );
@@ -55,6 +57,7 @@ function(
 		{
             this.showKinos();
             this.showKinoTimes();
+			this.updateSavedStyles();
 
 			if( ! this.model.get( 'original') )
 			{
@@ -63,6 +66,7 @@ function(
 			}
             // this.showKinoDetails();
 	    },
+
 
 		/**
 		* Update Saved Movies
@@ -77,37 +81,72 @@ function(
 
 			// console.log( 'COOKIE OBJECT', $.cookie );
 
-			var siteCookie = $.cookie( 'kinos' );
-			//
-			if( !siteCookie )
+			var cookie = Communicator.cookie;
+
+		// console.log( 'saved movies from movie iten', cookie.savedMovies );
+
+
+			if( this.model.get( 'saved' ) ) // we're unsaving
 			{
-				siteCookie = {};
+				// this.$el.removeClass( 'saved' );
+
+				//adding classes and text should be set independently of this, so to be reused upon rendering
+				// add a saved class to the model upon colleciton init??
+
+				this.model.set(  'saved',  false  );
+
+				delete cookie.savedMovies[ title ];
+			}
+			else
+			{
+				// this.$el.addClass( 'saved' );
+				cookie.savedMovies[ title ] = true;
+
+				this.model.set( 'saved', true );
+				//were saving
 
 			}
-			//
-			// console.log(  'THE COOKIE::', siteCookie );
 
-			if( !siteCookie.savedMovies )
-			{
-				siteCookie.savedMovies = [];
-
-			}
-
-
-			siteCookie.savedMovies.push ( title );
-
-
-			$.cookie( 'kinos', siteCookie );
+			// console.log( 'is this saved', this.model.get( 'saved' ) );
 
 			// console.log( 'SAVED MOVIE THING', e );
+			//save the cookie in the end
+			$.cookie( 'kinos', cookie );
 
 		},
+
+
+
+		updateSavedStyles : function ( )
+		{
+			// console.log( 'UPDATING STYLES FOR', this.model.get( 'title' ) );
+
+
+			if( this.model.get( 'saved' ) )
+			{
+				//saved styles
+				this.$el.addClass( 'saved js-saved' );
+				this.ui.saveButton.text( 'Remove from saved movies' );
+
+			}
+			else
+			{
+				this.$el.removeClass( 'saved js-saved' );
+				this.ui.saveButton.text( 'Save this for later!' );
+			}
+
+		},
+
+
+
 
 		showMovie :function (  )
 		{
 			console.log( 'showing tha movie' );
 			this.$el.removeClass( 'hidden' );
 		},
+
+
 
 		hideIfNotOv :function (  )
 		{

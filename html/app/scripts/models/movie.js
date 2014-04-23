@@ -23,7 +23,13 @@ function( Backbone, Communicator, Moment ) {
 		console.log("initialize a Movie model");
 
 
-        _.bindAll ( this, 'initialize', 'parse', 'getYoutubeJson', 'setClosestDistance' );
+        _.bindAll ( this
+			, 'initialize'
+			, 'parse'
+			, 'getYoutubeJson'
+			, 'setClosestDistance'
+			, 'setSaved'
+		 );
 
         var showTime =  moment( Date.parse( this.get('date') ) );
 
@@ -48,10 +54,37 @@ function( Backbone, Communicator, Moment ) {
 
 		// this.setClosestDistance();
 
+		// this.on( 'setSaved', setSaved );
+		//
+		this.setSaved();
    },
 
 
+	setSaved : function( )
+	{
+		var title = this.get( 'title' );
+		var savedMovies = Communicator.cookie.savedMovies;
 
+		// console.log(  'saved mov/ies!!', savedMovies );
+
+		if( savedMovies[ title ] && title )
+		{
+			console.log( 'setting this to be saved' );
+			this.set( 'saved', true );
+
+			console.log( this.toJSON() );
+		}
+		else
+		{
+			this.set( 'saved', false );
+		}
+
+		this.trigger ('change:saved' );
+
+
+
+		// console.log( 'ios this saved?', this.get( 'saved' ) );
+	},
 
 	setClosestDistance : function ( )
 	{

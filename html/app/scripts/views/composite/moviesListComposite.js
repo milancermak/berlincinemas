@@ -42,7 +42,8 @@ function( Backbone
 			Communicator.mediator.on( 'KINOS:UPTODATE', this.sortByLocation );
 			// console.log( this.collection );
 
-			var theCookie = $.cookie ( 'kinos' );
+			// var theCookie = $.cookie ( 'kinos' );
+			var theCookie = Communicator.cookie;
 
 			if( theCookie )
 			{

@@ -15,7 +15,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 
             console.log("initialize a Moviescollection collection" );
 
-            this.on( 'change', Communicator.mediator.trigger('MOVIES:CHANGED') );
+            // this.on( 'change', Commusnicator.mediator.trigger('MOVIES:CHANGED') );
 
             // Communicator.mediator.on('KINOS:UPTODATE', self.updateKinos );
 		},
@@ -71,12 +71,8 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 
             var refinedMovies = [];
 
-
-
-
             //parse each movie, see if it exists, if not, lets add it
             //if so, we extend it.
-
             _.each( response.movies, function ( movie, i )
             {
                 var thisMovie = _.findWhere( refinedMovies, { title: movie.title }) ;
@@ -102,9 +98,6 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
                     var existingKino = _.findWhere( cinemas, { 'kino_name' : thisKino } );
 
 					// console.log( thisKino );
-
-
-
 
                     if( existingKino )
                     {

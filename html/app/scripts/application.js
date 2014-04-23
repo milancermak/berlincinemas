@@ -27,6 +27,22 @@ function( Backbone,
 	//lets set cookie to json globally in the app
 	$.cookie.json = true;
 
+
+	Communicator.cookie = $.cookie( 'kinos' );
+
+	if( ! Communicator.cookie )
+	{
+		Communicator.cookie = {};
+
+	}
+
+	if( ! Communicator.cookie.savedMovies )
+	{
+		Communicator.cookie.savedMovies = {};
+
+	}
+
+
     //collections object
     Communicator.collections = {};
     Communicator.user = {};
