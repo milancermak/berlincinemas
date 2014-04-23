@@ -28,21 +28,21 @@ module.exports = function (grunt) {
 
         // watch list
         watch: {
-            
+
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass']
             },
-            
+
             livereload: {
                 files: [
-                    
+
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,**/}*.css',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,**/}*.js',
                     '{.tmp,<%= yeoman.app %>}/templates/{,**/}*.hbs',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-                    
+
                     'test/spec/{,**/}*.js'
                 ],
                 tasks: ['exec'],
@@ -57,6 +57,22 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['handlebars']
             }*/
+        },
+
+        'cache-busting': {
+            requirejs: {
+                replace: ['dist/index.html'],
+                replacement: 'require.js',
+                file: 'dist/bower_components/requirejs/require.js',
+                cleanup: true
+            },
+            css: {
+                replace: ['dist/index.html'],
+                replacement: 'main.css',
+                // file: 'dist/styles/main.css',
+                file: 'dist/styles/main.css',
+                cleanup: true //Remove previously generated hashed files.
+            }
         },
 
         // testing server
@@ -77,7 +93,7 @@ module.exports = function (grunt) {
         //     }
         // },
 
-        
+
         // express app
         express: {
             options: {
@@ -100,7 +116,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        
+
 
         // open app and test page
         open: {
@@ -128,7 +144,7 @@ module.exports = function (grunt) {
             ]
         },
 
-        
+
         // compass
         compass: {
             options: {
@@ -147,7 +163,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        
+
 
         // require
         requirejs: {
@@ -295,6 +311,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'compass:server',
+            'cache-busting',
             'connect:testserver',
             'express:dev',
             'exec',
@@ -324,6 +341,7 @@ module.exports = function (grunt) {
         'concat',
         'cssmin',
         'uglify',
+        'cache-busting',
         'copy',
         'usemin'
     ]);
