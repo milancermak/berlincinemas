@@ -4,6 +4,7 @@
   "dependencies": {
     "sass-bootstrap": "~2.3.0",
     "jquery": "~1.9.0",
+    "jquery.cookie": "~1.4.0",
     "requirejs": "~2.1.5",
     "requirejs-text": "~2.0.5",
     "backbone-amd": "~1.0.0",
@@ -19,8 +20,5 @@
     "sinon": "~1.7.3"
   },
   "devDependencies": {},
-  "directory": "bower_components",
-  "resolutions": {
-    "modernizr": "~2.6.2"
-  }
+  "directory": "bower_components"
 }

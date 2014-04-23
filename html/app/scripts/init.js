@@ -17,6 +17,10 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        'jquery.cookie'  :
+        {
+            deps: [ 'jquery' ]
         }
     },
 
@@ -26,6 +30,7 @@ require.config({
         underscore: '../bower_components/underscore-amd/underscore',
 
         /* Extra libs */
+        'jquery.cookie': '../bower_components/jquery.cookie/jquery.cookie',
         moment: '../bower_components/moment/moment',
         modernizr: '../bower_components/modernizr/modernizr',
 

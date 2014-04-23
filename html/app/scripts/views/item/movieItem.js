@@ -3,7 +3,10 @@ define([
 	'communicator',
 	'hbs!tmpl/item/movieItem_tmpl'
 ],
-function( Backbone, Communicator, MovieitemTmpl  ) {
+function(
+	Backbone
+	,Communicator
+	,MovieitemTmpl  ) {
     'use strict';
 
 	/* Return a ItemView class definition */
@@ -11,7 +14,14 @@ function( Backbone, Communicator, MovieitemTmpl  ) {
 
 		initialize: function()
 		{
-			_.bindAll( this, 'initialize', 'onRender', 'showKinoDetails', 'showMovie', 'hideIfNotOv' );
+			_.bindAll(
+				this,
+				'initialize'
+				, 'onRender'
+				, 'updateSavedMovies'
+				, 'showKinoDetails'
+				, 'showMovie'
+				, 'hideIfNotOv' );
 			// console.log("initialize a Movieitem ItemView");
 
             // console.log( this.model.kinos );
@@ -29,12 +39,15 @@ function( Backbone, Communicator, MovieitemTmpl  ) {
 
     	/* ui selector cache */
     	ui: {
-			showtimeButton: '.js-showtimes__button'
+			'showtimeButton'		: '.js-showtimes__button',
+			'saveButton'			: '.js-saved-movie'
 		},
 
 		/* Ui events hash */
 		events: {
-			'click showtimeButton' : 'clickShowtimeButton'
+			// 'click ui.showtimeButton' : 'clickShowtimeButton',
+			// 'click @ui.saveButton'	: 'updateSavedMovies'
+			'click .js-saved-movie'	: 'updateSavedMovies',
 		},
 
 		/* on render callback */
@@ -51,6 +64,44 @@ function( Backbone, Communicator, MovieitemTmpl  ) {
             // this.showKinoDetails();
 	    },
 
+		/**
+		* Update Saved Movies
+		* e { object } 	event object
+		**/
+		updateSavedMovies: function ( e )
+		{
+			e.preventDefault();
+			var title = this.model.get( 'title' );
+
+			// $.cookie.json = true;
+
+			// console.log( 'COOKIE OBJECT', $.cookie );
+
+			var siteCookie = $.cookie( 'kinos' );
+			//
+			if( !siteCookie )
+			{
+				siteCookie = {};
+
+			}
+			//
+			// console.log(  'THE COOKIE::', siteCookie );
+
+			if( !siteCookie.savedMovies )
+			{
+				siteCookie.savedMovies = [];
+
+			}
+
+
+			siteCookie.savedMovies.push ( title );
+
+
+			$.cookie( 'kinos', siteCookie );
+
+			// console.log( 'SAVED MOVIE THING', e );
+
+		},
 
 		showMovie :function (  )
 		{
@@ -171,6 +222,7 @@ function( Backbone, Communicator, MovieitemTmpl  ) {
 
 		clickShowtimeButton : function ( e )
 		{
+			console.log( 'you clicked a showtime button' );
 			e.preventDefault();
 		}
 

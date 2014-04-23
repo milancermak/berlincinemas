@@ -1,6 +1,7 @@
 define([
 	'backbone',
 	'communicator',
+	'jquery.cookie',
 	'views/header',
 	'views/footer',
     'views/composite/moviesListComposite',
@@ -9,12 +10,22 @@ define([
     'collections/kinos',
 ],
 
-function( Backbone, Communicator, Header, Footer, MoviesListComposite,
-			KinoListComposite, MoviesCollection, KinoCollection ) {
+function( Backbone,
+	Communicator,
+	Cookie,
+	Header,
+	Footer,
+	MoviesListComposite,
+	KinoListComposite,
+	MoviesCollection,
+	KinoCollection ) {
     'use strict';
 
 
 	var App = new Backbone.Marionette.Application();
+
+	//lets set cookie to json globally in the app
+	$.cookie.json = true;
 
     //collections object
     Communicator.collections = {};

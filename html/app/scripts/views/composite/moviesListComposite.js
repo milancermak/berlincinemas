@@ -6,7 +6,12 @@ define([
 	'collections/moviesCollection',
 	'hbs!tmpl/composite/moviesListComposite_tmpl'
 ],
-function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesListCompositeTmpl  ) {
+function( Backbone
+	, Communicator
+	, Header
+	, Movieitem
+	, moviesCollection
+	, MoviesListCompositeTmpl  ) {
     'use strict';
 
 	/* Return a CompositeView class definition */
@@ -36,6 +41,18 @@ function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesLis
 			Communicator.mediator.on( 'MOVIES:UPTODATE', this.sortByLocation );
 			Communicator.mediator.on( 'KINOS:UPTODATE', this.sortByLocation );
 			// console.log( this.collection );
+
+			var theCookie = $.cookie ( 'kinos' );
+
+			if( theCookie )
+			{
+				console.log( "CURRENT SAVED MOVIES", theCookie.savedMovies );
+
+			}
+			else
+			{
+				console.log( 'NO COOKIE' );
+			}
 		},
 
     	itemView: Movieitem,
@@ -65,7 +82,7 @@ function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesLis
 		{
 			// console.log( 'WE HAVE THE LOCATION (movies view)', location );
 
-			console.log( 'SORTING BY LOCATION' );
+			// console.log( 'SORTING BY LOCATION' );
 
 			if( Communicator.collections.kinos.length > 0 && Communicator.collections.movies.length > 0 )
 			{
@@ -78,6 +95,10 @@ function( Backbone, Communicator, Header, Movieitem, moviesCollection, MoviesLis
 				this.collection.sort();
 
 				this.collection.trigger( 'reset' );
+				this.collection.each( function eachMovieAfterLocation( movie )
+				{
+					movie.trigger( 'hasYouTube' );
+				} );
 			}
 			else
 			{
