@@ -20,7 +20,7 @@ function( Backbone
 		initialize: function() {
 			console.log("initialize a Movieslistcomposite CompositeView");
 
-			_.bindAll( this, 'initialize', 'sortByLocation' )
+			_.bindAll( this, 'initialize', 'sortByLocation', 'showSavedFirst' )
 
             if( ! this.collection )
             {
@@ -40,6 +40,10 @@ function( Backbone
 			Communicator.mediator.on( 'USER:HAS_LOCATION', this.sortByLocation );
 			Communicator.mediator.on( 'MOVIES:UPTODATE', this.sortByLocation );
 			Communicator.mediator.on( 'KINOS:UPTODATE', this.sortByLocation );
+
+
+			this.collection.on( 'reset', this.showSavedFirst );
+
 			// console.log( this.collection );
 
 			// var theCookie = $.cookie ( 'kinos' );
@@ -48,6 +52,7 @@ function( Backbone
 			if( theCookie )
 			{
 				console.log( "CURRENT SAVED MOVIES", theCookie.savedMovies );
+
 
 			}
 			else
@@ -71,7 +76,11 @@ function( Backbone
 		events: {},
 
 		/* on render callback */
-		onRender: function() {},
+		onRender: function() {
+			// this.showSavedFirst();
+
+		},
+
 
 		/**
 		* Sort by LOCATION
@@ -93,6 +102,7 @@ function( Backbone
 					movieModel.setClosestDistance();
 				});
 
+				// this.collection.comparator( 'nearestKino' );
 				this.collection.sort();
 
 				this.collection.trigger( 'reset' );
@@ -105,7 +115,38 @@ function( Backbone
 			{
 				Communicator.mediator.trigger('KINOS:FETCH');
 			}
+
+			this.showSavedFirst();
+
+		},
+
+
+		showSavedFirst : function ( )
+		{
+			// console.log( 'showing saved first::::' );
+
+			// var savedMovies = this.collection.where( { saved: true } );
+			// console.log( 'saved movies from COLLECTION::::', savedMovies );
+			var self = this;
+			var savedMovies = $( '.js-saved' );
+			console.log( 'WITH JQ', savedMovies );
+			_.each( savedMovies, function moveSavedMovies( movie )
+			{
+				console.log( 'EL', self.$el );
+				$( self.itemViewContainer ).prepend( movie );
+				// movie.
+			} );
+
+			// this.collection.unshift( savedMovies );
+
+
+			// this.render( );
+			// this.collection.comparator = 'saved';
+
+			// this.collection.sort();
+			// this.collection.trigger( 'reset' );
 		}
+
 	});
 
 });

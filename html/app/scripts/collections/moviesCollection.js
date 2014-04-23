@@ -22,6 +22,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 
 		model: Movie,
 
+		// comparator : 'saved',
 		comparator : 'nearestKino',
 
 		url: function ( )

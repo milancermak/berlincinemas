@@ -114,7 +114,6 @@ body
 
 
 
-
 .movie-box
 {
     display: inline-block;
@@ -122,6 +121,10 @@ body
     margin:     5rem;
     vertical-align: top;
 
+    &.saved
+    {
+        background-color: #ddd;    
+    }
 
 }
 
