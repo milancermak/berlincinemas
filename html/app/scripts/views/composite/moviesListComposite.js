@@ -124,24 +124,42 @@ function( Backbone
 		showSavedFirst : function ( )
 		{
 			// console.log( 'showing saved first::::' );
+			// this.collection.comparator = '';
 
-			// var savedMovies = this.collection.where( { saved: true } );
+			//
 			// console.log( 'saved movies from COLLECTION::::', savedMovies );
 			var self = this;
+
 			var savedMovies = $( '.js-saved' );
-			console.log( 'WITH JQ', savedMovies );
+			// console.log( 'WITH JQ', savedMovies );
 			_.each( savedMovies, function moveSavedMovies( movie )
 			{
-				console.log( 'EL', self.$el );
+				// console.log( 'EL', self.$el );
 				$( self.itemViewContainer ).prepend( movie );
 				// movie.
 			} );
 
-			// this.collection.unshift( savedMovies );
+			// var modelMovies = this.collection.where( { saved: true } );
+			// _.each( modelMovies, function triggerYoutubeMovies( movie )
+			// {
+			// 	movie.getYoutubeJson();
+			//
+			// } );
 
 
+		//collection strategy not working
+			// var modelMovies = this.collection.where( { saved: true } );
+			// _.each( savedMovies, function moveSavedMovies( movie )
+			// {
+			// 	self.collection.unshift( movie, { sort: false } );
+			//
+			//
+			// } );
+			//
+			// console.log(  'FIIIRRRSSSTTT', this.collection.first() );
+			//
+			//
 			// this.render( );
-			// this.collection.comparator = 'saved';
 
 			// this.collection.sort();
 			// this.collection.trigger( 'reset' );
