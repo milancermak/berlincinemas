@@ -113,15 +113,47 @@ def get_showtimes(showtime_table, cinema_name):
 
     return showtimes
 
+def remove_dollar_key(obj):
+    for key in obj.keys():
+        new_key = key.replace("$","_")
+        if new_key != key:
+            obj[new_key] = obj[key]
+            del obj[key]
+    return obj
+
+def get_youtube_info(title, cached):
+    import requests
+    import json
+
+    if not title in cached:
+        try:
+            r = requests.get('http://gdata.youtube.com/feeds/api/videos?q=' + title + '&alt=json')
+            data = json.loads(r.text, object_hook=remove_dollar_key)
+            youtube_link  = data['feed']['entry'][0]['link'][0]['href']
+            youtube_media = data['feed']['entry'][0]['media_group']
+            youtube_thumb = data['feed']['entry'][0]['media_group']['media_thumbnail'][0]['url']
+
+            cached[title] = {}
+            cached[title]['youtube_link'] = youtube_link
+            cached[title]['youtube_media'] = youtube_media
+            cached[title]['youtube_thumb'] = youtube_thumb
+        except requests.exceptions.RequestException:
+            cached[title] = ''
+        except KeyError:
+            cached[title] = ''
+    return cached[title]
+
 def main():
 
     config = configparser.ConfigParser()
     config.read(path.join(path.abspath(path.dirname(__file__)), "config.py"))
 
     movies_to_add = []
+    youtube_cached = {}
     for html_data in scrape():
         for shows in parse(html_data):
             for show in shows:
+                show['youtube'] = get_youtube_info(show['title'], youtube_cached)
                 movies_to_add.append(show)
 
     db = MongoClient(config['DATABASE']['MONGODB_HOST'],
