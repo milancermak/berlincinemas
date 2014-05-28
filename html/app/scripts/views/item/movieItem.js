@@ -26,7 +26,7 @@ function(
 
             // console.log( this.model.kinos );
 
-			this.listenTo( this.model, 'hasYouTube', this.showKinoDetails );
+			// this.listenTo( this.model, 'hasYouTube', this.showKinoDetails );
 			this.listenTo( this.model, 'change:saved', this.updateSavedStyles );
 
 
@@ -63,6 +63,13 @@ function(
 			{
 				// console.log( this.$el );
 				this.$el.addClass( 'hidden' );
+			}
+
+			// we're showing omu only first
+			if( this.model.get( 'original') )
+			{
+				this.showKinoDetails();
+
 			}
             // this.showKinoDetails();
 	    },
@@ -168,12 +175,15 @@ function(
 
 			var self = this;
 
+			console.log( 'SHOWING DETAILS OF::', this.model.toJSON() );
 
 			this.$( '.js-movie__thumbnail' ).prop( 'src', self.model.get( 'thumbnail' ) );
 			this.$( '.js-movie__link' ).prop( 'href', self.model.get( 'link' ) );
-			this.$( '.js-movie__description' ).text( self.model.get( 'description' ) );
+			// this.$( '.js-movie__description' ).text( self.model.get( 'description' ) );
 
 		},
+
+
 
 		/**
 		* Show Kinos

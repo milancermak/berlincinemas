@@ -45,7 +45,7 @@ function( Backbone, Communicator, Moment ) {
 
         this.setOriginalLanguage();
 
-        this.getYoutubeJson();
+	// this.getYoutubeJson();
 		// this.on( 'change', Communicator.mediator.trigger('MOVIES:CHANGED') );
 
 		// Communicator.mediator.on( 'KINOS:UPTODATE', this.setClosestDistance );

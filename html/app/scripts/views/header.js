@@ -35,6 +35,11 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 
 		},
 
+		/*
+		* Show OV
+		*
+		* Triiggers the SHOW_ONLY_OV.
+		*/
 		showOnlyOV: function ( e )
 		{
 			e.preventDefault();

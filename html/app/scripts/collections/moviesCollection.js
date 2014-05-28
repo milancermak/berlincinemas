@@ -68,6 +68,8 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
         {
             var self = this;
 
+			console.log( response );
+
             // console.log( 'parsing', response );
 
             var refinedMovies = [];
@@ -117,20 +119,34 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
                     }
                     thisMovie.cinemas = cinemas;
 
+
+					// var youtube_link = response[0].link[0].href,
+					// 	youtube_media = response[0].media$group,
+					// 	youtube_thumb = youtube_media.media$thumbnail[0].url; //the first thumb;
+
                     //neither omit here or below is working
-                    thisMovie = _.omit( thisMovie, [ 'kinos', 'cinema' ] );
+		    thisMovie = _.omit( thisMovie, [ 'kinos', 'cinema', 'youtube' ] );
                 }
                 else
                 {
                     movie.cinemas = {};
 
+					// debugger;
+					movie.link = movie.youtube.youtube_link;
+					movie.thumbnail = movie.youtube.youtube_thumb;
+
+					// console.log( movie.youtube.youtube_media [ 'media_description' ] );
+					// movie[ 'description'] = movie.youtube.youtube_media.media_description[ '_t' ];
+					// movie.description = 'asdasdsa';
+
                     movie.cinemas[ thisKino ] = {   kino_name : thisKino,
                                                     show_times: [ showTime ]
                                                 };
 
-                    movie = _.omit( movie, [ 'kinos', 'cinema' ] );
+		    movie = _.omit( movie, [ 'kinos', 'cinema', 'youtube' ] );
 
                     refinedMovies.push( movie );
+					// debugger;
                 }
 
             } );
