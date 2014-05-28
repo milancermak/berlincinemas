@@ -151,6 +151,8 @@ function(
 		{
 			console.log( 'showing tha movie' );
 			this.$el.removeClass( 'hidden' );
+
+			this.showKinoDetails();
 		},
 
 

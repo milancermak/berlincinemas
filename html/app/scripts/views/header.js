@@ -33,6 +33,11 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 
 			Communicator.mediator.trigger( 'MOVIES:SHOW_ALL' );
 
+			if( typeof( ga ) !== 'undefined' )
+			{
+				ga( 'send', 'event', 'button', 'click', 'Show All Movies' );
+			}
+
 		},
 
 		/*
@@ -45,6 +50,12 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 			e.preventDefault();
 				console.log( 'showing ov only' );
 			Communicator.mediator.trigger( 'MOVIES:SHOW_ONLY_OV' );
+
+			if( typeof( ga ) !== 'undefined' )
+			{
+				ga ( 'send', 'event', 'button', 'click', 'Show OV Only' );
+
+			}
 		},
 
 		initialize: function() {
