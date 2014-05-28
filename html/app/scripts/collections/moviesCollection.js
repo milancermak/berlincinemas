@@ -91,6 +91,16 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 
                 var showTime = moment( Date.parse( movie.date ) );
                 // console.log( 'frei lalala', thisKino, thisKino.substring( 'Freiluft' ) );
+                
+
+                if( self.lookingForKino &&
+                 thisKino.toLowerCase().indexOf( self.lookingForKino.toLowerCase() ) < 0 )
+                {
+                    console.log( 'SHOULD BE SHOWING FREILUFT ONLY' );
+                    return;
+                }
+
+
                 if( thisKino.indexOf( 'Freiluft' ) >= 0 ||
                     thisKino.indexOf( 'freiluft' ) >= 0 )
                 {

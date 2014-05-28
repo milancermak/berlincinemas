@@ -100,6 +100,11 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 
                 // console.log( self.collection.toJSON() );
                 Communicator.mediator.trigger('MOVIES:UPTODATE');
+
+                // if( ! Communicator.collections.visibleMovies )
+            
+                // Communicator.collections.visibleMovies  =  Communicator.collections.movies;
+            
             });
         },
 

@@ -22,6 +22,8 @@ function( Backbone
 
 			_.bindAll( this, 'initialize', 'sortByLocation', 'showSavedFirst' )
 
+
+
             if( ! this.collection )
             {
         		this.collection  =  new moviesCollection();
@@ -79,6 +81,13 @@ function( Backbone
 		onRender: function() {
 			// this.showSavedFirst();
 
+
+            // if( this.showingFreiluft === true )
+            // {
+            //     console.log( 'MOVIES LIST IS FREIII' );
+            // }
+
+            // debugger;
 		},
 
 
