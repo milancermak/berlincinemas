@@ -26,6 +26,7 @@ function( Backbone,
 
 	var App = new Backbone.Marionette.Application();
 
+
 	//lets set cookie to json globally in the app
 	$.cookie.json = true;
 
@@ -63,7 +64,6 @@ function( Backbone,
 
     App.router = new Router;
     // Backbone.history.start({pushState: true});
-    Backbone.history.start();
 
     /* Add initializers here */
     App.addInitializer( function () {
@@ -71,6 +71,7 @@ function( Backbone,
         App.footer.show( new Footer );
         App.main.show( new MoviesListComposite );
         // App.main.show( new KinoListComposite );
+        Backbone.history.start();
 
 
         // document.body.innerHTML = welcomeTmpl({ success: "BLABLA!" });

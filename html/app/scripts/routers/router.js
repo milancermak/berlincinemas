@@ -1,13 +1,16 @@
 define([
 	'backbone'
-],
-function(Backbone){
+    ,'views/composite/kinoListComposite'
+    ],
+function(Backbone, KinoListComposite){
     'use strict';
 
-	return Backbone.Router.extend({
-		/* Backbone routes hash */
-		routes: {
-            'freiluft/:param'      : 'showFreiluftKinos', 
+    // var Appp = require( ['application'] );
+    
+    return Backbone.Router.extend({
+        /* Backbone routes hash */
+        routes: {
+            'kinos/:param'      : 'showKinos', 
             '*things'             : 'startPage',
 
         },
@@ -27,9 +30,14 @@ function(Backbone){
         },
 
 
-        showFreiluftKinos : function ( param )
+        showKinos : function ( param )
         {
-            console.log( 'YOU WANTED FREILUFT KINOS', param );
+            console.log( 'SHOW KINOS PAGE' );
+            if( param !== 'freiluft' )
+            {
+                App.main.show( new KinoListComposite );
+            }
+
         }
 	});
 });

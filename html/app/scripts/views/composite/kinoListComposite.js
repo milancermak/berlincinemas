@@ -22,7 +22,8 @@ function( Backbone, Communicator, Kinoitem, kinosCollection, KinolistcompositeTm
             {
                 this.collection = Communicator.collections.kinos;
 
-                if( Communicator.collections.kinos.length < 1 )
+                if( ! Communicator.collections.kinos ||
+                    Communicator.collections.kinos.length < 1 )
                 {
                     Communicator.mediator.trigger( 'KINOS:FETCH' );
                 }
