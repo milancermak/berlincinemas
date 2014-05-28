@@ -22,7 +22,6 @@ function( Backbone, Communicator, Moment ) {
 
 		console.log("initialize a Movie model");
 
-
         _.bindAll ( this
 			, 'initialize'
 			, 'parse'

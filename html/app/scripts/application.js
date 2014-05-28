@@ -8,6 +8,7 @@ define([
 	'views/composite/kinoListComposite',
     'collections/moviesCollection',
     'collections/kinos',
+    'routers/router'
 ],
 
 function( Backbone,
@@ -18,7 +19,8 @@ function( Backbone,
 	MoviesListComposite,
 	KinoListComposite,
 	MoviesCollection,
-	KinoCollection ) {
+	KinoCollection,
+    Router ) {
     'use strict';
 
 
@@ -51,13 +53,17 @@ function( Backbone,
     {
         window.App = App;
     }
-    
+
     /* Add application regions here */
     App.addRegions({
         header:         '#header',
         main:           '#mainContent',
         footer:         '#footer'
     });
+
+    App.router = new Router;
+    // Backbone.history.start({pushState: true});
+    Backbone.history.start();
 
     /* Add initializers here */
     App.addInitializer( function () {

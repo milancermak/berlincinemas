@@ -12,6 +12,7 @@ define(function() {
 		'spec/regions/header.js',
 		'spec/regions/mainContent.js',
 		'spec/routers/kinoRouter.js',
+		'spec/routers/router.js',
 		'spec/views/collection/moviesList.js',
 		'spec/views/composite/kinoListComposite.js',
 		'spec/views/composite/moviesListComposite.js',

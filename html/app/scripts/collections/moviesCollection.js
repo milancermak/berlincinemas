@@ -75,6 +75,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 
             var refinedMovies = [];
 
+            var onAtFreiluft = false;
             //parse each movie, see if it exists, if not, lets add it
             //if so, we extend it.
             _.each( response.movies, function ( movie, i )
@@ -89,9 +90,24 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
                 // console.log( thisKino, 'kino from the movie', theKINO );
 
                 var showTime = moment( Date.parse( movie.date ) );
+                // console.log( 'frei lalala', thisKino, thisKino.substring( 'Freiluft' ) );
+                if( thisKino.indexOf( 'Freiluft' ) >= 0 ||
+                    thisKino.indexOf( 'freiluft' ) >= 0 )
+                {
+                    // console.log( thisKino );
+                    movie.onAtFreiluft = true;
+                }
+                else
+                {
+                    // console.log( thisKino );
+                    movie.onAtFreiluft = false;
+
+                }
 
                 if( thisMovie )
                 {
+                    thisMovie.onAtFreiluft = onAtFreiluft;
+
                     var cinemas = thisMovie.cinemas;
 
                     if( ! cinemas )
@@ -126,12 +142,13 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 					// 	youtube_thumb = youtube_media.media$thumbnail[0].url; //the first thumb;
 
                     //neither omit here or below is working
-		    thisMovie = _.omit( thisMovie, [ 'kinos', 'cinema', 'youtube' ] );
+        		    thisMovie = _.omit( thisMovie, [ 'kinos', 'cinema', 'youtube' ] );
                 }
                 else
                 {
                     movie.cinemas = {};
 
+                    // movie.onAtFreiluft = onAtFreiluft;
 					// debugger;
 					movie.link = movie.youtube.youtube_link;
 					movie.thumbnail = movie.youtube.youtube_thumb;
