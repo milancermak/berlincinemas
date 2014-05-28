@@ -328,5 +328,12 @@ header
     .searchResult
     {
         list-style: none;
+        cursor: pointer;
     }
+}
+
+//search result
+.highlight
+{
+    background-color: #0C9BE8;
 }

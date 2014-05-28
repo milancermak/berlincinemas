@@ -38,6 +38,13 @@ function(Backbone, Communicator, Footer_tmpl, Fuse){
             'searchbox'      : '.js-searcher'
         },
 
+        onRender : function ( )
+        {
+            var searcher = $( '.js-searcher' );
+
+            searcher.focus();
+        },
+
 		template: function ( Footer_tmpl )
 		{
 			var footerTmpl = Footer_tmpl;
@@ -72,7 +79,7 @@ function(Backbone, Communicator, Footer_tmpl, Fuse){
             {   
                 resultsBox.html('');
                 var query = $.trim( searchbox.val() );
-                console.log( 'FOOTER:YOU TYPED', query );
+                // console.log( 'FOOTER:YOU TYPED', query );
 
                 var results = searchMovies.search( query );
 
@@ -100,6 +107,14 @@ function(Backbone, Communicator, Footer_tmpl, Fuse){
         gotoMovie : function ( e )
         {
             var movie = $( e.target ).attr( 'data-goto' ) ;
+
+            var movieBox = $( '#' + movie );
+
+            var highlighted = $( '.highlight' );
+            highlighted.removeClass( 'highlight' );
+
+            movieBox.parent().addClass( 'highlight' );
+
             location.hash = '#' + movie;
 
         }
