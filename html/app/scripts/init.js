@@ -33,6 +33,7 @@ require.config({
         'jquery.cookie': '../bower_components/jquery.cookie/jquery.cookie',
         moment: '../bower_components/moment/moment',
         modernizr: '../bower_components/modernizr/modernizr',
+        fuse: '../bower_components/fuse.js/src/fuse',
 
         /* alias all marionette libs */
         'backbone.marionette': '../bower_components/backbone.marionette/lib/core/amd/backbone.marionette',

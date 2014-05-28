@@ -15,7 +15,8 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 
             console.log("initialize a Moviescollection collection" );
 
-            // this.on( 'change', Commusnicator.mediator.trigger('MOVIES:CHANGED') );
+            // this.on( 'reset', Communicator.mediator.trigger('MOVIES:ADDED') );
+            // this.on( 'change', Communicator.mediator.trigger('MOVIES:CHANGED') );
 
             // Communicator.mediator.on('KINOS:UPTODATE', self.updateKinos );
 		},
@@ -68,7 +69,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
         {
             var self = this;
 
-			console.log( response );
+			// console.log( response );
 
             // console.log( 'parsing', response );
 
@@ -134,6 +135,7 @@ function( Backbone, Communicator, Movie, KinosCollection ) {
 					// debugger;
 					movie.link = movie.youtube.youtube_link;
 					movie.thumbnail = movie.youtube.youtube_thumb;
+                    movie.id = movie.title.replace( /\s+/g, '' ).replace( /\)/g, '' ).replace( /\(/g, '' );
 
 					// console.log( movie.youtube.youtube_media [ 'media_description' ] );
 					// movie[ 'description'] = movie.youtube.youtube_media.media_description[ '_t' ];

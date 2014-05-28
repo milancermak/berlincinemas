@@ -19,6 +19,36 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 
 		userLocation : {},
 
+		initialize: function() {
+            var self = this;
+
+			_.bindAll( this, 'getLocation', 'useLocation' );
+
+			console.log("initialize a Header View");
+			// console.log( this );
+			this.template( Header_tmpl );
+
+            Communicator.mediator.on( 'MOVIES:FETCH', self.updateMovies );
+            Communicator.mediator.on( 'KINOS:FETCH', self.updateKinos );
+
+
+			this.getLocation();
+
+            if( ! Communicator.collections.movies )
+            {
+                Communicator.collections.movies  =  new MoviesCollection();
+
+            }
+
+            if( ! Communicator.collections.kinos )
+            {
+                Communicator.collections.kinos  =  new KinosCollection();
+
+            }
+
+		},
+
+
 		/*
 		* Show All show
 		*
@@ -58,34 +88,6 @@ function(Backbone, Communicator, Header_tmpl, MoviesCollection,
 			}
 		},
 
-		initialize: function() {
-            var self = this;
-
-			_.bindAll( this, 'getLocation', 'useLocation' );
-
-			console.log("initialize a Header View");
-			// console.log( this );
-			this.template( Header_tmpl );
-
-            Communicator.mediator.on( 'MOVIES:FETCH', self.updateMovies );
-            Communicator.mediator.on( 'KINOS:FETCH', self.updateKinos );
-
-
-			this.getLocation();
-
-            if( ! Communicator.collections.movies )
-            {
-                Communicator.collections.movies  =  new MoviesCollection();
-
-            }
-
-            if( ! Communicator.collections.kinos )
-            {
-                Communicator.collections.kinos  =  new KinosCollection();
-
-            }
-
-		},
 
         updateMovies : function ( e )
         {

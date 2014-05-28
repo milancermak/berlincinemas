@@ -1,0 +1,19 @@
+{
+  "name": "fuse.js",
+  "version": "1.1.0",
+  "main": "./src/fuse.js",
+  "ignore": [
+    "test/"
+  ],
+  "homepage": "https://github.com/krisk/Fuse",
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.0",
+    "commit": "8443d20e99a478fd7daefabaad5cc5ee318061a5"
+  },
+  "_source": "git://github.com/krisk/Fuse.git",
+  "_target": "~1.1.0",
+  "_originalSource": "fuse",
+  "_direct": true
+}

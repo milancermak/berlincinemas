@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "0.0.0",
+  "name": "kinotime",
+  "version": "0.0.1",
   "dependencies": {
     "sass-bootstrap": "~2.3.0",
     "jquery": "~1.9.0",
@@ -17,7 +17,8 @@
     "mocha": "~1.12.0",
     "chai": "~1.7.2",
     "moment": "~2.4.0",
-    "sinon": "~1.7.3"
+    "sinon": "~1.7.3",
+    "fuse.js": "~1.1.0"
   },
   "devDependencies": {},
   "directory": "bower_components"

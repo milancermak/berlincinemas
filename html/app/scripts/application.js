@@ -47,7 +47,11 @@ function( Backbone,
     Communicator.collections = {};
     Communicator.user = {};
 
-    window.App = App;
+    if( window.location.hostname === 'localhost' )
+    {
+        window.App = App;
+    }
+    
     /* Add application regions here */
     App.addRegions({
         header:         '#header',

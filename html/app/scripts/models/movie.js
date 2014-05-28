@@ -13,7 +13,7 @@ function( Backbone, Communicator, Moment ) {
 
 		defaults: {},
 
-		idAttribute : 'title',
+		idAttribute : 'id',
 
     initialize: function()
     {
