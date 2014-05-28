@@ -175,7 +175,7 @@ function(
 
 			var self = this;
 
-			console.log( 'SHOWING DETAILS OF::', this.model.toJSON() );
+			// console.log( 'SHOWING DETAILS OF::', this.model.toJSON() );
 
 			this.$( '.js-movie__thumbnail' ).prop( 'src', self.model.get( 'thumbnail' ) );
 			this.$( '.js-movie__link' ).prop( 'href', self.model.get( 'link' ) );
